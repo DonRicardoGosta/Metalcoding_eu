@@ -1,0 +1,14 @@
+{
+  "name": "My express App - Production",
+  "mail":{
+    "host": "prod-db-server"
+  },
+  "Customer": {
+    "dbConfig": {
+      "host": "prod-db-server"
+    },
+    "credit": {
+      "initialDays": 30
+    }
+  }
+}
