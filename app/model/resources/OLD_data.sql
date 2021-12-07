@@ -3,6 +3,12 @@ DROP  TABLE IF EXISTS  statuses;
 DROP TABLE IF EXISTS boards;
 DROP TABLE IF EXISTS users;
 
+CREATE TABLE cards (
+    id SERIAL PRIMARY KEY NOT NULL,
+    title VARCHAR(100),
+    board_id INTEGER,
+    status_id INTEGER);
+
 CREATE TABLE boards (
     id SERIAL PRIMARY KEY NOT NULL ,
     title varchar(100) NOT NULL ,
@@ -14,20 +20,11 @@ CREATE TABLE statuses (
     title VARCHAR(200) NOT NULL ,
     board_id INTEGER);
 
-
-CREATE TABLE cards (
-    id SERIAL PRIMARY KEY NOT NULL,
-    title VARCHAR(100),
-    board_id INTEGER,
-    status_id INTEGER);
-
-
 CREATE TABLE users(
     id SERIAL PRIMARY KEY NOT NULL ,
     user_name VARCHAR(50),
     password VARCHAR(250),
     table_id INTEGER);
-
 
 
 ALTER TABLE ONLY boards

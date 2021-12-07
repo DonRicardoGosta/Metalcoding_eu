@@ -339,7 +339,7 @@ dist
 .history
 .ionide
 
-# Support for Project snippet scope
+# Support for ProjectModel snippet scope
 !.vscode/*.code-snippets
 
 ### WebStorm ###

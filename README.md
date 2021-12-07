@@ -2,10 +2,10 @@
 ##Why I developed this system?
 ####This project is made for my thesis. I choosed to develop a company management system because I have a lot of good ideas in this topics.
 ##The main parts/sections:
-- Project management
+- ProjectModel management
 - Real Payment
 - Statics
-##What's Project Management is about?
+##What's ProjectModel Management is about?
 ##What's Statics is about?
 ##What's Payment is about?
 ###A thought about payment section:

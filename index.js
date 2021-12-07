@@ -1,18 +1,22 @@
+const mongoose = require('mongoose');
 const startupDebugger = require('debug')('app:startup');
 const dbDebugger = require('debug')('app:db');
 const config = require('config');
 const morgan = require('morgan');
 const helmet = require('helmet');
-const Joi = require('joi');
-const logger = require('./control/middleware/logger');
-const projects = require('./control/projects');
-const home = require('./control/home');
+const logger = require('./app/control/middleware/logger');
+const projects = require('./app/control/roots/projects');
+const home = require('./app/control/roots/home');
 const express = require('express');
 //const pg = require("pg-promise/typescript/pg-subset");
 const app =  express();
 
 app.set('view engine', 'pug');
-app.set('views','./views');
+app.set('views','./app/views');
+
+mongoose.connect('mongodb://localhost/vir_szakdolgozat')
+    .then(() => console.log('Connected to MongoDB'))
+    .catch(err => console.error('Could not connect to MongoDB...',err))
 
 app.use(express.json());
 
