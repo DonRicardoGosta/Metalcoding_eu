@@ -2,14 +2,14 @@ const { User } = require('../../model/userModel')
 const express = require('express');
 const { getProjects, getBoards, getStatuses, getCards} = require('../database/projects_data_handler');
 const {validateProject, Project} = require("../../model/project-management-modells/projectModel");
-const mongoose = require("mongoose");
 const router = express.Router();
 
 
 router.get('/',async (req,res) => {
     const userId = (await User.findById('61ad2869232e55303a22c653'))._id;
     const projects = await getProjects(userId); //Ha nem írunk userId-t akkor az összeset projectet megkapjuk
-    res.send(projects);
+    res.render('projects',{ title: "Projects", projects: projects });
+    //res.send(projects);
 });
 
 router.get('/boards',async (req,res) => {
