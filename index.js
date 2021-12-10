@@ -5,11 +5,17 @@ const config = require('config');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const logger = require('./app/control/middleware/logger');
+const auth = require('./app/control/roots/auth');
+const users = require('./app/control/roots/users');
 const projects = require('./app/control/roots/projects');
 const home = require('./app/control/roots/home');
 const express = require('express');
-//const pg = require("pg-promise/typescript/pg-subset");
 const app =  express();
+
+if(!config.get('jwtPrivateKey')){
+    console.error('FATAL ERROR: jwtPrivateKey is not defined.');
+    process.exit(1);
+}
 
 app.set('view engine', 'pug');
 app.set('views','./app/views');
@@ -19,8 +25,9 @@ mongoose.connect('mongodb://localhost/vir_szakdolgozat')
     .catch(err => console.error('Could not connect to MongoDB...',err))
 
 app.use(express.json());
-
 app.use(helmet());
+app.use('/api/auth', auth);
+app.use('/api/users', users);
 app.use('/api/projects', projects);
 app.use('/', home);
 

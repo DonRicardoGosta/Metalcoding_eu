@@ -91,7 +91,7 @@ async function getCards(status_id){
 async function createUser(){
     let user = new User({
         name: 'Bunyós Pityu',
-        permission: 'admin',
+        role: 'admin',
         password:"5866",
         email: "horvathdanii99@gmail.com"
     });
