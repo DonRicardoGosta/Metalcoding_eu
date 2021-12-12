@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const util = require('util');
+const encoder = new util.TextEncoder('utf-8');
 const startupDebugger = require('debug')('app:startup');
 const dbDebugger = require('debug')('app:db');
 const config = require('config');
