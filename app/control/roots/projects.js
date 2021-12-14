@@ -1,5 +1,3 @@
-const admin = require('../middleware/admin');
-const auth = require('../middleware/auth');
 const { User } = require('../../model/userModel');
 const express = require('express');
 const { getProjects, getBoards, getStatuses, getCards} = require('../database/projects_data_handler');
@@ -7,8 +5,8 @@ const {validateProject, Project} = require("../../model/project-management-model
 const router = express.Router();
 
 
-router.get('/', auth, async (req,res) => {
-    const user = (await User.findById('61ad2869232e55303a22c653'));
+router.get('/', async (req,res) => {
+    const user = (await User.findById('61b286f41dcc43c913fdf27c'));
     if(!user) return res.status(404).send("You dont have any projects.");
     const userId = user._id;
     const projects = await getProjects(userId); //Ha nem írunk userId-t akkor az összeset projectet megkapjuk
@@ -17,17 +15,17 @@ router.get('/', auth, async (req,res) => {
 });
 
 router.get('/boards',async (req,res) => {
-    const boards = await getBoards('61afe7461404e1b56416c045');
+    const boards = await getBoards();
     res.send(boards);
 });
 
 router.get('/statuses',async (req,res) => {
-    const statuses = await getStatuses('61afe7461404e1b56416c048');
+    const statuses = await getStatuses();
     res.send(statuses);
 });
 
 router.get('/cards',async (req,res) => {
-    const cards = await getCards('61afe7461404e1b56416c04b');
+    const cards = await getCards();
     res.send(cards);
 });
 
@@ -63,7 +61,7 @@ router.put('/:id',async (req, res) =>{
     res.send(project);
 });
 
-router.delete('/:id', [auth, admin],async (req,res) => {
+router.delete('/:id',async (req,res) => {
     const project = await Project.findByIdAndRemove(req.params.id);
 
     if(!project) return res.status(404).send("The project with the given ID was not found.");
