@@ -15,14 +15,15 @@ if(!config.get('jwtPrivateKey')){
     process.exit(1);
 }
 
+app.set('views', './app/views');
 app.set('view engine', 'pug');
-app.set('views','./app/views');
 
 mongoose.connect('mongodb://localhost/vir_szakdolgozat')
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => console.error('Could not connect to MongoDB...',err))
 
 app.use(express.json());
+app.use('/static', express.static('./app/views/static'));
 app.use(helmet());
 app.use('/api/projects', projects);
 app.use('/', home);

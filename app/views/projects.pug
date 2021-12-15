@@ -1,14 +1,15 @@
 doctype html
 html(lang='en')
-    head
-        title= title
+    include static/includes/header.pug
     body
-        each project in projects
-            div.project-container
-                div.project-title
-                    p='Project name: ' +project.name
-                div.project-body
-                    p= 'Project owner: '+project.owner.name
+        div#background-one
+            div#container
+                div#projects-management-panel
+                    a projects-in-line: 3
+                    br
+                    a max-projects on the page: unlimited
+                div#disp-container
 
-
+    include static/includes/footer.pug
+    script(src='/static/js/index.js')
 

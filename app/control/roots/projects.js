@@ -6,26 +6,28 @@ const router = express.Router();
 
 
 router.get('/', async (req,res) => {
-    const user = (await User.findById('61b286f41dcc43c913fdf27c'));
-    if(!user) return res.status(404).send("You dont have any projects.");
-    const userId = user._id;
-    const projects = await getProjects(userId); //Ha nem írunk userId-t akkor az összeset projectet megkapjuk
-    res.render('projects',{ title: "Projects", projects: projects });
+    res.render('projects',{ title: "Projects"});
     //res.send(projects);
 });
 
-router.get('/boards',async (req,res) => {
-    const boards = await getBoards();
+router.get('/get-projects',async (req,res) => {
+    const user = (await User.findById('61b286f41dcc43c913fdf27c'));
+    const projects = await getProjects(user._id);
+    res.send(projects);
+});
+
+router.get('/get-boards/:p_id',async (req,res) => {
+    const boards = await getBoards(req.params.p_id);
     res.send(boards);
 });
 
-router.get('/statuses',async (req,res) => {
-    const statuses = await getStatuses();
+router.get('/get-statuses/:b_id',async (req,res) => {
+    const statuses = await getStatuses(req.params.b_id);
     res.send(statuses);
 });
 
-router.get('/cards',async (req,res) => {
-    const cards = await getCards();
+router.get('/get-cards/:s_id',async (req,res) => {
+    const cards = await getCards(req.params.s_id);
     res.send(cards);
 });
 
