@@ -9,7 +9,7 @@ async function create_random_objects(userId){
     let project = new Project({
         name: projectName,
         owner: await userId,
-        users: ['61ad2869232e55303a22c653']
+        users: ['61b286f41dcc43c913fdf27c']
     });
     project = await project.save();
     await createBoard(2, userId, (await project)._id)

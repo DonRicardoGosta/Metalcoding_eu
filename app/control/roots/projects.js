@@ -1,5 +1,3 @@
-const admin = require('../middleware/admin');
-const auth = require('../middleware/auth');
 const { User } = require('../../model/userModel');
 const express = require('express');
 const { getProjects, getBoards, getStatuses, getCards} = require('../database/projects_data_handler');
@@ -7,27 +5,29 @@ const {validateProject, Project} = require("../../model/project-management-model
 const router = express.Router();
 
 
-router.get('/', auth, async (req,res) => {
-    const user = (await User.findById('61ad2869232e55303a22c653'));
-    if(!user) return res.status(404).send("You dont have any projects.");
-    const userId = user._id;
-    const projects = await getProjects(userId); //Ha nem írunk userId-t akkor az összeset projectet megkapjuk
-    res.render('projects',{ title: "Projects", projects: projects });
+router.get('/', async (req,res) => {
+    res.render('projects',{ title: "Projects"});
     //res.send(projects);
 });
 
-router.get('/boards',async (req,res) => {
-    const boards = await getBoards('61afe7461404e1b56416c045');
+router.get('/get-projects',async (req,res) => {
+    const user = (await User.findById('61b286f41dcc43c913fdf27c'));
+    const projects = await getProjects(user._id);
+    res.send(projects);
+});
+
+router.get('/get-boards/:p_id',async (req,res) => {
+    const boards = await getBoards(req.params.p_id);
     res.send(boards);
 });
 
-router.get('/statuses',async (req,res) => {
-    const statuses = await getStatuses('61afe7461404e1b56416c048');
+router.get('/get-statuses/:b_id',async (req,res) => {
+    const statuses = await getStatuses(req.params.b_id);
     res.send(statuses);
 });
 
-router.get('/cards',async (req,res) => {
-    const cards = await getCards('61afe7461404e1b56416c04b');
+router.get('/get-cards/:s_id',async (req,res) => {
+    const cards = await getCards(req.params.s_id);
     res.send(cards);
 });
 
@@ -63,7 +63,7 @@ router.put('/:id',async (req, res) =>{
     res.send(project);
 });
 
-router.delete('/:id', [auth, admin],async (req,res) => {
+router.delete('/:id',async (req,res) => {
     const project = await Project.findByIdAndRemove(req.params.id);
 
     if(!project) return res.status(404).send("The project with the given ID was not found.");
