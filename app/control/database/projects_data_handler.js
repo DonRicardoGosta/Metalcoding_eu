@@ -15,7 +15,7 @@ async function getProjects(user_id){
             const projects = await Project
                 .find({owner : user_id.toString()})
                 .populate('owner', 'name -_id')
-                .select('name -_id');
+                .select('name _id');
             console.log(projects);
             return projects;
         }catch (ex){
@@ -37,6 +37,7 @@ async function getBoards(project_id){
         try {
             const boards = await Board
                 .find({project_id: project_id.toString()})
+                .populate('created_user', 'name -_id')
                 .select('name project_id');
             return boards;
         }catch (ex){
