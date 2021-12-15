@@ -9,7 +9,7 @@ const { User } = require("../../model/userModel");
 
 
 async function getProjects(user_id){
-    //await createRandomObjects(user_id);
+    await createRandomObjects(user_id);
     if(user_id){
         try {
             const projects = await Project
