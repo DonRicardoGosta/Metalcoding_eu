@@ -9,14 +9,15 @@ const { User } = require("../../model/userModel");
 
 
 async function getProjects(user_id){
-    await createRandomObjects(user_id);
+    //const user = await createUser();
+    //await createRandomObjects(user._id);
     if(user_id){
         try {
             const projects = await Project
                 .find({owner : user_id.toString()})
                 .populate('owner', 'name -_id')
                 .select('name _id');
-            console.log(projects);
+            
             return projects;
         }catch (ex){
             console.log(ex.message)
@@ -26,7 +27,6 @@ async function getProjects(user_id){
             .find()
             .populate('owner', 'name -_id')
             .select('name owner');
-        console.log(projects);
         return projects;
     }
 

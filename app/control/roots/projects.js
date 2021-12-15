@@ -1,4 +1,5 @@
 const { User } = require('../../model/userModel');
+const { Card } = require('../../model/project-management-modells/cardModel');
 const express = require('express');
 const { getProjects, getBoards, getStatuses, getCards} = require('../database/projects_data_handler');
 const {validateProject, Project} = require("../../model/project-management-modells/projectModel");
@@ -50,17 +51,12 @@ router.post('/',async (req, res) => {
     res.send(project);
 });
 
-
-router.put('/:id',async (req, res) =>{
-    const { error } = validate(req.body);
-    if(error) return res.status(400).send(error.details[0].message);
-    const project = Project.findByIdAndUpdate(req.params.id,{name: req.body.name},{
+router.put('/move-card/:id/:status_id',async (req,res) =>{
+    let card = await Card.findOneAndUpdate({_id: req.params.id}, {status_id: req.params.status_id}, {
         new: true
-    })
+    });
+    res.send(card);
 
-    if(!project) return res.status(404).send("The project with the given ID was not found.");
-
-    res.send(project);
 });
 
 router.delete('/:id',async (req,res) => {
