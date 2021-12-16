@@ -171,7 +171,6 @@
 .board-container{
     min-width:95%;
     min-height: 5vh;
-    max-height: 60vh;
     margin: 5vh 2.5% 5vh 2.5%;
     overflow-y: hidden;
     overflow-x: scroll;
@@ -211,10 +210,11 @@
 }
 .board-size-icon{
     width: 2%;
-    height: 3vh;
-    margin: 1vh 1% 1vh 1%;
+    height: 2vh;
+    margin: 1.5vh 1% 1.5vh 1%;
     display: inline-block;
     float: right;
+    cursor: pointer;
 }
 .board-created-user{
     width:100%;
@@ -231,11 +231,16 @@
 
 
 
+
+
+
+
+
+
 .status-container{
     display: inline-grid;
     width:20%;
     min-height: 10vh;
-    max-height: 40vh;
     overflow: hidden;
     margin: 5vh 1% 3vh 1%;
     color: black;
@@ -252,6 +257,52 @@
     line-height: 5vh;
     font-size: 10px;
     border-bottom: 1px solid black;
+    display: inline-block;
+    transition: 3s;
+}
+.status-name:hover .status-menu{
+    display: block;
+}
+.status-menu{
+    background-color: rgba(0,0,0,0);
+    min-width:0;
+    max-width: 200px;
+    min-height: 5vh;
+    position: absolute;
+    display: none;
+
+}
+
+.status-menu-icon{
+    width:30px;
+    margin: 1.5vh 10px 1.5vh 10px;
+    height: 2vh;
+    background: url("/static/img/status-menu.png") top center no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    transition: 3s;
+}
+.display{
+    display: block;
+}
+.hide{
+    display: none;
+}
+.status-menu-container{
+    width:200px;
+    min-height:10vh;
+
+}
+.status-menupoint{
+    width: 100%;
+    line-height: 5vh;
+    font-size: 14px;
+    background-color: black;
+    color: white;
+}
+.status-menupoint:hover{
+    background-color: white;
+    color: black;
 }
 
 
@@ -277,4 +328,16 @@
 .cards-drop-zone{
     min-height: 10vh;
     width: 100%;
+}
+.new-card{
+    display: inline-block;
+    height: 4vh;
+}
+input.new-card{
+    width:60%;
+}
+a.new-card{
+    width:20%;
+    float: right;
+    cursor: pointer;
 }

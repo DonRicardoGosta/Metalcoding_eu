@@ -1,7 +1,11 @@
 window.onload = initPage
 
-function initPage(){
-    getProjects().then(setEventListenersOnProjects);
+const card_colors = ["rgba(0,100,0,1)","rgba(255, 136, 0, 1)","rgba(14, 82, 171, 1)"];
+const status_colors = ["rgba(120, 204, 141,1)","rgba(255, 215, 128, 1)","rgba(145, 207, 255, 1)"];
+
+async function initPage(){
+    await getProjects().then(setEventListenersOnProjects);
+    document.querySelector(".project-container").click(); //click on the first project
 }
 
 async function getProjects(){
@@ -14,7 +18,7 @@ async function getBoards(proj_id){
     let url="/api/projects/get-boards/"+proj_id;
     let response = await fetch(url);
     let data = await response.json();
-    writeBoardsToHtml(data).then(setEventListenersOnBoardSizeArrows);
+    writeBoardsToHtml(data).then(setEventListenersOnBoardSizeArrows).then(setEventListenerOnStatusMenus).then(setEventListenerOnAddCard);
 }
 async function getStatuses(board_id){
     let url="/api/projects/get-statuses/"+board_id;
@@ -28,6 +32,27 @@ async function getCards(status_id){
     let data = await response.json();
     return data;
 }
+
+
+
+async function addMewCard(status_id){
+    let url="/api/projects/new-card/"+status_id;
+    let response = await fetch(url,{
+        method:'POST'
+    });
+    let data = await response.json();
+    return data;
+}
+async function updateCard(card_id,new_name){
+    let url=`/api/projects/rename-card/${card_id}/${new_name}`;
+    let response = await fetch(url,{
+        method:'PUT'
+    });
+    let data = await response.json();
+    return data;
+}
+
+
 
 
 
@@ -45,6 +70,55 @@ function setEventListenersOnBoardSizeArrows(){
         board_size.addEventListener('click', changeBoardSize)
     }
 }
+function setEventListenerOnStatusMenus(){
+    const status_menus = document.querySelectorAll(".status-menu-icon");
+    for(let menu of status_menus){
+        menu.addEventListener('click', changeStatusMenuDisplay)
+    }
+}
+function setEventListenerOnAddCard(){
+    const add_card_menus = document.querySelectorAll(".add-card");
+    for(let menu of add_card_menus){
+        menu.addEventListener('click', displayNewCard)
+    }
+}
+function setEventListenerOnNewCardSubmit(){
+    const submit = document.querySelector(".this-is-the-newest-card");
+    submit.querySelector(".submit-button").addEventListener('click',newCardNameSubmitted)
+}
+
+
+
+
+
+
+
+
+
+
+
+function newCardNameSubmitted(event){
+    let new_card_name = event.target.parentElement.querySelector(".new-card-name").value;
+    let card_id = event.target.parentElement.parentElement.querySelector(".card-id").textContent;
+    let card = updateCard(card_id,new_card_name);
+    let card_container = document.querySelector(".this-is-the-newest-card").parentElement;
+    card_container.querySelector(".card-name").classList.remove("this-is-the-newest-card");
+    deleteChildren(card_container.querySelector(".card-name"));
+    card_container.querySelector(".card-name").textContent = card.name;
+}
+
+async function displayNewCard(event){
+    const card= await addMewCard(event.target.parentElement.parentElement.parentElement.parentElement.querySelector(".status-id").textContent);
+    let cards_container = event.target.parentElement.parentElement.parentElement.parentElement.querySelector(".cards-drop-zone");
+    let new_card=`
+                    <div class="card-container">
+                        <div class="card-id">${card._id}</div>
+                        <div class="card-name this-is-the-newest-card"><input class="new-card new-card-name" type="text" value="${card.name}"><a class="new-card submit-button">OK</a></div>
+                    </div> 
+                    `;
+    cards_container.insertAdjacentHTML("beforeend", new_card);
+    setEventListenerOnNewCardSubmit();
+}
 
 function changeBoardSize(event){
     if( event.target.classList.contains("board-dec-size-icon")){
@@ -55,6 +129,28 @@ function changeBoardSize(event){
         event.target.parentElement.parentElement.querySelector(".board-content").classList.replace("dec-board-content","inc-board-content");
     }
 
+}
+
+let mouseLeaveStatusMenuEvent=null;
+function changeStatusMenuDisplay(event){
+    let menu = event.target.parentElement.querySelector(".status-menu-container");
+
+    if(menu.classList.contains("hide")){
+        menu.classList.replace("hide","display")
+        mouseLeaveStatusMenuEvent = event.target.parentElement.parentElement.querySelector(".status-menu");
+        mouseLeaveStatusMenuEvent.addEventListener('mouseleave', mouseLeaveStatusMenu);
+    }else{
+        menu.classList.replace("display","hide")
+        mouseLeaveStatusMenuEvent.removeEventListener('mouseleave', mouseLeaveStatusMenu);
+        mouseLeaveStatusMenuEvent = null;
+    }
+
+}
+
+function mouseLeaveStatusMenu(event){
+    if(event.target.querySelector(".status-menu-container").classList.contains("display")){
+        event.target.querySelector(".status-menu-container").classList.replace("display","hide");
+    }
 }
 
 let active_proj;
@@ -82,6 +178,22 @@ async function projectChose(event){
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function writeProjectsToHtml(projects){
     const proj_container = document.querySelector("#project-panel");
     if(!proj_container) return console.log("Error: '#disp-container' has not found on the page, please check");
@@ -103,6 +215,7 @@ function writeProjectsToHtml(projects){
 }
 async function writeBoardsToHtml(boards){
     const board_container = document.querySelector("#disp-container");
+
     if(!board_container) return console.log("Error: '#disp-container' has not found on the page, please check");
     if(board_container.firstChild) deleteChildren(board_container);
     if(boards.length == 0) return emptyListMessage(board_container);
@@ -119,16 +232,27 @@ async function writeBoardsToHtml(boards){
             <div class="board-name"><h1>${board.name}</h1> <div class="board-size-icon board-dec-size-icon"></div></div>
             <div class="board-content inc-board-content">
            `;
+            let i=0;
             for(let status of statuses){
                 let cards = await getCards(status._id);
                 board_list+=`
-                <div class="status-container">
+                <div class="status-container"   style='background-color: ${status_colors[i]}'>
                     <div class="status-id">${status._id}</div>
-                    <div class="status-name"><h1>${status.name}</h1></div>
-                        <div class="cards-drop-zone">`;
+                    <div class="status-name">
+                        <div class="status-menu">
+                            <div class="status-menu-icon"></div>
+                            <div class="status-menu-container hide">
+                                <div class="status-menupoint add-card">Add card</div>
+                                <div class="status-menupoint rename-status">Rename status</div>
+                                <div class="status-menupoint delete-status">Delete status</div>
+                                <div class="status-menupoint change-color">Change color</div>
+                            </div>
+                        </div>
+                    <h1>${status.name}</h1></div>
+                    <div class="cards-drop-zone">`;
                 for(let card of cards){
                     board_list+=`
-                    <div class="card-container">
+                    <div class="card-container"  style='background-color: ${card_colors[i]}'>
                         <div class="card-id">${card._id}</div>
                         <div class="card-name">${card.name}</div>
                     </div> 
@@ -138,6 +262,11 @@ async function writeBoardsToHtml(boards){
                     </div>
                 </div>
                 `;
+                if(i==2){
+                    i=0
+                }else{
+                    i+=1;
+                }
             }
             board_list+=`
         </div>

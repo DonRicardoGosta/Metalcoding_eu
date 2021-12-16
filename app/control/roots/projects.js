@@ -35,6 +35,19 @@ router.get('/get-cards/:s_id',async (req,res) => {
 
 
 
+router.post('/new-card/:s_id',async (req, res) => {
+
+    let card = new Card({
+        name: 'New Card',
+        status_id: req.params.s_id,
+        created_user:"61b286f41dcc43c913fdf27c"
+    });
+    card = await card.save();
+    res.send(card);
+});
+
+
+
 
 
 
@@ -57,6 +70,12 @@ router.put('/move-card/:id/:status_id',async (req,res) =>{
     });
     res.send(card);
 
+});
+router.put('/rename-card/:id/:new_name',async (req,res) =>{
+    let card = await Card.findOneAndUpdate({_id: req.params.id}, {name: req.params.new_name}, {
+        new: true
+    });
+    res.send(card);
 });
 
 router.delete('/:id',async (req,res) => {
