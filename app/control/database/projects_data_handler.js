@@ -17,7 +17,7 @@ async function getProjects(user_id){
                 .find({owner : user_id.toString()})
                 .populate('owner', 'name -_id')
                 .select('name _id');
-            
+
             return projects;
         }catch (ex){
             console.log(ex.message)

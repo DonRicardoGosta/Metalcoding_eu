@@ -1,7 +1,7 @@
 window.onload = initPage
 
 function initPage(){
-    getProjects().then(() => setEventListenersOnProjects());
+    getProjects().then(setEventListenersOnProjects);
 }
 
 async function getProjects(){
@@ -14,7 +14,7 @@ async function getBoards(proj_id){
     let url="/api/projects/get-boards/"+proj_id;
     let response = await fetch(url);
     let data = await response.json();
-    writeBoardsToHtml(data);
+    writeBoardsToHtml(data).then(setEventListenersOnBoardSizeArrows);
 }
 async function getStatuses(board_id){
     let url="/api/projects/get-statuses/"+board_id;
@@ -28,11 +28,33 @@ async function getCards(status_id){
     let data = await response.json();
     return data;
 }
+
+
+
+
 function setEventListenersOnProjects(){
     const projects = document.querySelectorAll(".project-container");
     for(let proj of projects){
         proj.addEventListener('click', projectChose)
     }
+}
+
+function setEventListenersOnBoardSizeArrows(){
+    const board_size_arrows = document.querySelectorAll(".board-size-icon");
+    for(let board_size of board_size_arrows){
+        board_size.addEventListener('click', changeBoardSize)
+    }
+}
+
+function changeBoardSize(event){
+    if( event.target.classList.contains("board-dec-size-icon")){
+        event.target.classList.replace("board-dec-size-icon","board-inc-size-icon");
+        event.target.parentElement.parentElement.querySelector(".board-content").classList.replace("inc-board-content","dec-board-content");
+    }else{
+        event.target.classList.replace("board-inc-size-icon","board-dec-size-icon");
+        event.target.parentElement.parentElement.querySelector(".board-content").classList.replace("dec-board-content","inc-board-content");
+    }
+
 }
 
 let active_proj;
@@ -94,7 +116,9 @@ async function writeBoardsToHtml(boards){
             <div class="board-id">${board._id}</div>
             <div class="project-id">${board.project_id}</div>
             <div class="board-created-user"><p>Created user: ${board.created_user.name}</p></div>
-            <div class="board-name"><h1>${board.name}</h1></div>`;
+            <div class="board-name"><h1>${board.name}</h1> <div class="board-size-icon board-dec-size-icon"></div></div>
+            <div class="board-content inc-board-content">
+           `;
             for(let status of statuses){
                 let cards = await getCards(status._id);
                 board_list+=`
@@ -116,6 +140,7 @@ async function writeBoardsToHtml(boards){
                 `;
             }
             board_list+=`
+        </div>
         </div>
     `;
     }

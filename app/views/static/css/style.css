@@ -170,13 +170,12 @@
 
 .board-container{
     min-width:95%;
-    min-height: 20vh;
+    min-height: 5vh;
     max-height: 60vh;
     margin: 5vh 2.5% 5vh 2.5%;
     overflow-y: hidden;
     overflow-x: scroll;
     background-color: rgba(0,0,0,0.6);
-
     color: white;
     border-radius: 5px;
     border: 1px solid rgba(255, 255, 255, 1);
@@ -190,6 +189,32 @@
     display: inline-block;
     line-height: 5vh;
     text-align: center;
+    overflow: hidden;
+}
+.board-name h1{
+    display: inline-block;
+    line-height: 5vh;
+}
+.board-inc-size-icon{
+    background: url("/static/img/increase-size.png") top center no-repeat;
+    background-size: contain;
+}
+.board-dec-size-icon{
+    background: url("/static/img/decrease-size.png") top center no-repeat;
+    background-size: contain;
+}
+.dec-board-content{
+    display: none;
+}
+.inc-board-content{
+    display: block;
+}
+.board-size-icon{
+    width: 2%;
+    height: 3vh;
+    margin: 1vh 1% 1vh 1%;
+    display: inline-block;
+    float: right;
 }
 .board-created-user{
     width:100%;
