@@ -9,29 +9,34 @@ const { User } = require("../../model/userModel");
 
 
 async function getProjects(user_id){
-    //const user = await createUser();
-    //await createRandomObjects(user._id);
     if(user_id){
         try {
             const projects = await Project
                 .find({owner : user_id.toString()})
                 .populate('owner', 'name -_id')
                 .select('name _id');
-
             return projects;
         }catch (ex){
             console.log(ex.message)
         }
-    }else{
-        const projects = await Project
-            .find()
-            .populate('owner', 'name -_id')
-            .select('name owner');
-        return projects;
     }
-
-
 }
+async function getProject(user_id, project_id){
+    if(user_id && project_id){
+        try {
+            const project = await Project
+                .find({owner : user_id.toString(), _id: project_id.toString()})
+                .populate('owner', 'name -_id')
+                .select('name _id');
+            return project;
+        }catch (ex){
+            console.log(ex.message)
+        }
+    }
+}
+
+
+
 async function getBoards(project_id){
     if(project_id){
         try {
@@ -43,14 +48,24 @@ async function getBoards(project_id){
         }catch (ex){
             console.log(ex.message)
         }
-    }else{
-        const boards = await Board
-            .find()
-            .select('name project_id');
-        return boards;
     }
-
 }
+async function getBoard(board_id){
+    if(board_id){
+        try {
+            const board = await Board
+                .find({_id: board_id.toString()})
+                .populate('created_user', 'name -_id')
+                .select('name project_id');
+            return board;
+        }catch (ex){
+            console.log(ex.message)
+        }
+    }
+}
+
+
+
 async function getStatuses(board_id){
     if(board_id){
         try {
@@ -61,14 +76,23 @@ async function getStatuses(board_id){
         }catch (ex){
             console.log(ex.message)
         }
-    }else{
-        const statuses = await Status
-            .find()
-            .select('name board_id');
-        return statuses;
     }
-
 }
+async function getStatus(status_id){
+    if(status_id){
+        try {
+            const status = await Status
+                .find({_id: status_id.toString()})
+                .select('name board_id');
+            return status;
+        }catch (ex){
+            console.log(ex.message)
+        }
+    }
+}
+
+
+
 async function getCards(status_id){
     if(status_id){
         try {
@@ -79,14 +103,21 @@ async function getCards(status_id){
         }catch (ex){
             console.log(ex.message)
         }
-    }else{
-        const cards = await Card
-            .find()
-            .select('name status_id');
-        return cards;
     }
-
 }
+async function getCard(card_id){
+    if(card_id){
+        try {
+            const card = await Card
+                .find({_id: card_id.toString()})
+                .select('name status_id');
+            return card;
+        }catch (ex){
+            console.log(ex.message)
+        }
+    }
+}
+
 
 
 async function createUser(){
@@ -101,6 +132,10 @@ async function createUser(){
 }
 
 module.exports.getProjects = getProjects
+module.exports.getProject = getProject
 module.exports.getBoards = getBoards
+module.exports.getBoard = getBoard
 module.exports.getStatuses = getStatuses
+module.exports.getStatus = getStatus
 module.exports.getCards = getCards
+module.exports.getCard = getCard

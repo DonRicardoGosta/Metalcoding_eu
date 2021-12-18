@@ -1,35 +1,59 @@
 const { User } = require('../../model/userModel');
 const { Card } = require('../../model/project-management-modells/cardModel');
 const express = require('express');
-const { getProjects, getBoards, getStatuses, getCards} = require('../database/projects_data_handler');
+const { getProjects, getProject, getBoards, getBoard, getStatuses, getStatus, getCards, getCard} = require('../database/projects_data_handler');
 const {validateProject, Project} = require("../../model/project-management-modells/projectModel");
 const router = express.Router();
 
 
 router.get('/', async (req,res) => {
-    res.render('projects',{ title: "Projects"});
-    //res.send(projects);
+    res.render('projects',{ title: "MagoriComputers - Managemet software"});
 });
+
+
 
 router.get('/get-projects',async (req,res) => {
     const user = (await User.findById('61b286f41dcc43c913fdf27c'));
     const projects = await getProjects(user._id);
     res.send(projects);
 });
+router.get('/get-project/:project_id',async (req,res) => {
+    const user = (await User.findById('61b286f41dcc43c913fdf27c'));
+    const project = await getProject(user._id, req.params.project_id);
+    res.send(project);
+});
 
-router.get('/get-boards/:p_id',async (req,res) => {
-    const boards = await getBoards(req.params.p_id);
+
+
+router.get('/get-boards/:project_id',async (req,res) => {
+    const boards = await getBoards(req.params.project_id);
     res.send(boards);
 });
-
-router.get('/get-statuses/:b_id',async (req,res) => {
-    const statuses = await getStatuses(req.params.b_id);
-    res.send(statuses);
+router.get('/get-board/:board_id',async (req,res) => {
+    const board = await getBoard(req.params.board_id);
+    res.send(board);
 });
 
-router.get('/get-cards/:s_id',async (req,res) => {
-    const cards = await getCards(req.params.s_id);
+
+
+router.get('/get-statuses/:board_id',async (req,res) => {
+    const statuses = await getStatuses(req.params.board_id);
+    res.send(statuses);
+});
+router.get('/get-status/:status_id',async (req,res) => {
+    const status = await getStatus(req.params.status_id);
+    res.send(status);
+});
+
+
+
+router.get('/get-cards/:status_id',async (req,res) => {
+    const cards = await getCards(req.params.status_id);
     res.send(cards);
+});
+router.get('/get-card/:card_id',async (req,res) => {
+    const card = await getCard(req.params.card_id);
+    res.send(card);
 });
 
 
