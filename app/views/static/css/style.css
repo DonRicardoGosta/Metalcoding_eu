@@ -173,7 +173,6 @@
     min-height: 5vh;
     margin: 5vh 2.5% 5vh 2.5%;
     overflow-y: hidden;
-    overflow-x: scroll;
     background-color: rgba(0,0,0,0.6);
     color: white;
     border-radius: 5px;
