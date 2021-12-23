@@ -18,7 +18,6 @@ const userSchema= new mongoose.Schema({
         maxlength: 1024
     },
     register_date: {type: Date, default: Date.now },
-
     email: {
         type: String,
         required: true,

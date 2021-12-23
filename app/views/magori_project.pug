@@ -53,7 +53,6 @@ body
                                                         div.status-menupoint.add-card Add card
                                                         div.status-menupoint.rename-status Rename status
                                                         div.status-menupoint.delete-status Delete status
-                                                        div.status-menupoint.change-color Change color
                                                 h1= status.name
                                             div.cards-drop-zone
                                                 each card_tag in cards
@@ -61,6 +60,11 @@ body
                                                         if card.status_id.toString() === status._id.toString()
                                                             div.card-container
                                                                 div.card-id= card._id
+                                                                div.card-menu
+                                                                    div.card-menu-icon
+                                                                    div.card-menu-container.hide
+                                                                        div.card-menupoint.rename-card Rename card
+                                                                        div.card-menupoint.delete-card Delete card
                                                                 div.card-name= card.name
 include static/includes/footer.pug
 script(type="module" src='/static/js/project_management.js')

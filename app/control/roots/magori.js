@@ -1,13 +1,13 @@
 const { getProjects, getProject, getBoards, getBoard, getStatuses, getStatus, getCards, getCard} = require('../database/projects_data_handler');
 const express = require('express');
 const {User} = require("../../model/userModel");
-const {Status} = require("../../model/project-management-modells/statusModel");
-const {jsonParser} = require("config/parser");
 const {Project} = require("../../model/project-management-modells/projectModel");
 const router = express.Router();
+const { createRandomObjects } =require("../database/create_random_objects");
 
 router.get('/', async (req,res) => {
-
+    /*const user = (await User.findById('61b286f41dcc43c913fdf27c'));
+    await createRandomObjects(user._id);*/
     const proj=await Project.findOne();
     res.redirect('/magori/'+proj._id);
 });

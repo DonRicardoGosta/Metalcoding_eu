@@ -1,10 +1,17 @@
 const status_colors = ["rgba(120, 204, 141,1)","rgba(255, 215, 128, 1)","rgba(145, 207, 255, 1)"];
 const card_colors = ["rgba(0,100,0,1)","rgba(255, 136, 0, 1)","rgba(14, 82, 171, 1)"];
 
-export function cardSchema(card, i){
+export function cardSchema(card){
     return`
-                    <div class="card-container"  style='background-color: ${card_colors[i]}'>
+                    <div class="card-container">
                         <div class="card-id">${card._id}</div>
+                        <div class="card-menu">
+                            <div class="card-menu-icon"></div>
+                            <div class="card-menu-container hide">
+                                <div class="card-menupoint rename-card">Rename card</div>
+                                <div class="card-menupoint delete-card">Delete card</div>
+                            </div>
+                        </div>
                         <div class="card-name">${card.name}</div>
                     </div> 
                     `;
@@ -16,6 +23,12 @@ export function renameCardSchema(card){
                         <div class="card-id">${card._id}</div>
                         <div class="card-name this-is-the-newest-card"><input class="new-card new-card-name" type="text" value="${card.name}"><a class="new-card submit-button">OK</a></div>
                     </div> 
+                    `;
+}
+export function renameCardSchema_poor(card){
+    return`
+                        <div class="card-id">${card._id}</div>
+                        <div class="card-name this-is-the-newest-card"><input class="new-card new-card-name" type="text" value="${card.name}"><a class="new-card submit-button">OK</a></div>         
                     `;
 }
 

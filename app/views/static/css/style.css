@@ -320,8 +320,14 @@
     display: inline-block;
     transition: 3s;
 }
-.status-name:hover .status-menu{
+.status-container:hover .status-menu{
     display: block;
+}
+.display{
+    display: block;
+}
+.hide{
+    display: none;
 }
 .status-menu{
     background-color: rgba(0,0,0,0);
@@ -341,12 +347,6 @@
     background-size: contain;
     cursor: pointer;
     transition: 3s;
-}
-.display{
-    display: block;
-}
-.hide{
-    display: none;
 }
 .status-menu-container{
     width:200px;
@@ -397,10 +397,51 @@
     height: 40px;
 }
 input.new-card{
-    width:60%;
+    width: 78%;
+    height: 43px;
+    margin: 0.5px;
+    border: 0.5px solid black;
 }
 a.new-card{
     width:20%;
     float: right;
     cursor: pointer;
+}
+.card-container:hover .card-menu{
+    display: block;
+}
+.card-menu{
+    background-color: rgba(100,0,0,1);
+    min-width:0;
+    max-width: 200px;
+    min-height: 45px;
+    position: absolute;
+    display: none;
+    cursor: pointer;
+}
+
+.card-menu-icon{
+    width:30px;
+    margin: 15px 10px 15px 10px;
+    height: 15px;
+    background: url("/static/img/card-menu.png") top center no-repeat;
+    background-size: contain;
+    transition: 3s;
+}
+.card-menu-container{
+    width:150px;
+    min-height:100px;
+
+}
+.card-menupoint{
+    text-align: center;
+    width: 140px;
+    margin: 0 5px 0 5px;
+    line-height: 40px;
+    font-size: 14px;
+    color: white;
+}
+.card-menupoint:hover{
+    background-color: white;
+    color: black;
 }

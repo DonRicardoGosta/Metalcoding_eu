@@ -1,4 +1,6 @@
 //START Project get requests
+import { showErrorMessage } from '/static/js/DOM.js';
+
 export async function getProjects(){
     let url="/api/projects/get-projects";
     let response = await fetch(url);
@@ -51,7 +53,7 @@ export async function getCards(status_id){
     return data;
 }
 export async function getCard(card_id){
-    let url="/api/projects/get-cards/"+card_id;
+    let url="/api/projects/get-card/"+card_id;
     let response = await fetch(url);
     let data = await response.json();
     return data;

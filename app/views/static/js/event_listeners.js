@@ -1,14 +1,36 @@
-import { showErrorMessage, deleteErrorMessage, changeBoardSize, displayNewCard, deleteChildren, refreshCard } from '/static/js/DOM.js';
+import { showErrorMessage, deleteErrorMessage, changeBoardSize, displayNewCard, writeCardToHtml, changeStatusMenuDisplay, changeCardsMenuDisplay, renameCard } from '/static/js/DOM.js';
 import { initDragAndDrop } from '/static/js/drag_and_drop.js';
 import { updateCardName } from "/static/js/requests/put_api_requests.js";
 
 
-let mouseLeaveStatusMenuEvent=null;
+
 export function initEventListeners(){
     setEventListenersOnBoardSizeArrows();
     setEventListenersOnStatusMenu();
     setEventListenerOnAddCardMenuPoint();
+    setEventListenersOnCardsMenu();
+    setEventListenersOnRenameCard();
     initDragAndDrop();
+}
+function setEventListenersOnRenameCard(){
+    try {
+        const cards = document.querySelectorAll(".rename-card");
+        for(let card of cards){
+            card.addEventListener('click', renameCard)
+        }
+    }catch (ex){
+        showErrorMessage(ex.message);
+    }
+}
+function setEventListenersOnCardsMenu(){
+    try {
+        const cards_menus = document.querySelectorAll(".card-menu-icon");
+        for(let menu of cards_menus){
+            menu.addEventListener('click', changeCardsMenuDisplay)
+        }
+    }catch (ex){
+        showErrorMessage(ex.message);
+    }
 }
 function setEventListenerOnAddCardMenuPoint(){
     try {
@@ -34,10 +56,10 @@ async function newCardNameSubmitted(event){
         const card_id = event.target.parentElement.parentElement.querySelector(".card-id").textContent;
         const card = await updateCardName(card_id,new_card_name);
         let card_container = document.querySelector(".this-is-the-newest-card").parentElement;
-        card_container.querySelector(".card-name").classList.remove("this-is-the-newest-card");
-        deleteChildren(card_container.querySelector(".card-name"));
-        card_container.querySelector(".card-name").textContent = card.name;
-        refreshCard(card_container);
+        writeCardToHtml(card, card_container.parentElement)
+        card_container.remove();
+        setEventListenersOnCardsMenu();
+        setEventListenersOnRenameCard();
         initDragAndDrop();
     }catch (ex){
         showErrorMessage(ex.message);
@@ -54,26 +76,20 @@ function setEventListenersOnStatusMenu(){
     }
 
 }
-function changeStatusMenuDisplay(event){
-    try {
-        let menu = event.target.parentElement.querySelector(".status-menu-container");
-        if(menu.classList.contains("hide")){
-            menu.classList.replace("hide","display")
-            mouseLeaveStatusMenuEvent = event.target.parentElement.parentElement.querySelector(".status-menu");
-            mouseLeaveStatusMenuEvent.addEventListener('mouseleave', mouseLeaveStatusMenu);
-        }else{
-            menu.classList.replace("display","hide")
-            mouseLeaveStatusMenuEvent.removeEventListener('mouseleave', mouseLeaveStatusMenu);
-            mouseLeaveStatusMenuEvent = null;
+export function mouseLeaveStatusMenu(event){
+    try{
+        if(event.target.querySelector(".status-menu-container").classList.contains("display")){
+            event.target.querySelector(".status-menu-container").classList.replace("display","hide");
         }
     }catch (ex){
         showErrorMessage(ex.message);
     }
+
 }
-function mouseLeaveStatusMenu(event){
+export function mouseLeaveCardMenu(event){
     try{
-        if(event.target.querySelector(".status-menu-container").classList.contains("display")){
-            event.target.querySelector(".status-menu-container").classList.replace("display","hide");
+        if(event.target.querySelector(".card-menu-container").classList.contains("display")){
+            event.target.querySelector(".card-menu-container").classList.replace("display","hide");
         }
     }catch (ex){
         showErrorMessage(ex.message);

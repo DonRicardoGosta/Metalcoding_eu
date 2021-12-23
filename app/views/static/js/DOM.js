@@ -1,6 +1,7 @@
-import { errorMessageSchema, renameCardSchema } from '/static/js/DOM_schemas.js';
-import { takeEventListenerOnCloseErrorMessages, setEventListenerOnNewCardSubmit } from "/static/js/event_listeners.js";
+import { errorMessageSchema, renameCardSchema, cardSchema, renameCardSchema_poor } from '/static/js/DOM_schemas.js';
+import { takeEventListenerOnCloseErrorMessages, setEventListenerOnNewCardSubmit, mouseLeaveStatusMenu, mouseLeaveCardMenu } from "/static/js/event_listeners.js";
 import { addMewCard } from "/static/js/requests/post_api_requests.js";
+import { getCard } from "/static/js/requests/get_api_requests.js";
 
 
 
@@ -40,6 +41,19 @@ export async function displayNewCard(event){
     }catch (ex){
         showErrorMessage(ex.message);
     }
+}
+export async function renameCard(event){
+    try {
+        const card_id = event.target.parentElement.parentElement.parentElement.querySelector(".card-id").textContent;
+        const card = await getCard(card_id);
+        let rename_able_card = renameCardSchema_poor(card[0]);
+        let container = event.target.parentElement.parentElement.parentElement;
+        deleteChildren(container);
+        container.insertAdjacentHTML("beforeend", rename_able_card);
+        setEventListenerOnNewCardSubmit();
+    }catch (ex){
+        showErrorMessage(ex.message);
+    }
 
 }
 export async function refreshCard(card){
@@ -49,6 +63,44 @@ export async function refreshCard(card){
 export function deleteChildren(container){
     while(container.firstChild){
         container.removeChild(container.firstChild);
+    }
+}
+export function writeCardToHtml(card, container){
+    let card_schema = cardSchema(card);
+    container.insertAdjacentHTML("beforeend", card_schema);
+}
+let mouseLeaveCardMenuEvent=null;
+export function changeCardsMenuDisplay(event){
+    try {
+        let menu = event.target.parentElement.querySelector(".card-menu-container");
+        if(menu.classList.contains("hide")){
+            menu.classList.replace("hide","display");
+            mouseLeaveCardMenuEvent = event.target.parentElement.parentElement.querySelector(".card-menu");
+            mouseLeaveCardMenuEvent.addEventListener('mouseleave', mouseLeaveCardMenu);
+        }else{
+            menu.classList.replace("display","hide");
+            mouseLeaveStatusMenuEvent.removeEventListener('mouseleave', mouseLeaveCardMenu);
+            mouseLeaveStatusMenuEvent = null;
+        }
+    }catch (ex){
+        showErrorMessage(ex.message);
+    }
+}
+let mouseLeaveStatusMenuEvent=null;
+export function changeStatusMenuDisplay(event){
+    try {
+        let menu = event.target.parentElement.querySelector(".status-menu-container");
+        if(menu.classList.contains("hide")){
+            menu.classList.replace("hide","display")
+            mouseLeaveStatusMenuEvent = event.target.parentElement.parentElement.querySelector(".status-menu");
+            mouseLeaveStatusMenuEvent.addEventListener('mouseleave', mouseLeaveStatusMenu);
+        }else{
+            menu.classList.replace("display","hide")
+            mouseLeaveStatusMenuEvent.removeEventListener('mouseleave', mouseLeaveStatusMenu);
+            mouseLeaveStatusMenuEvent = null;
+        }
+    }catch (ex){
+        showErrorMessage(ex.message);
     }
 }
 /*export function writeProjectsToHtml(projects){
