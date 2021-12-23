@@ -1,0 +1,66 @@
+include static/includes/header.pug
+body
+    div#project-panel
+        each proj in projects
+            if proj._id == active
+                div.project-container.active-proj
+                    a(href="/magori/"+proj._id)
+                        div.project-id= proj._id
+                        div.project-name
+                            h1= proj.name
+                        div.project-owner
+                            p Project owner:
+                            proj.owner.name
+            else
+                div.project-container.not-active-proj
+                    a(href="/magori/"+proj._id)
+                        div.project-id= proj._id
+                        div.project-name
+                            h1= proj.name
+                        div.project-owner
+                            p Project owner:
+                            proj.owner.name
+
+    div#background-one
+        div#container
+            div#projects-management-panel
+                div#settings-icon
+                a projects-in-line: 3
+                br
+                a max-projects on the page: unlimited
+            div#disp-container
+                each board in boards
+                    div.board-container
+                        div.board-id= board._id
+                        div.project-id= board.project_id
+                        div.board-created-user
+                            p Created user:
+                            board.created_user.name
+                        div.board-name
+                            h1= board.name
+                            div.board-size-icon.board-dec-size-icon
+                        div.board-content.inc-board-content
+                            each tag in statuses
+                                each status in tag
+                                    if status.board_id.toString() === board._id.toString()
+                                        div.status-container
+                                            div.status-id= status._id
+                                            div.status-card-color
+                                            div.status-name
+                                                div.status-menu
+                                                    div.status-menu-icon
+                                                    div.status-menu-container.hide
+                                                        div.status-menupoint.add-card Add card
+                                                        div.status-menupoint.rename-status Rename status
+                                                        div.status-menupoint.delete-status Delete status
+                                                        div.status-menupoint.change-color Change color
+                                                h1= status.name
+                                            div.cards-drop-zone
+                                                each card_tag in cards
+                                                    each card in card_tag
+                                                        if card.status_id.toString() === status._id.toString()
+                                                            div.card-container
+                                                                div.card-id= card._id
+                                                                div.card-name= card.name
+include static/includes/footer.pug
+script(type="module" src='/static/js/project_management.js')

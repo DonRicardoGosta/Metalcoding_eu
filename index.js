@@ -7,7 +7,8 @@ const config = require('config');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const logger = require('./app/control/middleware/logger');
-const projects = require('./app/control/roots/projects');
+const pms_api = require('./app/control/roots/api/project_management');
+const magori = require('./app/control/roots/magori');
 const home = require('./app/control/roots/home');
 const express = require('express');
 const app =  express();
@@ -27,7 +28,8 @@ mongoose.connect('mongodb://localhost:27017/vir_szakdolgozat')
 app.use(express.json());
 app.use('/static', express.static('./app/views/static'));
 app.use(helmet());
-app.use('/api/projects', projects);
+app.use('/api/projects', pms_api);
+app.use('/magori', magori)
 app.use('/', home);
 
 console.log('Application Name: '+config.get('name'));

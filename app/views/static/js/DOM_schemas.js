@@ -39,7 +39,6 @@ export function statusSchema(status, i){
                     </div>
                 </div>
                 `;
-
 }
 export function boardSchema(board){
     return`
@@ -49,6 +48,19 @@ export function boardSchema(board){
             <div class="board-created-user"><p>Created user: ${board.created_user.name}</p></div>
             <div class="board-name"><h1>${board.name}</h1> <div class="board-size-icon board-dec-size-icon"></div></div>
             <div class="board-content inc-board-content"></div>
+        </div>
+    `;
+
+}
+export function errorMessageSchema(errorMSG){
+    return`
+        <div class="error-message-box">
+            <div class="message-box-header">
+                <div class="message-box-close-icon"></div>
+            </div>
+            <div class="message-box-body">
+                <p>${ errorMSG }</p>
+            </div>
         </div>
     `;
 

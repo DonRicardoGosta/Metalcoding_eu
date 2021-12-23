@@ -1,14 +1,57 @@
-import { getProjects, getBoards, getStatuses, getCards } from '/static/js/requests/get_api_requests.js';
-import { addMewCard } from '/static/js/requests/post_api_requests.js';
-import { updateCardName } from '/static/js/requests/put_api_requests.js';
-import { initDragAndDrop } from '/static/js/drag_and_drop.js';
-import { cardSchema, statusSchema, renameCardSchema, boardSchema } from '/static/js/DOM_schemas.js';
-import {setEventListenerOnNewCardSubmit, setEventListenersOnProjects} from "/static/js/index.js";
+import { errorMessageSchema, renameCardSchema } from '/static/js/DOM_schemas.js';
+import { takeEventListenerOnCloseErrorMessages, setEventListenerOnNewCardSubmit } from "/static/js/event_listeners.js";
+import { addMewCard } from "/static/js/requests/post_api_requests.js";
 
 
 
 
-export function writeProjectsToHtml(projects){
+export function showErrorMessage(errorMSG){
+    const errorMsgContainer = document.querySelector("#error-message-container");
+    const message = errorMessageSchema(errorMSG);
+    errorMsgContainer.insertAdjacentHTML("beforeend", message);
+    takeEventListenerOnCloseErrorMessages();
+}
+export function deleteErrorMessage(event){
+    const error_msg = event.target.parentElement.parentElement;
+    error_msg.remove();
+}
+export function changeBoardSize(event){
+    try {
+        if( event.target.classList.contains("board-dec-size-icon")){
+            event.target.classList.replace("board-dec-size-icon","board-inc-size-icon");
+            event.target.parentElement.parentElement.querySelector(".board-content").classList.replace("inc-board-content","dec-board-content");
+        }else{
+            event.target.classList.replace("board-inc-size-icon","board-dec-size-icon");
+            event.target.parentElement.parentElement.querySelector(".board-content").classList.replace("dec-board-content","inc-board-content");
+        }
+    }catch (ex){
+        showErrorMessage(ex.message);
+    }
+
+
+}
+export async function displayNewCard(event){
+    try {
+        const card= await addMewCard(event.target.parentElement.parentElement.parentElement.parentElement.querySelector(".status-id").textContent);
+        let cards_container = event.target.parentElement.parentElement.parentElement.parentElement.querySelector(".cards-drop-zone");
+        let new_card = renameCardSchema(card);
+        cards_container.insertAdjacentHTML("beforeend", new_card);
+        setEventListenerOnNewCardSubmit();
+    }catch (ex){
+        showErrorMessage(ex.message);
+    }
+
+}
+export async function refreshCard(card){
+    let card_color = card.parentElement.parentElement.querySelector(".status-card-color").textContent;
+    card.style.backgroundColor = card_color;
+}
+export function deleteChildren(container){
+    while(container.firstChild){
+        container.removeChild(container.firstChild);
+    }
+}
+/*export function writeProjectsToHtml(projects){
     const proj_container = document.querySelector("#project-panel");
     if(!proj_container) return console.log("Error: '#disp-container' has not found on the page, please check");
     if(proj_container.firstChild) deleteChildren(proj_container);
@@ -102,17 +145,6 @@ async function writeCardsToHtml(status_ids){
         }
     }
 }
-
-export async function displayNewCard(event){
-    const card= await addMewCard(event.target.parentElement.parentElement.parentElement.parentElement.querySelector(".status-id").textContent);
-    let cards_container = event.target.parentElement.parentElement.parentElement.parentElement.querySelector(".cards-drop-zone");
-    let new_card = renameCardSchema(card);
-    cards_container.insertAdjacentHTML("beforeend", new_card);
-    setEventListenerOnNewCardSubmit();
-}
-
-
-
 /*async function refreshProject(project_id){
     if(!project_id){
         let projects = await getProjects();
@@ -139,19 +171,8 @@ async function refreshStatus(status_id){
         let status = await getStatus(status_id);
         await writeStatusToHtml(status);
     }
-}*/
-export async function refreshCard(card){
-    let card_color = card.parentElement.parentElement.querySelector(".status-card-color").textContent;
-    card.style.backgroundColor = card_color;
 }
 
-
-
-export function deleteChildren(container){
-    while(container.firstChild){
-        container.removeChild(container.firstChild);
-    }
-}
 function emptyListMessage(container){
     container.insertAdjacentHTML("beforeend", "No records found");
-}
+}*/

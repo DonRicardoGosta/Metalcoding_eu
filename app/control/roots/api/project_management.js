@@ -1,14 +1,9 @@
-const { User } = require('../../model/userModel');
-const { Card } = require('../../model/project-management-modells/cardModel');
+const { User } = require('../../../model/userModel');
+const { Card } = require('../../../model/project-management-modells/cardModel');
 const express = require('express');
-const { getProjects, getProject, getBoards, getBoard, getStatuses, getStatus, getCards, getCard} = require('../database/projects_data_handler');
-const {validateProject, Project} = require("../../model/project-management-modells/projectModel");
+const { getProjects, getProject, getBoards, getBoard, getStatuses, getStatus, getCards, getCard} = require('../../database/projects_data_handler');
+const {validateProject, Project} = require("../../../model/project-management-modells/projectModel");
 const router = express.Router();
-
-
-router.get('/', async (req,res) => {
-    res.render('projects',{ title: "MagoriComputers - Managemet software"});
-});
 
 
 
@@ -129,20 +124,6 @@ router.get('/:id',async (req,res)=>{
 app.get('/api/posts/:year/:month',(req,res)=>{
     res.send(req.params);
 });*/
-
-
-
-
-async function createUser(){
-    let user = new User({
-        name: 'Horváth Dani',
-        permission: 'admin',
-        password:"5866",
-        email: "horvathdanii99@gmail.com"
-    });
-    user = await user.save();
-    return user;
-}
 
 
 module.exports = router;
