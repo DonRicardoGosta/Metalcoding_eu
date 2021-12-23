@@ -97,12 +97,9 @@ router.put('/rename-card/:id/:new_name',async (req,res) =>{
     res.send(card);
 });
 
-router.delete('/:id',async (req,res) => {
-    const project = await Project.findByIdAndRemove(req.params.id);
-
-    if(!project) return res.status(404).send("The project with the given ID was not found.");
-
-    res.send(project);
+router.delete('/card/:id',async (req,res) => {
+    const card = await Card.findByIdAndRemove(req.params.id);
+    if(!card) return res.status(404).send("The card with the given ID was not found.");
 });
 
 

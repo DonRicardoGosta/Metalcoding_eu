@@ -15,7 +15,6 @@ export function cardSchema(card){
                         <div class="card-name">${card.name}</div>
                     </div> 
                     `;
-
 }
 export function renameCardSchema(card){
     return`

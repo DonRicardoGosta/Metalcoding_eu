@@ -1,4 +1,4 @@
-import { showErrorMessage, deleteErrorMessage, changeBoardSize, displayNewCard, writeCardToHtml, changeStatusMenuDisplay, changeCardsMenuDisplay, renameCard } from '/static/js/DOM.js';
+import { showErrorMessage, deleteErrorMessage, changeBoardSize, displayNewCard, writeCardToHtml, changeStatusMenuDisplay, changeCardsMenuDisplay, renameCard, deleteCard } from '/static/js/DOM.js';
 import { initDragAndDrop } from '/static/js/drag_and_drop.js';
 import { updateCardName } from "/static/js/requests/put_api_requests.js";
 
@@ -8,9 +8,23 @@ export function initEventListeners(){
     setEventListenersOnBoardSizeArrows();
     setEventListenersOnStatusMenu();
     setEventListenerOnAddCardMenuPoint();
+    setEventListenersOnCards();
+    initDragAndDrop();
+}
+export function setEventListenersOnCards(){
     setEventListenersOnCardsMenu();
     setEventListenersOnRenameCard();
-    initDragAndDrop();
+    setEventListenersOnDeleteCard();
+}
+function setEventListenersOnDeleteCard(){
+    try {
+        const cards = document.querySelectorAll(".delete-card");
+        for(let card of cards){
+            card.addEventListener('click', deleteCard)
+        }
+    }catch (ex){
+        showErrorMessage(ex.message);
+    }
 }
 function setEventListenersOnRenameCard(){
     try {
@@ -58,8 +72,7 @@ async function newCardNameSubmitted(event){
         let card_container = document.querySelector(".this-is-the-newest-card").parentElement;
         writeCardToHtml(card, card_container.parentElement)
         card_container.remove();
-        setEventListenersOnCardsMenu();
-        setEventListenersOnRenameCard();
+        setEventListenersOnCards();
         initDragAndDrop();
     }catch (ex){
         showErrorMessage(ex.message);
