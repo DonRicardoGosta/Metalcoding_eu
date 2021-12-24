@@ -1,5 +1,6 @@
 const { User } = require('../../../model/userModel');
 const { Card } = require('../../../model/project-management-modells/cardModel');
+const { Status } = require('../../../model/project-management-modells/statusModel');
 const express = require('express');
 const { getProjects, getProject, getBoards, getBoard, getStatuses, getStatus, getCards, getCard} = require('../../database/projects_data_handler');
 const {validateProject, Project} = require("../../../model/project-management-modells/projectModel");
@@ -66,23 +67,6 @@ router.post('/new-card/:s_id',async (req, res) => {
 });
 
 
-
-
-
-
-router.post('/',async (req, res) => {
-    const { error } = validateProject(req.body);
-    if(error) return res.status(400).send(error.details[0].message);
-
-    let project = new Project({
-        name: 'Angular Course',
-        owner: "61ad2869232e55303a22c653",
-        users:['Dani', 'Józsi'],
-    });
-    project = await project.save();
-    res.send(project);
-});
-
 router.put('/move-card/:id/:status_id',async (req,res) =>{
     let card = await Card.findOneAndUpdate({_id: req.params.id}, {status_id: req.params.status_id}, {
         new: true
@@ -101,26 +85,14 @@ router.delete('/card/:id',async (req,res) => {
     const card = await Card.findByIdAndRemove(req.params.id);
     if(!card) return res.status(404).send("The card with the given ID was not found.");
 });
-
-
-
-router.get('/:id',async (req,res)=>{
-    const project = await Project.findById(req.params.id);
-
-    if(!project) return res.status(404).send("The project with the given ID was not found.");
-
-    res.send(project);
+router.delete('/card/status-id/:id',async (req,res) => {
+    const card = await Card.deleteMany({status_id: req.params.id})
+    if(!card) return res.status(404).send("The card with the given ID was not found.");
 });
-
-
-
-/*app.get('/api/courses/:id',(req,res)=>{
-    res.send(req.params.id);
+router.delete('/status/:id',async (req,res) => {
+    console.log("here")
+    const status = await Status.findByIdAndRemove(req.params.id);
+    if(!status) return res.status(404).send("The status with the given ID was not found.");
 });
-
-app.get('/api/posts/:year/:month',(req,res)=>{
-    res.send(req.params);
-});*/
-
 
 module.exports = router;

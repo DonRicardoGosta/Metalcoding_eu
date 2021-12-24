@@ -2,7 +2,7 @@ import { errorMessageSchema, renameCardSchema, cardSchema, renameCardSchema_poor
 import { takeEventListenerOnCloseErrorMessages, setEventListenerOnNewCardSubmit, mouseLeaveStatusMenu, mouseLeaveCardMenu } from "/static/js/event_listeners.js";
 import { addMewCard } from "/static/js/requests/post_api_requests.js";
 import { getCard } from "/static/js/requests/get_api_requests.js";
-import { deleteCardById } from "/static/js/requests/delete_api_requests.js";
+import { deleteCardById, deleteStatusById } from "/static/js/requests/delete_api_requests.js";
 
 
 
@@ -39,6 +39,16 @@ export async function displayNewCard(event){
         let new_card = renameCardSchema(card);
         cards_container.insertAdjacentHTML("beforeend", new_card);
         setEventListenerOnNewCardSubmit();
+    }catch (ex){
+        showErrorMessage(ex.message);
+    }
+}
+export function deleteStatus(event){
+    try{
+        const status_id = event.target.parentElement.parentElement.parentElement.parentElement.querySelector(".status-id").textContent;
+        deleteStatusById(status_id);
+        event.target.parentElement.parentElement.parentElement.parentElement.remove();
+
     }catch (ex){
         showErrorMessage(ex.message);
     }

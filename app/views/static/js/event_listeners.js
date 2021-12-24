@@ -1,4 +1,4 @@
-import { showErrorMessage, deleteErrorMessage, changeBoardSize, displayNewCard, writeCardToHtml, changeStatusMenuDisplay, changeCardsMenuDisplay, renameCard, deleteCard } from '/static/js/DOM.js';
+import { showErrorMessage, deleteErrorMessage, changeBoardSize, displayNewCard, writeCardToHtml, changeStatusMenuDisplay, changeCardsMenuDisplay, renameCard, deleteCard, deleteStatus } from '/static/js/DOM.js';
 import { initDragAndDrop } from '/static/js/drag_and_drop.js';
 import { updateCardName } from "/static/js/requests/put_api_requests.js";
 
@@ -6,15 +6,29 @@ import { updateCardName } from "/static/js/requests/put_api_requests.js";
 
 export function initEventListeners(){
     setEventListenersOnBoardSizeArrows();
-    setEventListenersOnStatusMenu();
-    setEventListenerOnAddCardMenuPoint();
+    setEventListenersOnStatuses();
     setEventListenersOnCards();
     initDragAndDrop();
+}
+export function setEventListenersOnStatuses(){
+    setEventListenersOnStatusMenu();
+    setEventListenerOnAddCardMenuPoint();
+    setEventListenerOnDeleteCardMenuPoint();
 }
 export function setEventListenersOnCards(){
     setEventListenersOnCardsMenu();
     setEventListenersOnRenameCard();
     setEventListenersOnDeleteCard();
+}
+function setEventListenerOnDeleteCardMenuPoint(){
+    try{
+        const statuses = document.querySelectorAll(".delete-status");
+        for(let status of statuses){
+            status.addEventListener('click', deleteStatus)
+        }
+    }catch (ex) {
+        showErrorMessage(ex.message);
+    }
 }
 function setEventListenersOnDeleteCard(){
     try {
