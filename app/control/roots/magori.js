@@ -6,8 +6,8 @@ const router = express.Router();
 const { createRandomObjects } =require("../database/create_random_objects");
 
 router.get('/', async (req,res) => {
-    /*const user = (await User.findById('61b286f41dcc43c913fdf27c'));
-    await createRandomObjects(user._id);*/
+    //const user = (await User.findById('61b286f41dcc43c913fdf27c'));
+    //await createRandomObjects(user._id);
     const proj=await Project.findOne();
     res.redirect('/magori/'+proj._id);
 });

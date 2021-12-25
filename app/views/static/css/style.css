@@ -40,52 +40,84 @@
 }
 #nav{
     position: fixed;
-    width: 100%;
-    height: 60px;
-    background-color: rgba(28,24,28,1);
+}
+.nav-invade-page{
+    width:100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.8);
+}
+#menus{
+    display: inline-block;
+    height: 100vh;
+    background-color: rgba(3, 138, 255,1);
     color: white;
     overflow: hidden;
 }
-#logo{
-    width:20%;
-    line-height: 60px;
-    text-align: center;
-    font-size: 30px;
-    text-transform: uppercase;
+.display-nav{
+    width:300px;
+    transition: 0.1s;
+}
+.hide-nav{
+    width:0;
+    transition: 0.1s;
+}
+#nav-menu-icon{
+    width: 40px;
+    height: 40px;
+    background: url("/static/img/nav-menu.png") top center no-repeat;
+    background-size: contain;
+    cursor: pointer;
     display: inline-block;
+    top:0;
+    position: fixed;
+    margin: 50px;
+}
+#logo{
+    width:80%;
+    line-height: 80px;
+    text-align: center;
+    font-size: 17px;
+    font-weight: bold;
+    margin: 30px 10% 10px 10%;
 }
 #menu-container{
-    display: inline-block;
-    width:70%;
-    margin: 0 10% 0 0;
+    width:90%;
+    margin: 50% 0 0 10%;
     list-style: none;
     text-align: right;
-    line-height: 60px;
 }
 .menu{
-    margin: 0 0 0 2%;
-    padding: 0 2% 0 2%;
-    display: inline-block;
+    margin: 10px 0 10px 0;
+    padding: 5%;
+    width: 90%;
+    display: block;
     list-style: none;
-    border-radius: 5px;
+    border-bottom-left-radius: 25px;
+    border-top-left-radius: 25px;
     transition: 0.1s;
     line-height: 50px;
+    text-align: center;
     color: white;
     text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
 }
-
+.menu:hover{
+    background-color: white;
+    color: rgba(3, 138, 255,1);
+}
+#home-page{
+    width: 100%;
+    line-height: 80vh;
+    text-align: center;
+    font-size: 60px;
+}
 #container{
-    padding-top: 60px;
     min-height: 100vh;
     width:100%;
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(255,255,255,1);
     transition: 0.3s;
     color: black;
-}
-#background-one{
-    background: url("/static/img/background_one.jpg") top center no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
 }
 #footer{
     width: 100%;
@@ -98,91 +130,48 @@
 
 
 
-#project-panel{
-    width:100%;
-    position: fixed;
-    background-color: white;
-    margin-top: 60px;
-    height: 50px;
-    overflow: hidden;
-}
+
 #disp-container{
-    width:96%;
-    margin: 60px 2% 50px 2%;
+    width:100%;
+    margin: 0 0 50px 0;
     background-color: rgba(0,0,0,0);
-    overflow: auto;
     min-height: 50px;
     transition: 0.3s;
-    display: inline-block;
-    border-radius: 5px;
-}
-#projects-management-panel{
-    width:50px;
-    height: 50px;
-    position: fixed;
-    margin-top: 50px;
-    padding-left: 1%;
-    border-radius: 5px;
-    background: linear-gradient(90deg, rgba(0,0,36,0.2) 0%, rgba(119,0,0,0.7021009087228641) 28%, rgba(119,0,0,1) 100%);
-    color: white;
-    transition: 0.3s;
-}
-#settings-icon{
-    background: url("/static/img/setting.png") top center no-repeat;
-    background-size: contain;
-    width:40px;
-    height: 40px;
-    margin: 5px;
-}
-#projects-management-panel a{
-    display: none;
-}
-#projects-management-panel:hover{
-    height: 750px;
-    width:15%;
-    transition: 0.3s;
-    background: linear-gradient(90deg, rgba(0,0,36,0.2) 0%, rgba(10,0,0,0.7021009087228641) 10%, rgba(0,0,0,1) 100%);
-}
-#projects-management-panel:hover #settings-icon{
-    display: none;
-}
-#projects-management-panel:hover a{
-    display: block;
 }
 
-
-
-
-
-
-
-
+#project-panel{
+    width:96%;
+    margin: 0 2% 40px 2%;
+    padding-top: 200px;
+    border-bottom: 1px solid rgba(3, 138, 255,1);;
+    height: 60px;
+}
 .active-proj{
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.4);
-    background-color: white;
-    color: black;
+    border: 1px solid rgba(3, 138, 255,1);
+    border-bottom: none;
+    background-color: rgba(255,255,255,1);
+    color: rgba(3, 138, 255,1);
     width:10%;
-    margin: 5px 0.5% 5px 0.5%;
+    margin: 5px 0.5% 4px 0.5%;
     height: 40px;
     display: inline-block;
     overflow: hidden;
-    border-radius: 5px;
     transition: 0.3s;
 }
 .active-proj a{
-    color: black;
+    color: rgba(3, 138, 255,1);
 }
 .active-proj a:hover{
-    color: black;
+    color: rgba(3, 138, 255,1);
 }
 .not-active-proj{
     width:10%;
-    margin: 5px 0.5% 5px 0.5%;
-    background-color: black;
+    margin: 5px 0.5% 20px 0.5%;
+    background-color: rgba(3, 138, 255,1);
     height: 40px;
     display: inline-block;
     overflow: hidden;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.6);
+    box-shadow: 9px 9px 5px -3px rgba(0,0,0,0.3);
     border-radius: 5px;
     color: white;
     transition: 0.3s;
@@ -191,7 +180,7 @@
     color: white;
 }
 .not-active-proj a:hover{
-    color: black;
+    color: rgba(3, 138, 255,1);
 }
 .project-id{
     display: none;
@@ -214,8 +203,8 @@
     text-decoration: none;
 }
 .project-container:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.4);
-    background-color: white;
+    box-shadow: 5px 5px 5px -3px rgba(0,0,0,0.9);
+    background-color: rgba(0,0,0,0.08);
 }
 
 
@@ -228,13 +217,41 @@
 
 
 
+.board-control-panel{
+    min-height: 800px;
+    width: 12%;
+    margin-left: 2%;
+    float: left;
+    display: inline-block;
 
+}
+.control-panel-menupoint{
+    line-height: 50px;
+    text-align: center;
+    width:100%;
+    background-color: red;
+    cursor: pointer;
+    margin-top: 2px;
+}
+.active-cpanel-menu{
+    color: rgba(3, 138, 255,1);
+    background-color: white;
+}
+.not-active-cpanel-menu{
+    color: white;
+    background-color: rgba(3, 138, 255,1);
+}
+.not-active-cpanel-menu:hover{
+    color: rgba(3, 138, 255,1);
+    background-color: white;
+    border: 1px solid white;
+
+}
 .board-container{
-    min-width:95%;
-    min-height: 50px;
-    margin: 50px 2.5% 50px 2.5%;
-    overflow-y: hidden;
-    background-color: rgba(0,0,0,0.6);
+    float: left;
+    display: inline-block;
+    width:85%;
+    min-height: 800px;
     color: white;
     border-radius: 5px;
     border: 1px solid rgba(255, 255, 255, 1);
@@ -245,7 +262,7 @@
 }
 .board-name{
     width:100%;
-    display: inline-block;
+    display: none;
     line-height: 50px;
     text-align: center;
     overflow: hidden;
@@ -299,24 +316,26 @@
 
 .status-container{
     display: inline-grid;
-    width:20%;
+    width:30%;
     min-height: 100px;
     overflow: hidden;
     margin: 50px 1% 30px 1%;
-    color: black;
-    background-color: white;
-    border-radius: 5px;
-    border: 1px solid rgba(255, 255, 255, 1);
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.6);
+    color: rgba(3, 138, 255,1);
+    background-color: rgba(0,0,0,0.08);
+    border: 1px solid white;
+    box-shadow: 9px 9px 5px -3px rgba(0,0,0,0.3);
 }
 .status-id{
     display: none;
 }
 .status-name{
+    width: 80%;
+    margin: 0 10% 0 10%;
     text-align: center;
     line-height: 50px;
+    height: 50px;
     font-size: 10px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgba(3, 138, 255,1);
     display: inline-block;
     transition: 3s;
 }
@@ -377,10 +396,15 @@
     width:70%;
     height: 45px;
     margin: 20px 15% 20px 15%;
-    background-color: black;
+    background-color: rgba(3, 138, 255,1);
     color: white;
-    border-radius: 5px;
+    border: 1px solid white;
     cursor: grab;
+    box-shadow: 9px 9px 5px -3px rgba(0,0,0,0.3);
+    transition: 0.1s;
+}
+.card-container:hover{
+    box-shadow: 5px 5px 5px -3px rgba(0,0,0,0.9);
 }
 .card-id{
     display: none;

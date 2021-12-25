@@ -4,8 +4,11 @@ head
         include ../css/style.css
 body
     div#nav
-        div#logo {Metal_Coding}
-        div#menu-container
-            a(href="/").menu Home
-            a(href="/magori").menu MagoriComputers - Managemet software
-
+        div#menus.hide-nav
+            div#logo Metalcoding.eu
+            div#menu-container
+                a(href="/").menu Home
+                a(href="/magori").menu Management software
+                a(href="/").menu Web design
+        div#nav-menu-icon
+script(type="module" src='/static/js/nav_menu.js')
