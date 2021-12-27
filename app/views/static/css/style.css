@@ -481,6 +481,7 @@ a.new-card{
     background-color: white;
     color: black;
 }
+/* mobile version */
 @media (max-width: 999px) {
     #nav-menu-icon{
         width: 100px;
