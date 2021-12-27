@@ -151,8 +151,12 @@
     width:85%;
     margin: 0 0 0 15%;
     padding-top: 100px;
-    border-bottom: 1px solid rgba(3, 138, 255,1);;
     height: 60px;
+}
+#menupoints{
+    border-bottom: 2px solid white;
+    width:90%;
+    margin: 0 5% 0 5%;
 }
 .active-proj{
     border: 1px solid rgba(3, 138, 255,1);
@@ -230,14 +234,26 @@
     width: 15.5%;
     float: left;
     display: inline-block;
+    background-color: rgba(3, 138, 255,1);
 
 }
 .control-panel-menupoint{
     line-height: 50px;
     text-align: center;
     width:100%;
-    background-color: red;
+
     cursor: pointer;
+}
+.control-panel-custom-menupoint{
+    line-height: 50px;
+    text-align: center;
+    width:100%;
+    font-style: italic;
+    font-size: 12px;
+    cursor: pointer;
+}
+.control-panel-custom-menupoint:hover{
+    background-color: red;
 }
 .active-cpanel-menu{
     color: rgba(3, 138, 255,1);

@@ -24,18 +24,24 @@ body
                                     proj.owner.name
             div#disp-container
                 div.board-control-panel
-                    div.control-panel-menupoint.not-active-cpanel-menu
-                        a Naptár
-                    div.control-panel-menupoint.active-cpanel-menu
-                        a To Do
-                    div.control-panel-menupoint.not-active-cpanel-menu
-                        a Jegyzetek
-                    div.control-panel-menupoint.not-active-cpanel-menu
-                        a Határidők
-                    div.control-panel-menupoint.not-active-cpanel-menu
-                        a Autókönyv
-                    div.control-panel-menupoint.not-active-cpanel-menu
-                        a Bevásárló lista
+                    div#menupoints
+                        div.control-panel-menupoint.not-active-cpanel-menu
+                            a Naptár
+                        div.control-panel-menupoint.active-cpanel-menu
+                            a Tennivaló lista(ToDo)
+                        div.control-panel-menupoint.not-active-cpanel-menu
+                            a Jegyzetek
+                        div.control-panel-menupoint.not-active-cpanel-menu
+                            a Határidők
+                        div.control-panel-menupoint.not-active-cpanel-menu
+                            a Autókönyv
+                        div.control-panel-menupoint.not-active-cpanel-menu
+                            a Bevásárló lista
+                    div#custom-menupoints
+                        div.control-panel-custom-menupoint
+                            a Ez egy könyvjelző
+                        div.control-panel-custom-menupoint
+                            a Ez egy könyvjelző
                 each board in boards
                     div.board-container
                         div.board-id= board._id
