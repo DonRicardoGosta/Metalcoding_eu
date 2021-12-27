@@ -6,6 +6,12 @@ function initPage(){
     const initAvailable = baseMaterialsExists();
     if(checkIfMobile()){
         document.querySelector("body").innerHTML = "No mobile version";
+        document.querySelector("body").style.width="100%";
+        document.querySelector("body").style.height="100vh";
+        document.querySelector("body").style.fontSize="100px";
+        document.querySelector("body").style.color="white";
+        document.querySelector("body").style.backgroundColor="black";
+
     }else{
         if (initAvailable){
             initEventListeners();
