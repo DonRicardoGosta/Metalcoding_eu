@@ -36,24 +36,24 @@ console.log('Application Name: '+config.get('name'));
 console.log('Mail Server: '+config.get('mail.host'));
 console.log('Mail Password: '+config.get('mail.password'));
 
-let port = 80;
 if(app.get('env')==='production'){
-    const fs = require('fs');
-    const path = require('path');
-    const http = require('http');
+    const cors = require('cors');
     const https = require('https');
-    const spdy = require('spdy')
-    const privateKey  = fs.readFileSync('server.key', 'utf8');
-    const certificate = fs.readFileSync('server.crt', 'utf8');
-    const credentials = {key: privateKey, cert: certificate};
-
-    app.use(express.static(path.join(__dirname, 'build')));
-
+    const http = require('http');
+    const fs = require('fs');
+    app.use(cors());
     const httpServer = http.createServer(app);
-    const httpsServer = spdy.createServer(credentials, app);
+    const httpsServer = https.createServer({
+        key: fs.readFileSync('../../etc/letsencrypt/live/metalcoding.eu/privkey.pem'),
+        cert: fs.readFileSync('../../etc/letsencrypt/live/metalcoding.eu/fullchain.pem'),
+    }, app);
+    httpServer.listen(80, () => {
+        console.log('HTTP Server running on port 80');
+    });
 
-    httpServer.listen(80);
-    httpsServer.listen(443);
+    httpsServer.listen(443, () => {
+        console.log('HTTPS Server running on port 443');
+    });
 }
 else if(app.get('env')==='development'){
     app.use(morgan('tiny'));//kiírja a (defaultként)console-ra hogy milyen requestek történtek és hogy milyen státuszkóddal végződtek
