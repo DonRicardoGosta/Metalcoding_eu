@@ -481,3 +481,28 @@ a.new-card{
     background-color: white;
     color: black;
 }
+@media (max-width: 999px) {
+    #nav-menu-icon{
+        width: 100px;
+        height: 100px;
+    }
+    .display-nav{
+        width:80%;
+    }
+    .menu{
+        margin: 0% 0 0% 0;
+        padding: 10% 0 0 0;
+        width: 80%;
+        height: 150px;
+        font-size: 50px;
+        border-radius: 0;
+        border-bottom: 3px solid white;
+    }
+    #logo{
+        height: 80px;
+        text-align: center;
+        font-size: 35px;
+        font-weight: bold;
+        margin: 30px 10% 10px 10%;
+    }
+}
