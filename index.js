@@ -1,12 +1,9 @@
 const mongoose = require('mongoose');
 const util = require('util');
 const encoder = new util.TextEncoder('utf-8');
-const startupDebugger = require('debug')('app:startup');
-const dbDebugger = require('debug')('app:db');
 const config = require('config');
 const morgan = require('morgan');
 const helmet = require('helmet');
-const logger = require('./app/control/middleware/logger');
 const pms_api = require('./app/control/roots/api/project_management');
 const magori = require('./app/control/roots/magori');
 const home = require('./app/control/roots/home');
@@ -57,7 +54,7 @@ if(app.get('env')==='production'){
 }
 else if(app.get('env')==='development'){
     app.use(morgan('tiny'));//kiírja a (defaultként)console-ra hogy milyen requestek történtek és hogy milyen státuszkóddal végződtek
-    startupDebugger('Morgan enabled...');
+    console.log('Morgan enabled...');
     port = 3000;
     app.listen(port, ()=> console.log(`Listening in port ${port}...`));
 }
