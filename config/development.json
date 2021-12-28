@@ -1,6 +1,7 @@
 {
-    "name": "My express App - Development",
-    "mail":{
-        "host":"dev-mail-server"
-    }
+    "name": "Metalcoding - Development",
+    "dbConfig": {
+        "host": "mongodb://localhost:27017/vir_szakdolgozat"
+    },
+    "port": 3000
 }

@@ -1,13 +1,13 @@
 {
   "name": "Szakdolgozat_VIR",
-  "version": "1.0.0",
+  "version": "5.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "export vidly_jwtPrivateKey=mySecureKey && export app_password=1234 && export NODE_ENV=production && pm2 start index.js",
+    "start": "export jwtPrivateKey=mySecureKey && export NODE_ENV=production && pm2 start index.js",
     "stop": "pm2 stop index.js",
-    "dev": "export vidly_jwtPrivateKey=mySecureKey && export app_password=1234 && export NODE_ENV=development && nodemon index.js",
-    "test": "export vidly_jwtPrivateKey=mySecureKey && export app_password=1234 && export NODE_ENV=production && node index.js"
+    "dev": "export jwtPrivateKey=mySecureKey && export NODE_ENV=development && nodemon index.js",
+    "test": "export jwtPrivateKey=mySecureKey && export NODE_ENV=production && node index.js"
   },
   "repository": {
     "type": "git",

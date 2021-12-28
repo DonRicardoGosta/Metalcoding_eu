@@ -1,14 +1,7 @@
 {
-  "name": "My express App - Production",
-  "mail":{
-    "host": "prod-db-server"
-  },
-  "Customer": {
+    "name": "Metalcoding - Production",
     "dbConfig": {
-      "host": "prod-db-server"
+        "host": "mongodb://localhost:27017/vir_szakdolgozat"
     },
-    "credit": {
-      "initialDays": 30
-    }
-  }
+    "port": 80
 }
