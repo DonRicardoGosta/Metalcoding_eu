@@ -42,7 +42,7 @@ if(app.get('env')==='production'){
     }, app);
 
     httpsServer.listen(config.get('port'), () => {
-        console.log('HTTPS Server running on port 443');
+        console.log(`HTTPS Server running on port ${config.get('port')}`);
     });
 }
 else if(app.get('env')==='development'){
