@@ -34,15 +34,20 @@ console.log('Application Name: '+config.get('name'));
 if(app.get('env')==='production'){
     const cors = require('cors');
     const https = require('https');
+    const http = require('http');
     const fs = require('fs');
     app.use(cors());
+    const httpServer = http.createServer(app);
     const httpsServer = https.createServer({
         key: fs.readFileSync('../../etc/letsencrypt/live/metalcoding.eu/privkey.pem'),
         cert: fs.readFileSync('../../etc/letsencrypt/live/metalcoding.eu/fullchain.pem'),
     }, app);
+    httpServer.listen(config.get('port'), () => {
+        console.log(`HTTP Server running on port ${config.get('port')}`);
+    });
 
-    httpsServer.listen(config.get('port'), () => {
-        console.log(`HTTPS Server running on port ${config.get('port')}`);
+    httpsServer.listen(443, () => {
+        console.log('HTTPS Server running on port 443');
     });
 }
 else if(app.get('env')==='development'){
