@@ -18,9 +18,14 @@ if(!config.get('jwtPrivateKey')){
 app.set('views', './app/views');
 app.set('view engine', 'pug');
 
-mongoose.connect(config.get('dbConfig.host'))
-    .then(() => console.log('Connected to MongoDB'))
-    .catch(err => console.error('Could not connect to MongoDB...',err))
+try{
+    mongoose.connect(config.get('dbConfig.host'))
+        .then(() => console.log('Connected to MongoDB'))
+        .catch(err => console.error('Could not connect to MongoDB...',err))
+}catch (ex){
+    console.log(ex.message);
+}
+
 
 app.use(express.json());
 app.use('/static', express.static('./app/views/static'));
