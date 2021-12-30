@@ -615,6 +615,81 @@ a.new-card{
         font-weight: bold;
         margin: 30px 10% 10px 10%;
     }
+    .auth-button{
+        display: inline-block;
+        line-height: 50px;
+        padding: 0 10px 0 50px;
+        font-size: 50px;
+        text-decoration: none;
+        color: white;
+    }
+    #form{
+        background: rgba(0,0,0,1);
+        height: 100vh;
+        width: 100%;
+        position: fixed;
+    }
+    #form form{
+        background-color: rgba(0,0,0,0);
+        border-radius: 25px;
+        border: none;
+        margin-top: 10vh;
+    }
+    #login{
+        width: 90%;
+        height: 50vh;
+        margin: 0 5% 0 5%;
+    }
+    #form form h1{
+        font-size: 70px;
+        margin: 25px 25px 20vh 25px;
+    }
+    #form form input{
+        width: 90%;
+        height: 120px;
+        margin: 10px 5% 0 5%;
+        font-size: 35px;
+        border: none;
+        border-radius: 15px;
+        border: 1px solid gray;
+    }
+    #email-input[type=text] {
+        background-color: white;
+        background-image: url('/static/img/email.png');
+        background-repeat: no-repeat;
+        background-size: 80px;
+        background-position: 10px;
+        padding-left: 150px;
+    }
+    #user-input[type=text] {
+        background-color: white;
+        background-image: url('/static/img/user.png');
+        background-repeat: no-repeat;
+        background-size: 80px;
+        background-position: 10px;
+        padding-left: 150px;
+    }
+    #password-input[type=password] {
+        background-color: white;
+        background-image: url('/static/img/password.png');
+        background-repeat: no-repeat;
+        background-size: 80px;
+        background-position: 10px;
+        padding-left: 150px;
+    }
+    #form form p{
+        font-size: 30px;
+        margin: 10%;
+    }
+    #form form a{
+        font-size: 30px;
+        margin: 2%;
+        padding: 2%;
+        background-color: rgba(3, 138, 255,1);
+        text-decoration: none;
+        color: white;
+        border-radius: 15px;
+    }
 }
 
 
