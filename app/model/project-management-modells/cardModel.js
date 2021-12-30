@@ -19,6 +19,16 @@ const CardModel = mongoose.model('Card',new mongoose.Schema({
         required: true
     },
     description: String,
+    checked: {
+        type: Boolean,
+        default: false
+    },
+    priority:{
+        type: Number,
+        min:1,
+        max:3,
+        default:3
+    },
     created_date: {type: Date, default: Date.now }
 }));
 

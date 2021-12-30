@@ -1,7 +1,7 @@
 {
     "name": "Metalcoding - Development",
     "dbConfig": {
-        "host": "mongodb://localhost:27017/vir_szakdolgozat"
+        "host": "mongodb://localhost:27017/metalcoding"
     },
     "port": 3000
 }

@@ -48,4 +48,13 @@ router.get('/:project_id',auth , async (req,res) => {
     }
     res.render('magori_project', {title:'Magori - Project Management',user: user , projects:  projects, active: req.params.project_id, boards: boards, statuses: statuses, cards: cards});
 });
+
+router.get('/calendar/demo',auth ,async (req,res) => {
+    //const user = (await User.findById('61b286f41dcc43c913fdf27c'));
+    //await createRandomObjects(user._id);
+    let user=null;
+    if(await UserInSession(req)) user = await UserInSession(req);
+    res.render('magori_calendar', {title:'Magori - calendar',user: user});
+});
+
 module.exports = router;
