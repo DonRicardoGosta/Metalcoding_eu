@@ -4,6 +4,7 @@ const { Status } = require('../../../model/project-management-modells/statusMode
 const express = require('express');
 const { getProjects, getProject, getBoards, getBoard, getStatuses, getStatus, getCards, getCard} = require('../../database/projects_data_handler');
 const {validateProject, Project} = require("../../../model/project-management-modells/projectModel");
+const { UserInSession } = require("../home")
 const router = express.Router();
 
 const auth = require("../../middleware/auth");
@@ -11,12 +12,14 @@ const auth = require("../../middleware/auth");
 
 
 router.get('/get-projects',auth ,async (req,res) => {
-    const user = (await User.findById('61b286f41dcc43c913fdf27c'));
+    let user=null;
+    if(await UserInSession(req)) user = await UserInSession(req);
     const projects = await getProjects(user._id);
     res.send(projects);
 });
 router.get('/get-project/:project_id',auth ,async (req,res) => {
-    const user = (await User.findById('61b286f41dcc43c913fdf27c'));
+    let user=null;
+    if(await UserInSession(req)) user = await UserInSession(req);
     const project = await getProject(user._id, req.params.project_id);
     res.send(project);
 });
@@ -58,11 +61,12 @@ router.get('/get-card/:card_id',auth ,async (req,res) => {
 
 
 router.post('/new-card/:s_id',auth ,async (req, res) => {
-
+    let user=null;
+    if(await UserInSession(req)) user = await UserInSession(req);
     let card = new Card({
         name: 'New Card',
         status_id: req.params.s_id,
-        created_user:"61b286f41dcc43c913fdf27c"
+        created_user:user._id
     });
     card = await card.save();
     res.send(card);
@@ -92,7 +96,6 @@ router.delete('/card/status-id/:id',auth ,async (req,res) => {
     if(!card) return res.status(404).send("The card with the given ID was not found.");
 });
 router.delete('/status/:id',auth ,async (req,res) => {
-    console.log("here")
     const status = await Status.findByIdAndRemove(req.params.id);
     if(!status) return res.status(404).send("The status with the given ID was not found.");
 });

@@ -14,7 +14,9 @@ const jwt = require("jsonwebtoken");
 router.get('/',auth ,async (req,res) => {
     //const user = (await User.findById('61b286f41dcc43c913fdf27c'));
     //await createRandomObjects(user._id);
-    const proj=await Project.findOne();
+    let user=null;
+    if(await UserInSession(req)) user = await UserInSession(req);
+    const proj=await Project.findOne({owner: user._id});
     res.redirect('/magori/'+proj._id);
 });
 
