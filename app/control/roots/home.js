@@ -29,7 +29,7 @@ async function UserInSession(req){
     }
 }
 router.get("/me", auth, async (req, res) => {
-    const user = UserInSession(req)
+    const user = await UserInSession(req)
     res.send(user);
 });
 

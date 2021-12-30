@@ -16,8 +16,18 @@ router.get('/',auth ,async (req,res) => {
     //await createRandomObjects(user._id);
     let user=null;
     if(await UserInSession(req)) user = await UserInSession(req);
-    const proj=await Project.findOne({owner: user._id});
-    res.redirect('/magori/'+proj._id);
+    try {
+        let proj=await Project.findOne({owner: user._id});
+        if(!proj) {
+            await createRandomObjects(user._id);
+            proj=await Project.findOne({owner: user._id});
+        }
+        return res.redirect('/magori/'+proj._id);
+    }catch (ex){
+        console.log(ex.message);
+    }
+
+    res.redirect('/');
 });
 
 router.get('/:project_id',auth , async (req,res) => {
