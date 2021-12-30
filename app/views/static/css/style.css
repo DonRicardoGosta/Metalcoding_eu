@@ -2,7 +2,6 @@
     margin: 0;
     font-family: Roboto, sans-serif;
 }
-
 #error-message-container{
     position: fixed;
     top:7vh;
@@ -106,6 +105,44 @@
 .menu:hover{
     background-color: white;
     color: rgba(3, 138, 255,1);
+}
+#auth-button-container{
+    height: 50px;
+    position: fixed;
+    top:0;
+    right: 0;
+    margin: 50px;
+}
+.auth-button{
+    display: inline-block;
+    line-height: 50px;
+    padding: 0 10px 0 10px;
+    font-size: 20px;
+    text-decoration: none;
+    color: white;
+}
+#login-form{
+    background-color: rgba(0,0,0,0.2);
+    height: 100vh;
+    width: 100%;
+}
+#login-form h1{
+    text-align: center;
+    width: 100%;
+}
+#login-form form{
+    overflow: hidden;
+    border-radius: 10%;
+    position: fixed;
+    background-color: rgba(3, 138, 255,1);
+    width: 40%;
+    height: 600px;
+    margin: 100px 30% 0 30%;
+}
+#login-form form input{
+    width: 60%;
+    height: 60px;
+    margin: 20px 20% 0 20%;
 }
 #home-page{
     width: 100%;

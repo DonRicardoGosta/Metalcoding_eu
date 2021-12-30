@@ -1,7 +1,6 @@
 const https = require('https');
 const http = require('http');
 const app = require("./app");
-const cors = require("cors");
 const fs = require("fs");
 const config = require("config");
 const morgan = require("morgan");

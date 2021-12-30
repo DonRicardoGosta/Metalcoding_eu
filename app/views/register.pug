@@ -1,0 +1,13 @@
+include static/includes/header.pug
+body
+    div#container
+        div#darker-background
+            div#login-form
+                form(action='/register', method='POST')
+                    h1 Register
+                    input(type='text', name='name', value='', placeholder='name')
+                    input(type='text', name='email', value='', placeholder='email')
+                    input(type='password', name='password', value='', placeholder='password')
+                    input(type='submit', value='Register')
+
+include static/includes/footer.pug
