@@ -1,8 +1,10 @@
+import { takeEventListenerOnCloseErrorMessages } from "/static/js/event_listeners.js";
 initNav();
 
 function initNav(){
     let nav_icon = document.querySelector("#nav-menu-icon")
     nav_icon.addEventListener('click', navClicked)
+    takeEventListenerOnCloseErrorMessages();
 }
 function navClicked(event){
     let menu = event.target.parentElement.querySelector("#menus")
