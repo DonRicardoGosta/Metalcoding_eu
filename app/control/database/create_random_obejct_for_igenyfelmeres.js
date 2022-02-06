@@ -13,7 +13,7 @@ async function create_random_objects(userId){
     await createFunctions(userId);
     await createLocations(userId);
     return;*/
-    await creatIgenyfelmeresRecord(userId);
+    //await creatIgenyfelmeresRecord(userId);
     //await createIgenyfelmeresLine(userId);
     return;
 }
