@@ -18,9 +18,8 @@ async function create_random_objects(userId){
     return;
 }
 async function createIgenyfelmeresLine(userId){
-    console.log(await BrandModel.findOne());
-    /*const ifr_name = "Igényfelmérés line " + await IgenyfelmeresLineRecordModel.find().count();
-    let ifr = new IgenyfelmeresLineRecordModel({
+    const ifr_name = "Igényfelmérés line " + await IgenyfelmeresLineRecordModel.find().count();
+    let iflr = new IgenyfelmeresLineRecordModel({
         name: ifr_name,
         location: LocationModel.findOne(),
         description: "EZ egy description",
@@ -31,8 +30,7 @@ async function createIgenyfelmeresLine(userId){
         price:0,
         created_user:userId,
     });
-    ifr = await ifr.save();
-    */
+    iflr = await iflr.save();
     return;
 }
 async function creatIgenyfelmeresRecord(userId){
