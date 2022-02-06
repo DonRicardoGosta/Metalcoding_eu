@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Joi = require("joi");
 
-const IgenyfelmeresModel = mongoose.model('Igenyfelmeres',new mongoose.Schema({
+const IgenyfelmeresLineRecordModel = mongoose.model('igenyfelmeres_line_records',new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -60,12 +60,12 @@ const IgenyfelmeresModel = mongoose.model('Igenyfelmeres',new mongoose.Schema({
     created_date: {type: Date, default: Date.now },
 }));
 
-function validateIgenyfelmeres(Igenyfelmeres){
+function validateIgenyfelmeresLineRecord(Igenyfelmeres){
     /*const schema ={
         name: Joi.string().min(3).required()
     };
     return Joi.validate(board, schema);*/
     return 1;
 }
-module.exports.IgenyfelmeresModel = IgenyfelmeresModel;
-module.exports.validateIgenyfelmeres = validateIgenyfelmeres;
+module.exports.IgenyfelmeresLineRecordModel = IgenyfelmeresLineRecordModel;
+module.exports.validateIgenyfelmeresLineRecord = validateIgenyfelmeresLineRecord;

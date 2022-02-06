@@ -3,13 +3,28 @@ const {BrandModel} = require("../../model/igenyfelmeres_data_models/brands_enum_
 const {DeviceModel} = require("../../model/igenyfelmeres_data_models/devices_enum_Model");
 const {FunctionInHouseModel} = require("../../model/igenyfelmeres_data_models/functions_enum_Model");
 const {LocationModel} = require("../../model/igenyfelmeres_data_models/locations_enum_Model");
+const {IgenyfelmeresRecordModel} = require("../../model/igenyfelmeres_data_models/igenyfelmeres_records_Model");
 
 
 async function create_random_objects(userId){
-    await createBrands(userId);
+    /*await createBrands(userId);
     await createDevices(userId);
     await createFunctions(userId);
     await createLocations(userId);
+    return;*/
+    await creatIgenyfelmeresRecord(userId);
+    return;
+}
+async function creatIgenyfelmeresRecord(userId){
+    const ifr_name = "Igényfelmérés rekord " + await IgenyfelmeresRecordModel.find().count();
+    let ifr = new IgenyfelmeresRecordModel({
+        name: ifr_name,
+        line_records: [],
+        sharedwith:[userId, "61d0cb515c3d78973b9bf765"],
+        created_user: userId
+    });
+    ifr = await ifr.save();
+
     return;
 }
 async function createLocations(userId){
