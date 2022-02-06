@@ -10,7 +10,7 @@ const IgenyfelmeresLineRecordModel = mongoose.model('igenyfelmeres_line_records'
     },
     location:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'locations_enum',//"-----------"
+        ref: 'Location',
         required:true
     },
     description: {
@@ -20,17 +20,17 @@ const IgenyfelmeresLineRecordModel = mongoose.model('igenyfelmeres_line_records'
     },
     function:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'functions_enum',//"-----------"
+        ref: 'FunctionInHouse',
         required:true
     },
     device:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'devices_enum',//"-----------"
+        ref: 'Device',
         required:true
     },
     brand:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'brands_enum',//"-----------"
+        ref: 'Brand',
         required:true
     },
     piece:{
@@ -43,18 +43,9 @@ const IgenyfelmeresLineRecordModel = mongoose.model('igenyfelmeres_line_records'
         required: true,
         default:0
     },
-    sharedwith:{
-        type: [mongoose.Schema.Types.ObjectId],
-        ref: 'User',
-    },
     created_user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        required: true
-    },
-    project_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Project',
         required: true
     },
     created_date: {type: Date, default: Date.now },
