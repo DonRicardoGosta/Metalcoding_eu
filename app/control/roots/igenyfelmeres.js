@@ -7,7 +7,6 @@ const { UserInSession } = require("./home")
 
 const auth = require("../middleware/auth");
 const config = require("config");
-const jwt = require("jsonwebtoken");
 
 
 router.get('/', auth, async (req,res) => {
