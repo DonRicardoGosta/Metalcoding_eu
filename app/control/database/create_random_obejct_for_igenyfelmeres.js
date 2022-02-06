@@ -4,6 +4,7 @@ const {DeviceModel} = require("../../model/igenyfelmeres_data_models/devices_enu
 const {FunctionInHouseModel} = require("../../model/igenyfelmeres_data_models/functions_enum_Model");
 const {LocationModel} = require("../../model/igenyfelmeres_data_models/locations_enum_Model");
 const {IgenyfelmeresRecordModel} = require("../../model/igenyfelmeres_data_models/igenyfelmeres_records_Model");
+const {IgenyfelmeresLineRecordModel} = require("../../model/igenyfelmeres_data_models/igenyfelmeres_line_records_Model");
 
 
 async function create_random_objects(userId){
@@ -12,7 +13,25 @@ async function create_random_objects(userId){
     await createFunctions(userId);
     await createLocations(userId);
     return;*/
-    await creatIgenyfelmeresRecord(userId);
+    //await creatIgenyfelmeresRecord(userId);
+    await createIgenyfelmeresLine(userId,"6200219cadfc0d4dc3a96001");
+    return;
+}
+async function createIgenyfelmeresLine(userId, igenyf_record){
+    const ifr_name = "Igényfelmérés line " + await IgenyfelmeresLineRecordModel.find().count();
+    let ifr = new IgenyfelmeresLineRecordModel({
+        name: ifr_name,
+        location: LocationModel.find(),
+        description: "EZ egy description",
+        function: FunctionInHouseModel.find(),
+        device: DeviceModel.find(),
+        brand:BrandModel.find(),
+        piece:1,
+        price:0,
+        created_user:userId,
+    });
+    ifr = await ifr.save();
+
     return;
 }
 async function creatIgenyfelmeresRecord(userId){
