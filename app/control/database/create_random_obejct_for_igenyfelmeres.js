@@ -18,7 +18,7 @@ async function create_random_objects(userId){
     return;
 }
 async function createIgenyfelmeresLine(userId){
-    console.log(await BrandModel.find());
+    console.log(await BrandModel.findOne());
     /*const ifr_name = "Igényfelmérés line " + await IgenyfelmeresLineRecordModel.find().count();
     let ifr = new IgenyfelmeresLineRecordModel({
         name: ifr_name,
