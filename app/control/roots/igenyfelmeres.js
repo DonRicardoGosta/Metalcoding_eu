@@ -2,9 +2,12 @@ const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const { createRandomObjects } =require("../database/create_random_obejct_for_igenyfelmeres");
+
+const { UserInSession } = require("./home")
+
 const auth = require("../middleware/auth");
 const config = require("config");
-
+const jwt = require("jsonwebtoken");
 
 
 router.get('/', auth, async (req,res) => {
@@ -15,12 +18,10 @@ router.get('/', auth, async (req,res) => {
 
 router.get('/fill',auth ,async (req,res) => {
     let user=null;
-    if(await UserInSession(req)) res.send(await UserInSession(req));
-    //await createRandomObjects(user.id);
-    //res.send(user);
+    if(await UserInSession(req)) user = await UserInSession(req);
+    await createRandomObjects(user._id);
+    res.send(user);
 });
-
-
 
 
 
@@ -36,21 +37,4 @@ router.use(function(req, res){
     res.redirect('/');
 });
 
-async function UserInSession(req){
-    const token = req.cookies['x-access-token'];
-
-    if (!token) {
-        return null;
-    }
-    try {
-        const decoded = jwt.verify(token, config.get('jwtPrivateKey'));
-        req.user = decoded;
-        const user = await User.findById(req.user.user_id)
-        return user
-    } catch (err) {
-        return null;
-    }
-}
-
 module.exports = router;
-module.exports.UserInSession = UserInSession;
