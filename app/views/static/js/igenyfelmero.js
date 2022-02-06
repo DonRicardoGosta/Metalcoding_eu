@@ -9,7 +9,7 @@ function initIgenyfelmero(){
 
 function printPlussButtonToTheScreen(container){
     let button = `
-                <div class="add-new-line-button">
+                <div id="add-new-line-button">
                     +
                 </div>
     `;
