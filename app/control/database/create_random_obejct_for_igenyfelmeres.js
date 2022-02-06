@@ -13,8 +13,8 @@ async function create_random_objects(userId){
     await createFunctions(userId);
     await createLocations(userId);
     return;*/
-    //await creatIgenyfelmeresRecord(userId);
-    await createIgenyfelmeresLine(userId);
+    await creatIgenyfelmeresRecord(userId);
+    //await createIgenyfelmeresLine(userId);
     return;
 }
 async function createIgenyfelmeresLine(userId){
@@ -40,7 +40,7 @@ async function creatIgenyfelmeresRecord(userId){
     const ifr_name = "Igényfelmérés rekord " + await IgenyfelmeresRecordModel.find().count();
     let ifr = new IgenyfelmeresRecordModel({
         name: ifr_name,
-        line_records: [],
+        line_records: ["62002be2f65a17a1cd48d5d7","62002d0ef65a17a1cd48d5e4","62002d12f65a17a1cd48d5f1"],
         sharedwith:[userId, "61d0cb515c3d78973b9bf765"],
         created_user: userId
     });
