@@ -21,11 +21,11 @@ async function createIgenyfelmeresLine(userId, igenyf_record){
     const ifr_name = "Igényfelmérés line " + await IgenyfelmeresLineRecordModel.find().count();
     let ifr = new IgenyfelmeresLineRecordModel({
         name: ifr_name,
-        location: LocationModel.find(),
+        location: LocationModel.findOne(),
         description: "EZ egy description",
-        function: FunctionInHouseModel.find(),
-        device: DeviceModel.find(),
-        brand:BrandModel.find(),
+        function: FunctionInHouseModel.findOne(),
+        device: DeviceModel.findOne(),
+        brand:BrandModel.findOne(),
         piece:1,
         price:0,
         created_user:userId,
