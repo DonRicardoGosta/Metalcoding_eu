@@ -11,8 +11,9 @@ if(!config.get('jwtPrivateKey')){
     process.exit(1);
 }
 
-const api = require('./app/control/roots/api/project_management');
+const igenyfelmeres_api = require('./app/control/roots/api/igenyfelmeres_api');
 const igenyfelmeres = require('./app/control/roots/igenyfelmeres');
+const api = require('./app/control/roots/api/project_management');
 const magori = require('./app/control/roots/magori');
 const home = require('./app/control/roots/home');
 
@@ -23,6 +24,7 @@ app.use(express.urlencoded());
 app.use(helmet());
 app.use('/static', express.static('./app/views/static'));
 
+app.use('/api/igenyfelmeres', igenyfelmeres_api);
 app.use('/api/projects', api);
 app.use('/smarthome-igenyfelmeres', igenyfelmeres)
 app.use('/magori', magori)
