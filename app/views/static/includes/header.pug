@@ -10,6 +10,8 @@ body
                 a(href="/").menu Home
                 a(href="/magori").menu Management software
                 a(href="/").menu Web design
+                if user != null 
+                    a(href="/smarthome-igenyfelmeres").menu 
         div#nav-menu-icon
     if user == null
         div#auth-button-container
