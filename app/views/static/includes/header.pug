@@ -7,10 +7,14 @@ body
         div#menus.hide-nav
             div#logo Metalcoding.eu
             div#menu-container
-                a(href="/").menu Home
-                a(href="/magori").menu Management software
-                a(href="/").menu Web design
-                if user != null 
+                if user == null
+                    a(href="/").menu Home
+                    a(href="/magori").menu Management software
+                    a(href="/").menu Web design
+                else 
+                    a(href="/").menu Home
+                    a(href="/magori").menu Management software
+                    a(href="/").menu Web design
                     a(href="/smarthome-igenyfelmeres").menu 
         div#nav-menu-icon
     if user == null
