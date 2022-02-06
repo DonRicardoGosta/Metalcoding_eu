@@ -16,10 +16,11 @@ router.get('/', auth, async (req,res) => {
 });
 
 router.get('/fill',auth ,async (req,res) => {
-    let user=null;
+    /*let user=null;
     if(await UserInSession(req)) user = await UserInSession(req);
     await createRandomObjects(user._id);
-    res.send(user);
+    res.send(user);*/
+    redirect('/smarthome-igenyfelmeres');
 });
 
 
@@ -33,7 +34,7 @@ router.get('/fill',auth ,async (req,res) => {
 
 
 router.use(function(req, res){
-    res.redirect('/');
+    res.redirect('/smarthome-igenyfelmeres');
 });
 
 module.exports = router;
