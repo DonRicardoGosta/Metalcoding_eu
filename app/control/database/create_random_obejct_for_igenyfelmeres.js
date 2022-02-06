@@ -18,19 +18,24 @@ async function create_random_objects(userId){
     return;
 }
 async function createIgenyfelmeresLine(userId){
-    const ifr_name = "Igényfelmérés line " + await IgenyfelmeresLineRecordModel.find().count();
-    let iflr = new IgenyfelmeresLineRecordModel({
-        name: ifr_name,
-        location: LocationModel.findOne(),
-        description: "EZ egy description",
-        function: FunctionInHouseModel.findOne(),
-        device: DeviceModel.findOne(),
-        brand:BrandModel.findOne(),
-        piece:1,
-        price:0,
-        created_user:userId,
-    });
-    iflr = await iflr.save();
+    try{
+        const ifr_name = "Igényfelmérés line " + await IgenyfelmeresLineRecordModel.find().count();
+        let iflr = new IgenyfelmeresLineRecordModel({
+            name: ifr_name,
+            location: LocationModel.findOne(),
+            description: "EZ egy description",
+            function: FunctionInHouseModel.findOne(),
+            device: DeviceModel.findOne(),
+            brand:BrandModel.findOne(),
+            piece:1,
+            price:0,
+            created_user:userId,
+        });
+        iflr = await iflr.save();
+    } catch (err) {
+        console.log(err.message);
+    }
+    
     return;
 }
 async function creatIgenyfelmeresRecord(userId){
