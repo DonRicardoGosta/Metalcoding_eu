@@ -829,8 +829,7 @@ body {font-family: Verdana, sans-serif;}
     padding-bottom: 50px;
 }
 #igenyfelmero-container{
-    width: 90%;
-    margin: 0 5% 0 5%;
+    width: 100%;
     min-height: 50vh;
     background-color: white;
 }
@@ -845,6 +844,7 @@ body {font-family: Verdana, sans-serif;}
     font-size: 40px;
     box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
     display: inline-block;
+    cursor: pointer;
 }
 #add-new-line-button:hover {
     box-shadow: rgb(0 0 0 / 62%) 0px 8px 20px;
