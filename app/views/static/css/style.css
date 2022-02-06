@@ -834,3 +834,7 @@ body {font-family: Verdana, sans-serif;}
     min-height: 50vh;
     background-color: white;
 }
+.add-new-line-button{
+    width: 20px;
+    height: 20px;
+}
