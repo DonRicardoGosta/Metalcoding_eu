@@ -96,7 +96,7 @@
     border-bottom-left-radius: 25px;
     border-top-left-radius: 25px;
     transition: 0.1s;
-    line-height: 50px;
+    line-height: 25px;
     text-align: center;
     color: white;
     text-decoration: none;
@@ -810,4 +810,20 @@ body {font-family: Verdana, sans-serif;}
     padding: 5px;
     background: #1abc9c;
     color: white !important
+}
+
+
+
+
+
+
+
+
+
+
+
+#igenyfelmeres_h1{
+    width: 100%;
+    text-align: center;
+    padding-top: 200px;
 }
