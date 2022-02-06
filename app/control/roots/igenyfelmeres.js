@@ -20,7 +20,7 @@ router.get('/fill',auth ,async (req,res) => {
     if(await UserInSession(req)) user = await UserInSession(req);
     await createRandomObjects(user._id);
     res.send(user);*/
-    redirect('/smarthome-igenyfelmeres');
+    res.redirect('/smarthome-igenyfelmeres');
 });
 
 
