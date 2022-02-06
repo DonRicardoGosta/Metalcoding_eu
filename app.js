@@ -12,6 +12,7 @@ if(!config.get('jwtPrivateKey')){
 }
 
 const api = require('./app/control/roots/api/project_management');
+const igenyfelmeres = require('./app/control/roots/igenyfelmeres');
 const magori = require('./app/control/roots/magori');
 const home = require('./app/control/roots/home');
 
@@ -23,6 +24,7 @@ app.use(helmet());
 app.use('/static', express.static('./app/views/static'));
 
 app.use('/api/projects', api);
+app.use('/smarthome-igenyfelmeres', igenyfelmeres)
 app.use('/magori', magori)
 app.use('/', home);
 
