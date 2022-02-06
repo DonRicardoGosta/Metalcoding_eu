@@ -28,7 +28,7 @@ async function UserInSession(req){
         return null;
     }
 }
-route.get("/smarthome-igenyfelmeres", auth, async (req, res) => {
+router.get("/smarthome-igenyfelmeres", auth, async (req, res) => {
     res.render('smarthome_igenyfelmeres', {title:'MagoriCO - SmartHome - Igényfelmérés', user: user});
 });
 router.get("/me", auth, async (req, res) => {
