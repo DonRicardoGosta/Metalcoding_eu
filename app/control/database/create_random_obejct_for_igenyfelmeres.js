@@ -14,11 +14,12 @@ async function create_random_objects(userId){
     await createLocations(userId);
     return;*/
     //await creatIgenyfelmeresRecord(userId);
-    await createIgenyfelmeresLine(userId,"6200219cadfc0d4dc3a96001");
+    await createIgenyfelmeresLine(userId);
     return;
 }
-async function createIgenyfelmeresLine(userId, igenyf_record){
-    const ifr_name = "Igényfelmérés line " + await IgenyfelmeresLineRecordModel.find().count();
+async function createIgenyfelmeresLine(userId){
+    console.log(await BrandModel.findOne());
+    /*const ifr_name = "Igényfelmérés line " + await IgenyfelmeresLineRecordModel.find().count();
     let ifr = new IgenyfelmeresLineRecordModel({
         name: ifr_name,
         location: LocationModel.findOne(),
@@ -31,7 +32,7 @@ async function createIgenyfelmeresLine(userId, igenyf_record){
         created_user:userId,
     });
     ifr = await ifr.save();
-
+    */
     return;
 }
 async function creatIgenyfelmeresRecord(userId){

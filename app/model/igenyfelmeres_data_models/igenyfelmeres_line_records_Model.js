@@ -11,27 +11,22 @@ const IgenyfelmeresLineRecordModel = mongoose.model('igenyfelmeres_line_records'
     location:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Location',
-        required:true
     },
     description: {
         type: String,
-        required: true,
         maxlength:500
     },
     function:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'FunctionInHouse',
-        required:true
     },
     device:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Device',
-        required:true
     },
     brand:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Brand',
-        required:true
     },
     piece:{
         type: Number,
@@ -46,7 +41,7 @@ const IgenyfelmeresLineRecordModel = mongoose.model('igenyfelmeres_line_records'
     created_user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        required: true
+
     },
     created_date: {type: Date, default: Date.now },
 }));
