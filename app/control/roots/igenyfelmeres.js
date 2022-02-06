@@ -15,9 +15,9 @@ router.get('/', auth, async (req,res) => {
 
 router.get('/fill',auth ,async (req,res) => {
     let user=null;
-    if(await UserInSession(req)) user = await UserInSession(req);
+    if(await UserInSession(req)) res.send(await UserInSession(req));
     //await createRandomObjects(user.id);
-    res.send(user);
+    //res.send(user);
 });
 
 
