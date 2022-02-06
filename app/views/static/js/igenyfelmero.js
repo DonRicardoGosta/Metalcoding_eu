@@ -13,5 +13,5 @@ function printPlussButtonToTheScreen(container){
                     +
                 </div>
     `;
-    container.insertAdjacentHTML("beforeend", rename_able_card);
+    container.insertAdjacentHTML("beforeend", button);
 }
