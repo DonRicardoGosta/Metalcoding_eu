@@ -862,7 +862,7 @@ body {font-family: Verdana, sans-serif;}
     width:80%;
     line-height: 50px;
     display: block;
-    margin: 10%;
+    margin: 10px 10% 10px 10%;
     text-align: center;
     box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
     background-color: wheat;
