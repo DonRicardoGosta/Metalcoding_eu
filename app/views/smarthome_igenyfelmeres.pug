@@ -10,7 +10,7 @@ body
                         each if_record in igenyfelmeres_records
                             a.igenyfelmeres-record=if_record.name
                 table
-                    each index in active_igenyfelmero_record.line_records
+                    each index in active_igenyfelmero_record.line_records.count()
                         a= index
                         //tr
                             each value, key in active_igenyfelmero_record.line_records[index]
