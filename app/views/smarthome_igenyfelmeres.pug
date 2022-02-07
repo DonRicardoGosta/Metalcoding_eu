@@ -10,14 +10,15 @@ body
                         each if_record in igenyfelmeres_records
                             a.igenyfelmeres-record=if_record.name
                 table
+                    each index in active_igenyfelmero_record.line_records.length
                     tr
-                        each value, key in active_igenyfelmero_record.line_records
+                        each value, key in active_igenyfelmero_record.line_records[index]
                             th= key
-                    each if_first in active_igenyfelmero_record.line_records
+                    each if_first in active_igenyfelmero_record.line_records[index]
                         tr
-                            each value in igenyfelmeres_records[0].line_records
+                            each value in active_igenyfelmero_record.line_records[index]
                                 td= value
-                h1=active_igenyfelmero_record
+                
 
 
 script(type="module" src='/static/js/igenyfelmero.js')
