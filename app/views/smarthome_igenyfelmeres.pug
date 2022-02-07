@@ -12,7 +12,21 @@ body
                 if active_igenyfelmero_record
                     a Van aktív igényfelmérő kiválasztva
                 else
-                    a= igenyfelmeres_records[0].name
+                    tr
+                        each table_header in igenyfelmeres_records[0]
+                            th table_header
+                    tr
+                        td 001
+                        td Adam
+                        td 25
+                    tr
+                        td 002
+                        td rahul
+                        td 27
+                    tr
+                        td 003
+                        td john
+                        td 80
 
 script(type="module" src='/static/js/igenyfelmero.js')
 include static/includes/footer.pug
