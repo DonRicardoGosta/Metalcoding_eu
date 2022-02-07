@@ -14,8 +14,8 @@ body
                 else
                     table
                         tr
-                            each value, key in igenyfelmeres_records[0].line_records[0]
-                                th= key
+                            each value in igenyfelmeres_records[0].line_records[0]
+                                th= value.name
                         each if_first in igenyfelmeres_records[0]
                             tr
                                 each value in igenyfelmeres_records[0].line_records
