@@ -14,7 +14,8 @@ router.get('/', auth, async (req,res) => {
     let user=null;
     if(await UserInSession(req)) user = await UserInSession(req);
     const igenyfelmeres_records = await getIgenyfelmeresRecords(user._id);
-    res.render('smarthome_igenyfelmeres', {title:'MagoriCO - SmartHome - Igényfelmérés', user: user, igenyfelmeres_records: igenyfelmeres_records});
+    const active_igenyfelmero_record = igenyfelmeres_records[0];
+    res.render('smarthome_igenyfelmeres', {title:'MagoriCO - SmartHome - Igényfelmérés', user: user, igenyfelmeres_records: igenyfelmeres_records, active_igenyfelmero_record: active_igenyfelmero_record});
 });
 
 router.get('/fill',auth ,async (req,res) => {

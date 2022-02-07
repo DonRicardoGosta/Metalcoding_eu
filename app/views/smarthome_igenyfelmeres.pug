@@ -9,14 +9,11 @@ body
                     if igenyfelmeres_records
                         each if_record in igenyfelmeres_records
                             a.igenyfelmeres-record=if_record.name
-                if active_igenyfelmero_record
-                    a Van aktív igényfelmérő kiválasztva
-                else
                     table
                         tr
-                            each value in igenyfelmeres_records[0].line_records[0]
-                                th= value.name
-                        each if_first in igenyfelmeres_records[0]
+                            each value, key in active_igenyfelmero_record.line_records
+                                th= key
+                        each if_first in active_igenyfelmero_record.line_records
                             tr
                                 each value in igenyfelmeres_records[0].line_records
                                     td= value
