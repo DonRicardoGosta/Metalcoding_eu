@@ -9,10 +9,10 @@ body
                     if igenyfelmeres_records
                         each if_record in igenyfelmeres_records
                             a.igenyfelmeres-record=if_record.name
-            if active_igenyfelmero_record
-                a Van aktív igényfelmérő kiválasztva
-            else
-                a= igenyfelmeres_records[0].name
+                if active_igenyfelmero_record
+                    a Van aktív igényfelmérő kiválasztva
+                else
+                    a= igenyfelmeres_records[0].name
 
 script(type="module" src='/static/js/igenyfelmero.js')
 include static/includes/footer.pug
