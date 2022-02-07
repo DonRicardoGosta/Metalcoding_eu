@@ -852,10 +852,11 @@ body {font-family: Verdana, sans-serif;}
 }
 #igenyfelmeres-records-container{
     width:20%;
-    max-height: 20vh;
+    max-height: 30vh;
     overflow: hidden;
     display: inline-block;
-    background-color: rgba(0,0,0,0.1);
+    background-color: rgba(0,0,0,0.04);
+    border: 1px solid black;
 }
 .igenyfelmeres-record{
     width:80%;
@@ -864,4 +865,8 @@ body {font-family: Verdana, sans-serif;}
     margin: 10px;
     text-align: center;
     box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+    background-color: wheat;
+}
+.igenyfelmeres-record:hover{
+    box-shadow: rgb(0 0 0 / 62%) 0px 8px 20px;
 }
