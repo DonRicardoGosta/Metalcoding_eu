@@ -14,20 +14,12 @@ body
                 else
                     table
                         tr
-                            each value, key in igenyfelmeres_records[0]
+                            each value, key in igenyfelmeres_records[0].line_records
                                 th= key
                         tr
-                            td 001
-                            td Adam
-                            td 25
-                        tr
-                            td 002
-                            td rahul
-                            td 27
-                        tr
-                            td 003
-                            td john
-                            td 80
+                            each value, key in igenyfelmeres_records[0].line_records
+                                td= value
+
 
 script(type="module" src='/static/js/igenyfelmero.js')
 include static/includes/footer.pug
