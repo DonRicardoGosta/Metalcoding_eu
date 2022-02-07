@@ -7,12 +7,14 @@ const { UserInSession } = require("./home")
 
 const auth = require("../middleware/auth");
 const config = require("config");
+const {getIgenyfelmeresRecords} = require("../database/igenyfelmeres_data_handler");
 
 
 router.get('/', auth, async (req,res) => {
     let user=null;
     if(await UserInSession(req)) user = await UserInSession(req);
-    res.render('smarthome_igenyfelmeres', {title:'MagoriCO - SmartHome - Igényfelmérés', user: user});
+    const igenyfelmeres_records = await getIgenyfelmeresRecords(user._id);
+    res.render('smarthome_igenyfelmeres', {title:'MagoriCO - SmartHome - Igényfelmérés', user: user, igenyfelmeres_records: igenyfelmeres_records});
 });
 
 router.get('/fill',auth ,async (req,res) => {
