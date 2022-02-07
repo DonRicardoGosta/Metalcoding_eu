@@ -850,10 +850,16 @@ body {font-family: Verdana, sans-serif;}
 #add-new-line-button:hover {
     box-shadow: rgb(0 0 0 / 62%) 0px 8px 20px;
 }
-.igenyfelmeres-record{
+#igenyfelmeres-records-container{
     width:20%;
+    max-height: 20vh;
+    overflow: hidden;
+}
+.igenyfelmeres-record{
+    width:80%;
     line-height: 50px;
     display: block;
     margin: 10px;
+    text-align: center;
     box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
 }

@@ -5,10 +5,11 @@ body
         div#darker-background
             h1#igenyfelmeres_h1 Magori computers - SmartHome Igényfelmérő kalkulátor
             div#igenyfelmero-container
-                if igenyfelmeres_records
-                    each if_record in igenyfelmeres_records
-                        a.igenyfelmeres-record=if_record.name
-                        a.igenyfelmeres-record=if_record.name
+                div#igenyfelmeres-records-container
+                    if igenyfelmeres_records
+                        each if_record in igenyfelmeres_records
+                            a.igenyfelmeres-record=if_record.name
+                            a.igenyfelmeres-record=if_record.name
 
 script(type="module" src='/static/js/igenyfelmero.js')
 include static/includes/footer.pug
