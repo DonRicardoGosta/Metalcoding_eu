@@ -854,6 +854,8 @@ body {font-family: Verdana, sans-serif;}
     width:20%;
     max-height: 20vh;
     overflow: hidden;
+    display: inline-block;
+    background-color: rgba(0,0,0,0.1);
 }
 .igenyfelmeres-record{
     width:80%;
