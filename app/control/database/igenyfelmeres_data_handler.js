@@ -13,7 +13,7 @@ async function getIgenyfelmeresRecords(user_id){
         try {
             const igenyfelmeres_records = await IgenyfelmeresRecordModel
                 .find({sharedwith : user_id.toString()})
-                .populate('line_records', 'name -_id')
+                .populate('line_records')
                 .select('name _id');
             return igenyfelmeres_records;
         }catch (ex){
