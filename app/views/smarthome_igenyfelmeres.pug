@@ -12,16 +12,12 @@ body
                 if active_igenyfelmero_record
                     a Van aktív igényfelmérő kiválasztva
                 else
-                    each value, key in igenyfelmeres_records[0]
-                        ul
-                            li= key
-                            li= value
                     table
                         tr
-                            each value, key in igenyfelmeres_records[0].line_records
+                            each value, key in igenyfelmeres_records[0].line_records.size
                                 th= key
                         tr
-                            each value, key in igenyfelmeres_records[0].line_records
+                            each value, key in igenyfelmeres_records[0].line_records.size
                                 td= value
 
 
