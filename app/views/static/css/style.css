@@ -854,7 +854,7 @@ body {font-family: Verdana, sans-serif;}
     width:20%;
     max-height: 30vh;
     overflow: hidden;
-    display: inline-block;
+    display: contents;
     background-color: rgba(0,0,0,0.04);
     border: 1px solid black;
 }
