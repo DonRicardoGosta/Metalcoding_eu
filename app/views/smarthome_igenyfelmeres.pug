@@ -16,9 +16,10 @@ body
                         tr
                             each value, key in igenyfelmeres_records[0].line_records[0]
                                 th= key
-                        tr
-                            each value, key in igenyfelmeres_records[0].line_records[0]
-                                td= value
+                        each if_first in igenyfelmeres_records[0]
+                            tr
+                                each value in igenyfelmeres_records[0].line_records
+                                    td= value
 
 
 script(type="module" src='/static/js/igenyfelmero.js')
