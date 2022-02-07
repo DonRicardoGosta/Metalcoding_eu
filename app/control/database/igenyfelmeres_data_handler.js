@@ -16,7 +16,7 @@ async function getIgenyfelmeresRecords(user_id){
                 .populate({
                     path : 'line_records',
                     populate : {
-                        path : 'location function'
+                        path : 'location function device brand'
                     }
                 })
                 .select('name _id');

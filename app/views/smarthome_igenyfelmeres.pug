@@ -23,11 +23,11 @@ body
                     each line in lines_for_active_ifmero
                         tr
                             td= line.name
-                            td= line.location
+                            td= line.location.name
                             td= line.description
-                            td= line.function
-                            td= line.device
-                            td= line.brand
+                            td= line.function.name
+                            td= line.device.name
+                            td= line.brand.name
                             td= line.piece
                             td= line.price
                             td= line.created_date
