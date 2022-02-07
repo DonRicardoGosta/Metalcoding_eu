@@ -13,8 +13,8 @@ body
                     a Van aktív igényfelmérő kiválasztva
                 else
                     tr
-                        each value, key in igenyfelmeres_records[0]
-                            th= key
+                        each table_header in igenyfelmeres_records[0]
+                            th= table_header.key
                     tr
                         td 001
                         td Adam
