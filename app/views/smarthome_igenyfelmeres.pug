@@ -11,6 +11,7 @@ body
                             a.igenyfelmeres-record=if_record.name
                 table
                     tr
+                        th poz
                         th name
                         th location
                         th description
@@ -22,6 +23,7 @@ body
                         th created_date
                     each line in lines_for_active_ifmero
                         tr
+                            td 0
                             td= line.name
                             td= line.location.name
                             td= line.description
