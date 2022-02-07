@@ -10,15 +10,27 @@ body
                         each if_record in igenyfelmeres_records
                             a.igenyfelmeres-record=if_record.name
                 table
-                    each index in lines_for_active_ifmero
-                        a= index
-                        //tr
-                            each value, key in active_igenyfelmero_record.line_records[index]
-                                th= key
-                        //each if_first in active_igenyfelmero_record.line_records[index]
-                            tr
-                                each value in active_igenyfelmero_record.line_records[index]
-                                    td= value
+                    tr
+                        th name
+                        th location
+                        th description
+                        th function
+                        th device
+                        th brand
+                        th piece
+                        th price
+                        th created_date
+                    each line in lines_for_active_ifmero
+                        tr
+                            td= line.name
+                            td= line.location
+                            td= line.description
+                            td= line.function
+                            td= line.device
+                            td= line.brand
+                            td= line.piece
+                            td= line.price
+                            td= line.created_date
 
 
 
