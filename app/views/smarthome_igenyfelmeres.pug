@@ -9,14 +9,14 @@ body
                     if igenyfelmeres_records
                         each if_record in igenyfelmeres_records
                             a.igenyfelmeres-record=if_record.name
-                    table
+                table
+                    tr
+                        each value, key in active_igenyfelmero_record.line_records
+                            th= key
+                    each if_first in active_igenyfelmero_record.line_records
                         tr
-                            each value, key in active_igenyfelmero_record.line_records
-                                th= key
-                        each if_first in active_igenyfelmero_record.line_records
-                            tr
-                                each value in igenyfelmeres_records[0].line_records
-                                    td= value
+                            each value in igenyfelmeres_records[0].line_records
+                                td= value
 
 
 script(type="module" src='/static/js/igenyfelmero.js')
