@@ -7,6 +7,7 @@ const router = express.Router();
 
 const auth = require("../../middleware/auth");
 const {IgenyfelmeresRecordModel} = require("../../../model/igenyfelmeres_data_models/igenyfelmeres_records_Model");
+const {DeviceModel} = require("../../../model/igenyfelmeres_data_models/devices_enum_Model");
 
 
 
@@ -23,9 +24,10 @@ router.get('/get-locations',auth ,async (req,res) => {
     res.send(locations);
 });
 router.get('/get-price-for-device/:device_id',auth ,async (req,res) => {
-    const device = await DevicePriceModel.find({device : req.params.device_id.toString()})
-    if(device){
-        res.send(device);
+    let devicei = await DeviceModel.find({_id: req.params.device_id});
+    const device_p = await DevicePriceModel.find({device : devicei._id});
+    if(device_p){
+        res.send(device_p);
     }else{
         res.send({price: 0});
     }
