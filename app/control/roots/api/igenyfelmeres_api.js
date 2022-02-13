@@ -24,7 +24,7 @@ router.get('/get-locations',auth ,async (req,res) => {
     res.send(locations);
 });
 router.get('/get-price-for-device/:device_id',auth ,async (req,res) => {
-    let devicei = await DeviceModel.find({_id: req.params.device_id});
+    let devicei = await DeviceModel.find({_id: req.params.device_id.toString()});
     const device_p = await DevicePriceModel.find({device : devicei._id});
     if(device_p){
         res.send(device_p);
