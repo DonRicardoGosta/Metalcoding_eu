@@ -41,6 +41,17 @@ function eventListenerOnInputField(){
                 parent.textContent = text;
             }
         });
+        let ignoreClickOnMeElement = document.getElementById('ifl-renameable-field');
+
+        document.addEventListener('click', function(event) {
+            let isClickInsideElement = ignoreClickOnMeElement.contains(event.target);
+            if (!isClickInsideElement) {
+                let text = inp_field.value;
+                let parent= inp_field.parentElement;
+                inp_field.remove();
+                parent.textContent = text;
+            }
+        });
     }
 
 }
