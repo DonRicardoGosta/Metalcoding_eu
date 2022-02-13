@@ -6,7 +6,6 @@ const { createRandomObjects, create_device } =require("../database/create_random
 const { UserInSession } = require("./home")
 
 const auth = require("../middleware/auth");
-const config = require("config");
 const {getIgenyfelmeresRecords, getLocations, getFunctions, getDevices, getBrands} = require("../database/igenyfelmeres_data_handler");
 
 
