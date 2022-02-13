@@ -64,9 +64,10 @@ export function boardSchema(board){
     `;
 
 }
-export function errorMessageSchema(errorMSG){
+export function errorMessageSchema(errorMSG, index){
     return`
         <div class="error-message-box">
+            <div class="message-box-index hide">${ index }</div>
             <div class="message-box-header">
                 <div class="message-box-close-icon"></div>
             </div>
@@ -76,9 +77,10 @@ export function errorMessageSchema(errorMSG){
         </div>
     `;
 }
-export function systemMessageSchema(systemMSG){
+export function systemMessageSchema(systemMSG, index){
     return`
         <div class="error-message-box system-message-box">
+            <div class="message-box-index hide">${ index }</div>
             <div class="message-box-header">
                 <div class="message-box-close-icon"></div>
             </div>

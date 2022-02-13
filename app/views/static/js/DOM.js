@@ -9,22 +9,29 @@ import { deleteCardById, deleteStatusById } from "/static/js/requests/delete_api
 
 export function showErrorMessage(errorMSG){
     const errorMsgContainer = document.querySelector("#error-message-container");
-    const message = errorMessageSchema(errorMSG);
+    const count = errorMsgContainer.childElementCount;
+    const message = errorMessageSchema(errorMSG, count);
     errorMsgContainer.insertAdjacentHTML("beforeend", message);
     takeEventListenerOnCloseErrorMessages();
 }
 export function showSystemMessage(systemMSG){
     const systemMsgContainer = document.querySelector("#error-message-container");
-    const message = systemMessageSchema(systemMSG);
+    const count = systemMsgContainer.childElementCount;
+    const message = systemMessageSchema(systemMSG, count);
     systemMsgContainer.insertAdjacentHTML("beforeend", message);
-    takeEventListenerOnCloseErrorMessages(message);
+    takeEventListenerOnCloseErrorMessages(count);
 }
 export function deleteErrorMessage(event){
     const error_msg = event.target.parentElement.parentElement;
     error_msg.remove();
 }
-export function deleteSystemMessage(systemMSG){
-    systemMSG.target.remove();
+export function deleteSystemMessage(index){
+    const sys_message_box = document.querySelectorAll(".message-box-index")
+    for (let box of sys_message_box){
+        if(box.textContent == index){
+            box.remove();
+        }
+    }
 }
 export function changeBoardSize(event){
     try {
