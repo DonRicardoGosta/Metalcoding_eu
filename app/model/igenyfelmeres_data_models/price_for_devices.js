@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Joi = require("joi");
 
-const DevicePriceModel = mongoose.model('DevicePrice',new mongoose.Schema({
+/*const DevicePriceModel = mongoose.model('DevicePrice',new mongoose.Schema({
     device_type:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Device',
@@ -31,6 +31,35 @@ const DevicePriceModel = mongoose.model('DevicePrice',new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
+    },
+    created_date: {type: Date, default: Date.now },
+}));*/
+
+const DevicePriceModel = mongoose.model('DevicePrice',new mongoose.Schema({
+    location:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Location',
+    },
+    function:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'FunctionInHouse',
+    },
+    device:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Device',
+    },
+    brand:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Brand',
+    },
+    price:{
+        type: Number,
+        required: true,
+        default:0
+    },
+    created_user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
     },
     created_date: {type: Date, default: Date.now },
 }));

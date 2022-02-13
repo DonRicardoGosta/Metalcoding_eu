@@ -20,22 +20,17 @@ async function create_random_objects(userID, price_amount){
     return;
 }
 async function createPriceForDevices(user_id,price_amount){
-    try{
-        let pricefd = new DevicePriceModel({
-            function: await FunctionInHouseModel.findOne(),
-            device: await DeviceModel.findOne(),
-            brand: await BrandModel.findOne(),
-            price: price_amount,
-            created_user: user_id,
-            deviza: 'huf'
-        });
-        pricefd=await pricefd.save();
-        console.log(pricefd);
-    } catch (err) {
-        console.log(err.message);
-    }
 
-    return;
+    let pricefd = new DevicePriceModel({
+        function: await FunctionInHouseModel.findOne(),
+        device: await DeviceModel.findOne(),
+        brand: await BrandModel.findOne(),
+        price: price_amount,
+        created_user: user_id,
+    });
+    pricefd=await pricefd.save();
+    console.log(pricefd);
+
 }
 async function createIgenyfelmeresLine(userId){
     try{
