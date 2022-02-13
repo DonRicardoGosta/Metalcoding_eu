@@ -18,7 +18,9 @@ function setEventListenersOnlocations(){
     }
 }
 function optionChoosed(event){
-    console.log(event.target.value);
+    let option_id=event.target.value;
+    let line_record_id=event.target.parentElement.parentElement.querySelector(".ifl-id").textContent
+    console.log(line_record_id)
 }
 function setEventListenersOnDescriptionFields(){
     let description_fields = document.querySelectorAll(".ifl-description");
