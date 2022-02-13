@@ -23,7 +23,7 @@ router.get('/get-locations',auth ,async (req,res) => {
     const locations = await getLocations();
     res.send(locations);
 });
-router.put('/get-price-for-devic/:id',auth ,async (req,res) =>{
+router.put('/get-price-for-device/:id',auth ,async (req,res) =>{
     console.log(req.params.id);
     res.send("line_record");
 });
