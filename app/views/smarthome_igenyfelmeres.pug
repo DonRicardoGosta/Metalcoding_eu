@@ -32,7 +32,7 @@ body
                                         if line.location.id == location.id
                                             option(value=location.id selected=true).location-option #{location.name}
                                         else
-                                            option(value=location.id) #{location.name}
+                                            option(value=location.id).location-option #{location.name}
 
 
                             td.ifl-description= line.description
