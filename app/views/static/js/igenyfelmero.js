@@ -2,9 +2,9 @@ import { showErrorMessage, showSystemMessage } from '/static/js/DOM.js';
 
 initIgenyfelmero();
 
-async function initIgenyfelmero(){
-    await initPlussButton();
-    await setEventListenersOnFields();
+function initIgenyfelmero(){
+    initPlussButton();
+    setEventListenersOnFields();
 }
 function setEventListenersOnFields(){
     let name_fields = document.querySelectorAll(".ifl-name");
