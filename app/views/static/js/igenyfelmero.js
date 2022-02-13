@@ -53,10 +53,10 @@ async function deviceChoosed(event){
     let line_record_id=event.target.parentElement.parentElement.querySelector(".ifl-id").textContent
     await updateLineRecordDevice(line_record_id, device_id);
     showSystemMessage("Device saved successfully");
-    await getPrice("device_id")
+    await getPrice("device_id");
 }
 async function getPrice(device_id){
-    getDevicePrice(device_id);
+    await getDevicePrice(device_id);
 }
 async function brandChoosed(event){
     let brand_id=event.target.value;
