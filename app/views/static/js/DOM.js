@@ -17,7 +17,7 @@ export function showSystemMessage(systemMSG){
     const systemMsgContainer = document.querySelector("#error-message-container");
     const message = systemMessageSchema(systemMSG);
     systemMsgContainer.insertAdjacentHTML("beforeend", message);
-    takeEventListenerOnCloseErrorMessages();
+    takeEventListenerOnCloseErrorMessages(message);
 }
 export function deleteErrorMessage(event){
     const error_msg = event.target.parentElement.parentElement;
