@@ -77,5 +77,5 @@ export async function getDevicePrice(device_id){
     let response = await fetch(url);
     let data = await response.json();
     console.log(data);
-    showErrorMessage(data);
+    showErrorMessage(data.price);
 }
