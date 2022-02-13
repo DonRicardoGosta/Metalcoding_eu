@@ -1,5 +1,5 @@
 import { showErrorMessage, showSystemMessage } from '/static/js/DOM.js';
-import {  updateLineRecordName, updateLineRecordDescription, updateLineRecordOption } from "/static/js/requests/put_api_requests.js";
+import {  updateLineRecordName, updateLineRecordDescription, updateLineRecordLocation, updateLineRecordFunction, updateLineRecordDevice, updateLineRecordBrand } from "/static/js/requests/put_api_requests.js";
 
 initIgenyfelmero();
 
@@ -7,20 +7,62 @@ async function initIgenyfelmero(){
     await initPlussButton();
     await setEventListenersOnNameFields();
     await setEventListenersOnDescriptionFields();
-    await setEventListenersOnlocations();
+    await setEventListenersOnLocations();
+    await setEventListenersOnFunctions();
+    await setEventListenersOnDevices();
+    await setEventListenersOnBrands();
+}
+function setEventListenersOnBrands(){
+    let brandOptions = document.querySelectorAll("#brand-options");
+
+    for(let option of brandOptions){
+        option.addEventListener("change", brandChoosed, false);
+    }
+}
+function setEventListenersOnDevices(){
+    let deviceOptions = document.querySelectorAll("#device-options");
+
+    for(let option of deviceOptions){
+        option.addEventListener("change", deviceChoosed, false);
+    }
+}
+function setEventListenersOnFunctions(){
+    let functionOptions = document.querySelectorAll("#function-options");
+
+    for(let option of functionOptions){
+        option.addEventListener("change", functionChoosed, false);
+    }
 }
 
-function setEventListenersOnlocations(){
+function setEventListenersOnLocations(){
     let locationOptions = document.querySelectorAll("#location-options");
 
     for(let option of locationOptions){
         option.addEventListener("change", optionChoosed, false);
     }
 }
+async function functionChoosed(event){
+    let function_id=event.target.value;
+    let line_record_id=event.target.parentElement.parentElement.querySelector(".ifl-id").textContent
+    await updateLineRecordFunction(line_record_id, function_id);
+    showSystemMessage("Function saved successfully");
+}
+async function deviceChoosed(event){
+    let device_id=event.target.value;
+    let line_record_id=event.target.parentElement.parentElement.querySelector(".ifl-id").textContent
+    await updateLineRecordDevice(line_record_id, device_id);
+    showSystemMessage("Device saved successfully");
+}
+async function brandChoosed(event){
+    let brand_id=event.target.value;
+    let line_record_id=event.target.parentElement.parentElement.querySelector(".ifl-id").textContent
+    await updateLineRecordBrand(line_record_id, brand_id);
+    showSystemMessage("Location saved successfully");
+}
 async function optionChoosed(event){
     let option_id=event.target.value;
     let line_record_id=event.target.parentElement.parentElement.querySelector(".ifl-id").textContent
-    let resp = await updateLineRecordOption(line_record_id, option_id);
+    await updateLineRecordLocation(line_record_id, option_id);
     showSystemMessage("Location saved successfully");
 }
 function setEventListenersOnDescriptionFields(){

@@ -42,8 +42,27 @@ router.put('/rename-description-line-record/:id/:new_description',auth ,async (r
     });
     res.send(line_record);
 });
-router.put('/change-option-line-record/:id/:new_option_id',auth ,async (req,res) =>{
-    let line_record = await IgenyfelmeresLineRecordModel.findOneAndUpdate({_id: req.params.id}, {location: req.params.new_option_id}, {
+router.put('/change-option-line-record/:id/:new_location_id',auth ,async (req,res) =>{
+    let line_record = await IgenyfelmeresLineRecordModel.findOneAndUpdate({_id: req.params.id}, {location: req.params.new_location_id}, {
+        new: true
+    });
+    res.send(line_record);
+});
+
+router.put('/change-fucntion-line-record/:id/:new_function_id',auth ,async (req,res) =>{
+    let line_record = await IgenyfelmeresLineRecordModel.findOneAndUpdate({_id: req.params.id}, {function: req.params.new_function_id}, {
+        new: true
+    });
+    res.send(line_record);
+});
+router.put('/change-device-line-record/:id/:new_device_id',auth ,async (req,res) =>{
+    let line_record = await IgenyfelmeresLineRecordModel.findOneAndUpdate({_id: req.params.id}, {device: req.params.new_device_id}, {
+        new: true
+    });
+    res.send(line_record);
+});
+router.put('/change-brand-line-record/:id/:new_brand_id',auth ,async (req,res) =>{
+    let line_record = await IgenyfelmeresLineRecordModel.findOneAndUpdate({_id: req.params.id}, {brand: req.params.new_brand_id}, {
         new: true
     });
     res.send(line_record);
