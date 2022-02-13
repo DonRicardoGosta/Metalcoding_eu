@@ -25,10 +25,10 @@ function insertInputField(event){
         showErrorMessage(ex.message);
     }finally {
         const inp_field = document.querySelector("#ifl-renameable-field");
-        eventListenerOnInputField();
+        setEventListenerOnInputField();
     }
 }
-function eventListenerOnInputField(){
+function setEventListenerOnInputField(){
     if(document.querySelector("#ifl-renameable-field")){
         const inp_field = document.querySelector("#ifl-renameable-field");
         inp_field.addEventListener("keyup", function(event) {
@@ -40,7 +40,6 @@ function eventListenerOnInputField(){
                 parent.textContent = text;
             }
         });
-        
         document.addEventListener('click', function(event) {
             let isClickInsideElement = inp_field.contains(event.target);
             if (!isClickInsideElement) {
