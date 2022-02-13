@@ -8,8 +8,8 @@ const {IgenyfelmeresLineRecordModel} = require("../../model/igenyfelmeres_data_m
 const { DevicePriceModel } = require("../../model/igenyfelmeres_data_models/price_for_devices");
 
 
-async function create_random_objects(userID, function_id, device_id, brand_id, price_amount){
-    await createPriceForDevices(userID, function_id, device_id, brand_id, price_amount)
+async function create_random_objects(userID, price_amount){
+    await createPriceForDevices(userID, price_amount)
     /*await createBrands(userId);
     await createDevices(userId);
     await createFunctions(userId);
@@ -19,11 +19,11 @@ async function create_random_objects(userID, function_id, device_id, brand_id, p
     //await createIgenyfelmeresLine(userId);
     return;
 }
-async function createPriceForDevices(user_id, function_id, device_id, brand_id, price_amount){
+async function createPriceForDevices(user_id,price_amount){
     try{
         let pricefd = new DevicePriceModel({
             deviza: 'huf',
-            function: function_id,
+            function: await FunctionInHouseModel.findOne(),
             device: await DeviceModel.findOne(),
             brand: await BrandModel.findOne(),
             price: price_amount,
