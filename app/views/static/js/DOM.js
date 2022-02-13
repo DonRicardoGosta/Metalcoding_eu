@@ -24,7 +24,7 @@ export function deleteErrorMessage(event){
     error_msg.remove();
 }
 export function deleteSystemMessage(systemMSG){
-    systemMSG.remove();
+    systemMSG.target.remove();
 }
 export function changeBoardSize(event){
     try {
