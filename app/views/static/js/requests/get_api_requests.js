@@ -64,12 +64,6 @@ export async function getCard(card_id){
 
 //-------------------------------------------------------------------------
 //START Locations get requests
-export async function getLocations(){
-    let url="/api/igenyfelmeres/get-locations";
-    let response = await fetch(url);
-    let data = await response.json();
-    return data;
-}
 export async function getLocationsByString(location_str){
     let url="/api/igenyfelmeres/get-locations-by-string/"+location_str;
     let response = await fetch(url);
