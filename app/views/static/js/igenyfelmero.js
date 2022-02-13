@@ -31,20 +31,18 @@ function insertInputField(event){
 function eventListenerOnInputField(){
     if(document.querySelector("#ifl-renameable-field")){
         const inp_field = document.querySelector("#ifl-renameable-field");
-        const isClickInsideElement = inp_field.contains(inp_field);
         inp_field.addEventListener("keyup", function(event) {
             // Number 13 is the "Enter" key on the keyboard
-            if (event.keyCode === 13 || !isClickInsideElement) {
+            if (event.keyCode === 13) {
                 let text = inp_field.value;
                 let parent= inp_field.parentElement;
                 inp_field.remove();
                 parent.textContent = text;
             }
         });
-        let ignoreClickOnMeElement = document.getElementById('ifl-renameable-field');
-
+        
         document.addEventListener('click', function(event) {
-            let isClickInsideElement = ignoreClickOnMeElement.contains(event.target);
+            let isClickInsideElement = inp_field.contains(event.target);
             if (!isClickInsideElement) {
                 let text = inp_field.value;
                 let parent= inp_field.parentElement;
