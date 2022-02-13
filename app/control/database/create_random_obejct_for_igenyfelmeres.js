@@ -20,16 +20,20 @@ async function create_random_objects(userID, function_id, device_id, brand_id, p
     return;
 }
 async function createPriceForDevices(user_id, function_id, device_id, brand_id, price_amount){
-
-    let pricefd = new DevicePriceModel({
-        function: function_id,
-        device: device_id,
-        brand: brand_id,
-        price: price_amount,
-        created_user: user_id,
-    });
-    pricefd=await pricefd.save();
-    console.log(pricefd);
+    try{
+        let pricefd = new DevicePriceModel({
+            function: function_id,
+            device: device_id,
+            brand: brand_id,
+            price: price_amount,
+            created_user: user_id,
+        });
+        pricefd=await pricefd.save();
+        console.log(pricefd);
+    } catch (err) {
+        console.log(err.message);
+    }
+    return;
 
 }
 async function createIgenyfelmeresLine(userId){
