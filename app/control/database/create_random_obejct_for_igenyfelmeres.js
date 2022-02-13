@@ -29,7 +29,8 @@ async function createPriceForDevices(userID, function_id, device_id, brand_id, p
             price: price_amount,
             created_user: userId,
         });
-        await pricefd.save();
+        let resp=await pricefd.save();
+        console.log(resp);
     } catch (err) {
         console.log(err.message);
     }
