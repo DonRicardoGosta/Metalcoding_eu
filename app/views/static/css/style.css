@@ -19,6 +19,14 @@
     margin: 10px 0 10px 0;
     overflow: hidden;
 }
+.system-message-box{
+    background-color: rgba(0,0,205,1);
+    width:350px;
+    height: 100px;
+    border-radius: 5px;
+    margin: 10px 0 10px 0;
+    overflow: hidden;
+}
 .message-box-header{
     height: 25px;
     width: 100%;

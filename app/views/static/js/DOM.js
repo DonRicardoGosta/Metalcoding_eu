@@ -1,4 +1,4 @@
-import { errorMessageSchema, renameCardSchema, cardSchema, renameCardSchema_poor } from '/static/js/DOM_schemas.js';
+import { errorMessageSchema, systemMessageSchema, renameCardSchema, cardSchema, renameCardSchema_poor } from '/static/js/DOM_schemas.js';
 import { takeEventListenerOnCloseErrorMessages, setEventListenerOnNewCardSubmit, mouseLeaveStatusMenu, mouseLeaveCardMenu } from "/static/js/event_listeners.js";
 import { addMewCard } from "/static/js/requests/post_api_requests.js";
 import { getCard } from "/static/js/requests/get_api_requests.js";
@@ -13,9 +13,18 @@ export function showErrorMessage(errorMSG){
     errorMsgContainer.insertAdjacentHTML("beforeend", message);
     takeEventListenerOnCloseErrorMessages();
 }
+export function showSystemMessage(systemMSG){
+    const systemMsgContainer = document.querySelector("#error-message-container");
+    const message = systemMessageSchema(systemMSG);
+    systemMsgContainer.insertAdjacentHTML("beforeend", message);
+    takeEventListenerOnCloseErrorMessages();
+}
 export function deleteErrorMessage(event){
     const error_msg = event.target.parentElement.parentElement;
     error_msg.remove();
+}
+export function deleteSystemMessage(systemMSG){
+    systemMSG.remove();
 }
 export function changeBoardSize(event){
     try {

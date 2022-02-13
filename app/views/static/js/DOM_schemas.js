@@ -75,5 +75,16 @@ export function errorMessageSchema(errorMSG){
             </div>
         </div>
     `;
-
+}
+export function systemMessageSchema(systemMSG){
+    return`
+        <div class="error-message-box system-message-box">
+            <div class="message-box-header">
+                <div class="message-box-close-icon"></div>
+            </div>
+            <div class="message-box-body">
+                <p>${ systemMSG }</p>
+            </div>
+        </div>
+    `;
 }

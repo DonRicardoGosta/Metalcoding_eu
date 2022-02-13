@@ -1,6 +1,7 @@
 import { showErrorMessage, deleteErrorMessage, changeBoardSize, displayNewCard, writeCardToHtml, changeStatusMenuDisplay, changeCardsMenuDisplay, renameCard, deleteCard, deleteStatus } from '/static/js/DOM.js';
 import { initDragAndDrop } from '/static/js/drag_and_drop.js';
 import { updateCardName } from "/static/js/requests/put_api_requests.js";
+import {deleteSystemMessage} from "./DOM";
 
 
 
@@ -136,14 +137,22 @@ function setEventListenersOnBoardSizeArrows(){
     }
 
 }
-export function takeEventListenerOnCloseErrorMessages(){
+export function takeEventListenerOnCloseErrorMessages(systemMsg){
     try {
+        if(systemMsg){
+            setTimeout(
+                function() {
+                    deleteSystemMessage(systemMsg);
+                }, 5000);
+        }
         let error_message_boxes = document.querySelectorAll(".error-message-box");
         for(let err_box of error_message_boxes){
             err_box.querySelector(".message-box-close-icon").addEventListener('click', deleteErrorMessage);
         }
+
     }catch (ex){
         showErrorMessage(ex.message);
     }
 }
+
 

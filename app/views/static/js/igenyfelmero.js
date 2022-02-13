@@ -1,4 +1,4 @@
-import { showErrorMessage } from '/static/js/DOM.js';
+import { showErrorMessage, showSystemMessage } from '/static/js/DOM.js';
 
 initIgenyfelmero();
 
@@ -38,6 +38,7 @@ function setEventListenerOnInputField(){
                 let parent= inp_field.parentElement;
                 inp_field.remove();
                 parent.textContent = text;
+                showSystemMessage("Successfully renamed");
             }
         });
         document.addEventListener('click', function(event) {
