@@ -25,7 +25,14 @@ router.get('/get-locations',auth ,async (req,res) => {
 });
 router.get('/get-price-for-device/:id',auth ,async (req,res) =>{
     const device = await DevicePriceModel.find({device: req.params.id});
-    res.send(device);
+    if(device){
+        res.send(device);
+    }else{
+        let kacsa = await DevicePriceModel.findOne();
+        kacsa.price=0;
+        res.send(kacsa);
+    }
+
 });
 
 
