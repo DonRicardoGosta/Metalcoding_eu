@@ -28,6 +28,17 @@ function insertInputField(event){
         setEventListenerOnInputField();
     }
 }
+function recreateNode(el, withChildren) {
+    if (withChildren) {
+        el.parentNode.replaceChild(el.cloneNode(true), el);
+    }
+    else {
+        var newEl = el.cloneNode(false);
+        while (el.hasChildNodes()) newEl.appendChild(el.firstChild);
+        el.parentNode.replaceChild(newEl, el);
+    }
+}
+
 function setEventListenerOnInputField(){
     if(document.querySelector("#ifl-renameable-field")){
         const inp_field = document.querySelector("#ifl-renameable-field");
@@ -39,6 +50,7 @@ function setEventListenerOnInputField(){
                 inp_field.remove();
                 parent.textContent = text;
                 showSystemMessage("Successfully renamed");
+                recreateNode(document.getElementById("ifl-renameable-field"), true);
             }
         });
         document.addEventListener('click', function(event) {
