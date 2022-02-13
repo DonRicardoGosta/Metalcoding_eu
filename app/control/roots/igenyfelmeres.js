@@ -12,7 +12,7 @@ const {getIgenyfelmeresRecords, getLocations, getFunctions, getDevices, getBrand
 router.get('/', auth, async (req,res) => {
     let user=null;
     if(await UserInSession(req)) user = await UserInSession(req);
-    const igenyfelmeres_records = await getIgenyfelmeresRecords("61cd1359913d352bd2aebe99");
+    const igenyfelmeres_records = await getIgenyfelmeresRecords(user._id);
     const active_igenyfelmero_record = igenyfelmeres_records[0];
     const lines_for_active_ifmero = active_igenyfelmero_record.line_records;
     const locations = await getLocations();
