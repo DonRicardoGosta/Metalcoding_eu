@@ -26,7 +26,7 @@ function insertInputFieldToDescription(event){
     try {
         let origin_text= event.target.textContent;
         let renamebale_text = `
-        <input id="ifl-renameable-field" type="text" value="${origin_text}">
+        <textarea id="ifl-renameable-field" type="text" value="${origin_text}">
         `;
         event.target.textContent="";
         event.target.insertAdjacentHTML("beforeend", renamebale_text);
