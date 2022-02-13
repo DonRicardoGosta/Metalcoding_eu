@@ -43,8 +43,8 @@ router.put('/rename-description-line-record/:id/:new_description',auth ,async (r
     res.send(line_record);
 });
 router.put('/change-option-line-record/:id/:new_option_id',auth ,async (req,res) =>{
-    console.log("im here")
-    let line_record = await IgenyfelmeresLineRecordModel.findOneAndUpdate({_id: req.params.id}, {options: req.params.new_option_id}, {
+
+    let line_record = await IgenyfelmeresLineRecordModel.findOneAndUpdate({_id: req.params.id}, {location: req.params.new_option_id}, {
         new: true
     });
     res.send(line_record);

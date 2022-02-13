@@ -36,7 +36,6 @@ export async function updateLineRecordDescription(line_record_id,new_name){
 }
 export async function updateLineRecordOption(line_record_id,option_id){
     let url=`/api/igenyfelmeres/change-option-line-record/${line_record_id}/${option_id}`;
-    showErrorMessage(url);
     let response = await fetch(url,{
         method:'PUT'
     });
