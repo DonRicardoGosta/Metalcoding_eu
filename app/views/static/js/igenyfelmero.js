@@ -1,4 +1,4 @@
-
+import { showErrorMessage, showSystemMessage } from '/static/js/DOM.js';
 
 initIgenyfelmero();
 

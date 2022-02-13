@@ -1,7 +1,6 @@
-import { showErrorMessage, deleteErrorMessage, changeBoardSize, displayNewCard, writeCardToHtml, changeStatusMenuDisplay, changeCardsMenuDisplay, renameCard, deleteCard, deleteStatus } from '/static/js/DOM.js';
+import { showErrorMessage, deleteErrorMessage, deleteSystemMessage, changeBoardSize, displayNewCard, writeCardToHtml, changeStatusMenuDisplay, changeCardsMenuDisplay, renameCard, deleteCard, deleteStatus } from '/static/js/DOM.js';
 import { initDragAndDrop } from '/static/js/drag_and_drop.js';
 import { updateCardName } from "/static/js/requests/put_api_requests.js";
-import {deleteSystemMessage} from "./DOM";
 
 
 
