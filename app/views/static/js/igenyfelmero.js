@@ -33,7 +33,7 @@ function eventListenerOnInputField(){
         const inp_field = document.querySelector("#ifl-renameable-field");
         inp_field.addEventListener("click keyup", function(event) {
             // Number 13 is the "Enter" key on the keyboard
-            if (event.keyCode === 13 || event.type == "click") {
+            if (event.keyCode === 13 || event.keyCode == 27) {
                 let text = inp_field.value;
                 let parent= inp_field.parentElement;
                 inp_field.remove();
