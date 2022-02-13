@@ -25,7 +25,7 @@ function insertInputField(event){
         showErrorMessage(ex.message);
     }finally {
         const inp_field = document.querySelector("#ifl-renameable-field");
-
+        eventListenerOnInputField();
     }
 }
 function eventListenerOnInputField(){
