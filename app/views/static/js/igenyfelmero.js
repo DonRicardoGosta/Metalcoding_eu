@@ -26,7 +26,7 @@ function insertInputFieldToDescription(event){
     try {
         let origin_text= event.target.textContent;
         let renamebale_text = `
-        <textarea id="ifl-renameable-field" type="text" value="${origin_text}">
+        <textarea id="ifl-renameable-field">${origin_text}</textarea>
         `;
         event.target.textContent="";
         event.target.insertAdjacentHTML("beforeend", renamebale_text);
@@ -59,7 +59,7 @@ function setEventListenerOnDescriptionInputField(){
 
             // Number 13 is the "Enter" key on the keyboard
             if (event.keyCode === 13) {
-                let text = inp_field.value;
+                let text = inp_field.textContent;
                 let parent= inp_field.parentElement;
                 inp_field.remove();
                 parent.textContent = text;
