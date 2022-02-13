@@ -76,10 +76,7 @@ export async function getDevicePrice(device_id){
     let url="/api/igenyfelmeres/get-price-for-device/"+device_id;
     let response = await fetch(url);
     let data = await response.json();
-    if(data){
-        return data;
-    }else{
-        return null;
-    }
+    return data;
+
 
 }

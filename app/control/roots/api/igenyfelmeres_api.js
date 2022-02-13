@@ -2,12 +2,10 @@ const express = require('express');
 const { UserInSession } = require("../home")
 const { IgenyfelmeresLineRecordModel } = require('../../../model/igenyfelmeres_data_models/igenyfelmeres_line_records_Model');
 const { DevicePriceModel } = require('../../../model/igenyfelmeres_data_models/price_for_devices');
-const {getLocations} = require("../../database/igenyfelmeres_data_handler");
 const router = express.Router();
 
 const auth = require("../../middleware/auth");
-const {IgenyfelmeresRecordModel} = require("../../../model/igenyfelmeres_data_models/igenyfelmeres_records_Model");
-const {DeviceModel} = require("../../../model/igenyfelmeres_data_models/devices_enum_Model");
+
 
 
 
@@ -22,7 +20,6 @@ router.get('/get-test',auth ,async (req,res) => {
 router.get('/get-price-for-device/:id',auth ,async (req,res) =>{
     const device = await DevicePriceModel.find({device: req.params.id});
     res.send(device);
-
 });
 
 
