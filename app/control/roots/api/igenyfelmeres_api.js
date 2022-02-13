@@ -19,10 +19,6 @@ router.get('/get-test',auth ,async (req,res) => {
     //const projects = await getProjects(user._id);
     res.send("kacsa");
 });
-router.get('/get-locations',auth ,async (req,res) => {
-    const locations = await getLocations();
-    res.send(locations);
-});
 router.get('/get-price-for-device/:id',auth ,async (req,res) =>{
     const device = await DevicePriceModel.find({device: req.params.id});
     if(device){
