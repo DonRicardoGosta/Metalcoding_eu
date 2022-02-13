@@ -18,7 +18,7 @@ function setEventListenersOnDescriptionFields(){
 function setEventListenersOnNameFields(){
     let name_fields = document.querySelectorAll(".ifl-name");
     for (let name_field of name_fields){
-        name_field.addEventListener('dblclick', insertInputField)
+        name_field.addEventListener('dblclick', insertInputFieldToName)
     }
 }
 
