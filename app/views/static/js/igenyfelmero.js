@@ -8,7 +8,7 @@ async function initIgenyfelmero(){
     await initPlussButton();
     await setEventListenersOnFields();
     const locations = await getLocations();
-    console.log(locations);
+    console.log(locations.json());
 }
 function setEventListenersOnFields(){
     let name_fields = document.querySelectorAll(".ifl-name");
