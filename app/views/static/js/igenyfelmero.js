@@ -19,6 +19,7 @@ function setEventListenersOnlocations(){
 }
 async function optionChoosed(event){
     let option_id=event.target.value;
+    console.log(event.target.innerHTML)
     let line_record_id=event.target.parentElement.parentElement.querySelector(".ifl-id").textContent
     let resp =await updateLineRecordOption(line_record_id, option_id);
     showErrorMessage(resp);
