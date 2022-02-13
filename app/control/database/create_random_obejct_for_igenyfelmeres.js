@@ -5,6 +5,7 @@ const {FunctionInHouseModel} = require("../../model/igenyfelmeres_data_models/fu
 const {LocationModel} = require("../../model/igenyfelmeres_data_models/locations_enum_Model");
 const {IgenyfelmeresRecordModel} = require("../../model/igenyfelmeres_data_models/igenyfelmeres_records_Model");
 const {IgenyfelmeresLineRecordModel} = require("../../model/igenyfelmeres_data_models/igenyfelmeres_line_records_Model");
+const { DevicePriceModel } = require("../../model/igenyfelmeres_data_models/price_for_devices");
 
 
 async function create_random_objects(userId){
@@ -15,6 +16,23 @@ async function create_random_objects(userId){
     return;*/
     //await creatIgenyfelmeresRecord(userId);
     //await createIgenyfelmeresLine(userId);
+    return;
+}
+async function createPriceForDevices(userID, function_id, device_id, brand_id, price_amount){
+    try{
+        let pricefd = new DevicePriceModel({
+            deviza: 'huf',
+            function: function_id,
+            device: device_id,
+            brand: brand_id,
+            price: price_amount,
+            created_user: userId,
+        });
+        await pricefd.save();
+    } catch (err) {
+        console.log(err.message);
+    }
+
     return;
 }
 async function createIgenyfelmeresLine(userId){

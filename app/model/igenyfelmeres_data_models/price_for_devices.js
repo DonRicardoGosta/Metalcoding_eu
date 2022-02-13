@@ -2,21 +2,20 @@ const mongoose = require('mongoose');
 const Joi = require("joi");
 
 const DevicePriceModel = mongoose.model('DevicePrice',new mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-        minlength: 1,
-        maxlength:255
-    },
     device_type:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Device',
-        required: true
+        required: false
     },
     brand_type:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Brand',
-        required: true
+        required: false
+    },
+    function_type:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'FunctionInHouse',
+        required: false
     },
     price:{
         type: Number,
@@ -44,5 +43,5 @@ function validateDevice(device){
     return Joi.validate(board, schema);*/
     return 1;
 }
-module.exports.DeviceModel = DeviceModel;
+module.exports.DevicePriceModel = DevicePriceModel;
 module.exports.validateDevice = validateDevice;
