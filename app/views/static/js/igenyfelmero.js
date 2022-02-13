@@ -18,7 +18,7 @@ function setEventListenersOnlocations(){
     }
 }
 function optionChoosed(event){
-    console.log(event.target.id);
+    console.log(event.target.value);
 }
 function setEventListenersOnDescriptionFields(){
     let description_fields = document.querySelectorAll(".ifl-description");
