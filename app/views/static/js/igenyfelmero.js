@@ -11,10 +11,11 @@ async function initIgenyfelmero(){
 }
 
 function setEventListenersOnlocations(){
-    let locationOptions = document.querySelectorAll("#location-options");
-    for(let option of locationOptions){
+    
+    document.querySelector("#location-options").addEventListener("change", optionChoosed, false);
+    /*for(let option of locationOptions){
         option.addEventListener('select', optionChoosed)
-    }
+    }*/
 }
 function optionChoosed(event){
     console.log("optionChoosed");
