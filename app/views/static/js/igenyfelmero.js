@@ -1,22 +1,28 @@
 import { showErrorMessage, showSystemMessage } from '/static/js/DOM.js';
-import {  updateLineRecordName } from "/static/js/requests/put_api_requests.js";
+import {  updateLineRecordName, updateLineRecordDescription } from "/static/js/requests/put_api_requests.js";
 
 initIgenyfelmero();
 
 async function initIgenyfelmero(){
     await initPlussButton();
-    await setEventListenersOnFields();
+    await setEventListenersOnNameFields();
+    await setEventListenersOnDescriptionFields();
 }
 
-
-function setEventListenersOnFields(){
+function setEventListenersOnDescriptionFields(){
+    let description_fields = document.querySelectorAll(".ifl-description");
+    for (let description_field of description_fields){
+        description_field.addEventListener('dblclick', insertInputFieldToDescription)
+    }
+}
+function setEventListenersOnNameFields(){
     let name_fields = document.querySelectorAll(".ifl-name");
     for (let name_field of name_fields){
         name_field.addEventListener('dblclick', insertInputField)
     }
 }
 
-function insertInputField(event){
+function insertInputFieldToDescription(event){
     try {
         let origin_text= event.target.textContent;
         let renamebale_text = `
@@ -28,11 +34,65 @@ function insertInputField(event){
         showErrorMessage(ex.message);
     }finally {
         const inp_field = document.querySelector("#ifl-renameable-field");
-        setEventListenerOnInputField();
+        setEventListenerOnDescriptionInputField();
     }
 }
+function insertInputFieldToName(event){
+    try {
+        let origin_text= event.target.textContent;
+        let renamebale_text = `
+        <input id="ifl-renameable-field" type="text" value="${origin_text}">
+        `;
+        event.target.textContent="";
+        event.target.insertAdjacentHTML("beforeend", renamebale_text);
+    }catch (ex){
+        showErrorMessage(ex.message);
+    }finally {
+        const inp_field = document.querySelector("#ifl-renameable-field");
+        setEventListenerOnNameInputField();
+    }
+}
+function setEventListenerOnDescriptionInputField(){
+    if(document.querySelector("#ifl-renameable-field")){
+        const inp_field = document.querySelector("#ifl-renameable-field");
+        inp_field.addEventListener("keyup", function(event) {
 
-function setEventListenerOnInputField(){
+            // Number 13 is the "Enter" key on the keyboard
+            if (event.keyCode === 13) {
+                let text = inp_field.value;
+                let parent= inp_field.parentElement;
+                inp_field.remove();
+                parent.textContent = text;
+                let line_record_id = parent.parentElement.querySelector(".ifl-id").textContent
+                updateLineRecordDescription(line_record_id, text);
+                showSystemMessage("Description successfully saved");
+            }
+
+
+        });
+        document.addEventListener('click', function(event) {
+            if(document.querySelector("#ifl-renameable-field")){
+
+                let isClickInsideElement = inp_field.contains(event.target);
+                if (!isClickInsideElement) {
+                    let text = inp_field.value;
+                    let parent= inp_field.parentElement;
+                    inp_field.remove();
+                    parent.textContent = text;
+                    let line_record_id = parent.parentElement.querySelector(".ifl-id").textContent
+                    updateLineRecordDescription(line_record_id, text);
+                    showSystemMessage("Description successfully saved");
+                }
+
+
+            }
+        });
+    }
+
+}
+
+
+function setEventListenerOnNameInputField(){
     if(document.querySelector("#ifl-renameable-field")){
         const inp_field = document.querySelector("#ifl-renameable-field");
         inp_field.addEventListener("keyup", function(event) {

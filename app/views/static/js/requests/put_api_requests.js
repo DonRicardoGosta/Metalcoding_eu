@@ -18,7 +18,15 @@ export async function updateCardName(card_id,new_name){
     return data;
 }
 export async function updateLineRecordName(line_record_id,new_name){
-    let url=`/api/igenyfelmeres/rename-line-record/${line_record_id}/${new_name}`;
+    let url=`/api/igenyfelmeres/rename-name-line-record/${line_record_id}/${new_name}`;
+    let response = await fetch(url,{
+        method:'PUT'
+    });
+    let data = await response.json();
+    return data;
+}
+export async function updateLineRecordDescription(line_record_id,new_name){
+    let url=`/api/igenyfelmeres/rename-description-line-record/${line_record_id}/${new_name}`;
     let response = await fetch(url,{
         method:'PUT'
     });

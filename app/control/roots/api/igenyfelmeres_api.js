@@ -30,8 +30,14 @@ router.get('/get-locations',auth ,async (req,res) => {
 
 
 
-router.put('/rename-line-record/:id/:new_name',auth ,async (req,res) =>{
+router.put('/rename-name-line-record/:id/:new_name',auth ,async (req,res) =>{
     let line_record = await IgenyfelmeresLineRecordModel.findOneAndUpdate({_id: req.params.id}, {name: req.params.new_name}, {
+        new: true
+    });
+    res.send(line_record);
+});
+router.put('/rename-description-line-record/:id/:new_description',auth ,async (req,res) =>{
+    let line_record = await IgenyfelmeresLineRecordModel.findOneAndUpdate({_id: req.params.id}, {description: req.params.new_description}, {
         new: true
     });
     res.send(line_record);
