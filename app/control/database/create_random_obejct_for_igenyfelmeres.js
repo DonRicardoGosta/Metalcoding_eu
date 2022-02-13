@@ -29,8 +29,8 @@ async function createPriceForDevices(user_id,price_amount){
             price: price_amount,
             created_user: user_id,
         });
-        let resp=await pricefd.save();
-        console.log(resp);
+        pricefd=await pricefd.save();
+        console.log(pricefd);
     } catch (err) {
         console.log(err.message);
     }
