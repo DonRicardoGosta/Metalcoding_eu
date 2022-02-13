@@ -7,31 +7,6 @@ initIgenyfelmero();
 async function initIgenyfelmero(){
     await initPlussButton();
     await setEventListenersOnFields();
-    await setEventListenersOnLocations();
-    const locations = await getLocations();
-    for (let location of locations){
-        console.log(location)
-    }
-}
-function setEventListenersOnLocations(){
-    let location_fields = document.querySelectorAll(".ifl-location-name");
-    for (let location_field of location_fields){
-        location_field.addEventListener('click', showLocations)
-    }
-}
-async function showLocations(event){
-    const locations = await getLocations();
-    try{
-        let scrollDownMenu =`<select name = "locations-dropdown-options">`;
-        for (let location of locations){
-            scrollDownMenu+=`<option value = "${ location._id }">${ location.name }</option>`;
-        }
-        scrollDownMenu+=`</select>`;
-        event.target.textContent="";
-        event.target.insertAdjacentHTML("beforeend", scrollDownMenu);
-    }catch (ex){
-        showErrorMessage(ex.message);
-    }
 }
 
 

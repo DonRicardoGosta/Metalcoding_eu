@@ -26,7 +26,11 @@ body
                             td.ifl-id.hide= line._id
                             td 0
                             td.ifl-name= line.name
-                            td.ifl-location-name= line.location.name
+                            td.ifl-location-name
+                                select(name = "priority")
+                                    each location in locations
+                                        option(value=location.id selected=(line.location.id == location.id) ) #{location.name}
+
                             td.ifl-description= line.description
                             td.ifl-function-name= line.function.name
                             td.ifl-device-name= line.device.name
