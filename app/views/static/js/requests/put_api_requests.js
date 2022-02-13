@@ -33,3 +33,11 @@ export async function updateLineRecordDescription(line_record_id,new_name){
     let data = await response.json();
     return data;
 }
+export async function updateLineRecordOption(line_record_id,option_id){
+    let url=`/api/igenyfelmeres/change-option-line-record/${line_record_id}/${option_id}`;
+    let response = await fetch(url,{
+        method:'PUT'
+    });
+    let data = await response.json();
+    return data;
+}

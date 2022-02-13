@@ -1,5 +1,5 @@
 import { showErrorMessage, showSystemMessage } from '/static/js/DOM.js';
-import {  updateLineRecordName, updateLineRecordDescription } from "/static/js/requests/put_api_requests.js";
+import {  updateLineRecordName, updateLineRecordDescription, updateLineRecordOption } from "/static/js/requests/put_api_requests.js";
 
 initIgenyfelmero();
 
@@ -20,7 +20,7 @@ function setEventListenersOnlocations(){
 function optionChoosed(event){
     let option_id=event.target.value;
     let line_record_id=event.target.parentElement.parentElement.querySelector(".ifl-id").textContent
-    console.log(line_record_id)
+    updateLineRecordOption(line_record_id, option_id);
 }
 function setEventListenersOnDescriptionFields(){
     let description_fields = document.querySelectorAll(".ifl-description");
