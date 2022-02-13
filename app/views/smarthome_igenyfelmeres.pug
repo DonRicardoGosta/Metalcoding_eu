@@ -20,19 +20,19 @@ body
                         th brand
                         th piece
                         th price
-                        th created_date
+
                     each line in lines_for_active_ifmero
                         tr
                             td 0
-                            td= line.name
-                            td= line.location.name
-                            td= line.description
-                            td= line.function.name
-                            td= line.device.name
-                            td= line.brand.name
-                            td= line.piece
-                            td= line.price
-                            td= line.created_date
+                            td.ifl-name= line.name
+                            td.ifl-location-name= line.location.name
+                            td.ifl-description= line.description
+                            td.ifl-function-name= line.function.name
+                            td.ifl-device-name= line.device.name
+                            td.ifl-brand-name= line.brand.name
+                            td.ifl-piece= line.piece
+                            td.ifl-price= line.price
+
 
 
 
