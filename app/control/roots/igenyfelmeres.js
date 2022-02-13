@@ -36,7 +36,7 @@ router.get('/fill',auth ,async (req,res) => {
     let device4 =await create_device(user._id, "DIN Analog Input 4");
     await createRandomObjects(user._id, "", device4._id, "", 62900);
     let device5 =await create_device(user._id, "DIN Analog Output 4");
-    await createRandomObjects(user._id, "", device5._id, "6200162083ce9b410f4f1091", 62900);
+    await createRandomObjects(user._id, "", device5._id, "", 62900);
     await createRandomObjects(user._id, "", "6200162083ce9b410f4f10a1", "", 45900);
     let device6 =await create_device(user._id, "LS Switch");
     await createRandomObjects(user._id, "", device6._id, "", 21900);

@@ -32,7 +32,7 @@ async function createPriceForDevices(user_id, function_id, device_id, brand_id, 
         let pricefd = new DevicePriceModel({
 
             device: device_id,
-            brand: brand_id,
+            
             price: price_amount,
             created_user: user_id,
         });
