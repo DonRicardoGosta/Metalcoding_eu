@@ -26,7 +26,7 @@ router.get('/', auth, async (req,res) => {
 router.get('/fill',auth ,async (req,res) => {
     let user=null;
     if(await UserInSession(req)) user = await UserInSession(req);
-    await createRandomObjects(user._id, 129900);
+    await createRandomObjects(user._id, "", "6200162083ce9b410f4f109f", "6200162083ce9b410f4f1091", 129900);
     
     res.redirect('/smarthome-igenyfelmeres');
 });

@@ -36,10 +36,6 @@ const Joi = require("joi");
 }));*/
 
 const DevicePriceModel = mongoose.model('DevicePrice',new mongoose.Schema({
-    location:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Location',
-    },
     function:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'FunctionInHouse',
