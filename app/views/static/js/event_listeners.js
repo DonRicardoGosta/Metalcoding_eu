@@ -139,10 +139,11 @@ function setEventListenersOnBoardSizeArrows(){
 export function takeEventListenerOnCloseErrorMessages(systemMsg){
     try {
         if(systemMsg){
+            console.log(systemMsg);
             setTimeout(
                 function() {
                     deleteSystemMessage(systemMsg);
-                    console.log(systemMsg);
+
                 }, 5000);
         }
         let error_message_boxes = document.querySelectorAll(".error-message-box");
