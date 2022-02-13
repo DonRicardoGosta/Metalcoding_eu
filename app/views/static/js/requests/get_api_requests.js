@@ -70,4 +70,11 @@ export async function getLocationsByString(location_str){
     let data = await response.json();
     return data;
 }
-//END Card get requests
+//END Locations get requests
+
+export async function getDevicePrice(device_id){
+    let url="/api/igenyfelmeres/get-price-for-device/"+device_id;
+    let response = await fetch(url);
+    let data = await response;
+    showErrorMessage(data);
+}
