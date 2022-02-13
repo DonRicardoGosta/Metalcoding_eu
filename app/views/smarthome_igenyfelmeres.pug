@@ -28,6 +28,7 @@ body
                             td.ifl-name= line.name
                             td.ifl-location-name
                                 select(name = "location-options")
+                                    option(value=line.location.id selected=true ) #{line.location.name}
                                     each location in locations
                                         if line.location.id == location.id
                                             option(value=location.id selected=true ) #{location.name}
