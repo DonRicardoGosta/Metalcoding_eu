@@ -57,6 +57,8 @@ function setEventListenerOnInputField(){
                     let parent= inp_field.parentElement;
                     inp_field.remove();
                     parent.textContent = text;
+                    let line_record_id = parent.parentElement.querySelector(".ifl-id").textContent
+                    updateLineRecordName(line_record_id, text);
                     showSystemMessage("Successfully renamed");
                 }
 
