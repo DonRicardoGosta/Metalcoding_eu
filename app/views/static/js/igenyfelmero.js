@@ -33,34 +33,30 @@ function setEventListenerOnInputField(){
     if(document.querySelector("#ifl-renameable-field")){
         const inp_field = document.querySelector("#ifl-renameable-field");
         inp_field.addEventListener("keyup", function(event) {
-            try{
-                // Number 13 is the "Enter" key on the keyboard
-                if (event.keyCode === 13) {
+
+            // Number 13 is the "Enter" key on the keyboard
+            if (event.keyCode === 13) {
+                let text = inp_field.value;
+                let parent= inp_field.parentElement;
+                inp_field.remove();
+                parent.textContent = text;
+                showSystemMessage("Successfully renamed");
+            }
+
+
+        });
+        document.addEventListener('click', function(event) {
+            if(document.querySelector("#ifl-renameable-field")){
+
+                let isClickInsideElement = inp_field.contains(event.target);
+                if (!isClickInsideElement) {
                     let text = inp_field.value;
                     let parent= inp_field.parentElement;
                     inp_field.remove();
                     parent.textContent = text;
                     showSystemMessage("Successfully renamed");
                 }
-            }catch (ex){
-                showErrorMessage(ex.message);
-            }
 
-        });
-        document.addEventListener('click', function(event) {
-            if(document.querySelector("#ifl-renameable-field")){
-                try{
-                    let isClickInsideElement = inp_field.contains(event.target);
-                    if (!isClickInsideElement) {
-                        let text = inp_field.value;
-                        let parent= inp_field.parentElement;
-                        inp_field.remove();
-                        parent.textContent = text;
-                        showSystemMessage("Successfully renamed");
-                    }
-                }catch (ex){
-                    showErrorMessage(ex.message);
-                }
 
             }
         });
