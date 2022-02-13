@@ -22,7 +22,7 @@ async function create_random_objects(userID, function_id, device_id, brand_id, p
 async function createPriceForDevices(user_id, function_id, device_id, brand_id, price_amount){
     try{
         let pricefd = new DevicePriceModel({
-            function: function_id,
+
             device: device_id,
             brand: brand_id,
             price: price_amount,
