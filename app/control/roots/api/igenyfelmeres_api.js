@@ -25,11 +25,9 @@ router.get('/get-locations',auth ,async (req,res) => {
 });
 router.get('/get-price-for-device/:device_id',auth ,async (req,res) => {
     console.log(req.params.device_id);
-    if(device_p){
-        res.send(device_p);
-    }else{
-        res.send({price: 0});
-    }
+
+    res.send("kacsa");
+
 
 });
 
