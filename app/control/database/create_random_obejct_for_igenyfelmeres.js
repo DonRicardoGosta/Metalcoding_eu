@@ -19,7 +19,7 @@ async function create_random_objects(userID, function_id, device_id, brand_id, p
     //await createIgenyfelmeresLine(userId);
     return;
 }
-async function createPriceForDevices(userID, function_id, device_id, brand_id, price_amount){
+async function createPriceForDevices(user_id, function_id, device_id, brand_id, price_amount){
     try{
         let pricefd = new DevicePriceModel({
             deviza: 'huf',
@@ -27,7 +27,7 @@ async function createPriceForDevices(userID, function_id, device_id, brand_id, p
             device: device_id,
             brand: brand_id,
             price: price_amount,
-            created_user: userId,
+            created_user: user_id,
         });
         let resp=await pricefd.save();
         console.log(resp);
