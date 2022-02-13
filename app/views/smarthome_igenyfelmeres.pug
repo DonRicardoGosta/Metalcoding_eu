@@ -36,9 +36,27 @@ body
 
 
                             td.ifl-description= line.description
-                            td.ifl-function-name= line.function.name
-                            td.ifl-device-name= line.device.name
-                            td.ifl-brand-name= line.brand.name
+                            td.ifl-function-name
+                                select
+                                    each functionr in functions
+                                        if line.function.id == functionr.id
+                                            option(value=functionr.id selected=true) #{functionr.name}
+                                        else
+                                            option(value=functionr.id) #{functionr.name}
+                            td.ifl-device-name
+                                select
+                                    each device in devices
+                                        if line.device.id == device.id
+                                            option(value=device.id selected=true) #{device.name}
+                                        else
+                                            option(value=device.id) #{device.name}
+                            td.ifl-brand-name
+                                select
+                                    each brand in brands
+                                        if line.brand.id == brand.id
+                                            option(value=brand.id selected=true) #{brand.name}
+                                        else
+                                            option(value=brand.id) #{brand.name}
                             td.ifl-piece= line.piece
                             td.ifl-price= line.price
 

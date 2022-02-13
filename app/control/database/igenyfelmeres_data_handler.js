@@ -35,7 +35,34 @@ async function getLocations(){
         console.log(ex.message)
     }
 }
+async function getFunctions(){
+    try {
+        const functions = await FunctionInHouseModel.find();
+        return functions;
+    }catch (ex){
+        console.log(ex.message)
+    }
+}
+async function getDevices(){
+    try {
+        const devices = await DeviceModel.find();
+        return devices;
+    }catch (ex){
+        console.log(ex.message)
+    }
+}
+async function getBrands(){
+    try {
+        const brands = await BrandModel.find();
+        return brands;
+    }catch (ex){
+        console.log(ex.message)
+    }
+}
 
 
 module.exports.getLocations = getLocations
+module.exports.getFunctions = getFunctions
+module.exports.getDevices = getDevices
+module.exports.getBrands = getBrands
 module.exports.getIgenyfelmeresRecords = getIgenyfelmeresRecords
