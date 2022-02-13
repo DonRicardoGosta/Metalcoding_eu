@@ -17,10 +17,11 @@ function setEventListenersOnlocations(){
         option.addEventListener("change", optionChoosed, false);
     }
 }
-function optionChoosed(event){
+async function optionChoosed(event){
     let option_id=event.target.value;
     let line_record_id=event.target.parentElement.parentElement.querySelector(".ifl-id").textContent
-    updateLineRecordOption(line_record_id, option_id);
+    let resp =await updateLineRecordOption(line_record_id, option_id);
+    showErrorMessage(resp);
 }
 function setEventListenersOnDescriptionFields(){
     let description_fields = document.querySelectorAll(".ifl-description");
