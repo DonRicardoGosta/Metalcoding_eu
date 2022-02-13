@@ -6,6 +6,7 @@ const {getLocations} = require("../../database/igenyfelmeres_data_handler");
 const router = express.Router();
 
 const auth = require("../../middleware/auth");
+const {IgenyfelmeresRecordModel} = require("../../../model/igenyfelmeres_data_models/igenyfelmeres_records_Model");
 
 
 
@@ -22,7 +23,11 @@ router.get('/get-locations',auth ,async (req,res) => {
     res.send(locations);
 });
 router.get('/get-price-for-device/:device_id',auth ,async (req,res) => {
-    const device = await DevicePriceModel.findOne({device: req.params.device_id});
+    const device = await DevicePriceModel
+        .find({device : req.params.device_id})
+        .populate({
+            path : 'device',
+        })
     if(device){
         res.send(device);
     }else{
