@@ -24,8 +24,8 @@ async function createPriceForDevices(user_id, function_id, device_id, brand_id, 
         let pricefd = new DevicePriceModel({
             deviza: 'huf',
             function: function_id,
-            device: await DeviceModel.find({_id: device_id}),
-            brand: await BrandModel.find({_id: brand_id}),
+            device: await DeviceModel.findOne(),
+            brand: await BrandModel.findOne(),
             price: price_amount,
             created_user: user_id,
         });
