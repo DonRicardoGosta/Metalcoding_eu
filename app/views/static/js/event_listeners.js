@@ -1,6 +1,6 @@
 import { showErrorMessage, deleteErrorMessage, deleteSystemMessage, changeBoardSize, displayNewCard, writeCardToHtml, changeStatusMenuDisplay, changeCardsMenuDisplay, renameCard, deleteCard, deleteStatus } from '/static/js/DOM.js';
 import { initDragAndDrop } from '/static/js/drag_and_drop.js';
-import { updateCardName } from "/static/js/requests/put_api_requests.js";
+import { updateCardName, updateLineRecordName } from "/static/js/requests/put_api_requests.js";
 
 
 
@@ -138,9 +138,7 @@ function setEventListenersOnBoardSizeArrows(){
 }
 export function takeEventListenerOnCloseErrorMessages(systemMsg){
     try {
-        console.log("takeEventListenerOnCloseErrorMessages ",systemMsg)
         if(systemMsg != null){
-            console.log("timeout started");
             setTimeout(
                 function() {
                     deleteSystemMessage(systemMsg);
