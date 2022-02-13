@@ -3,6 +3,9 @@ const { UserInSession } = require("../home")
 const { IgenyfelmeresLineRecordModel } = require('../../../model/igenyfelmeres_data_models/igenyfelmeres_line_records_Model');
 const { DevicePriceModel } = require('../../../model/igenyfelmeres_data_models/price_for_devices');
 const router = express.Router();
+const {getLocations} = require("../../database/igenyfelmeres_data_handler");
+const {IgenyfelmeresRecordModel} = require("../../../model/igenyfelmeres_data_models/igenyfelmeres_records_Model");
+const {DeviceModel} = require("../../../model/igenyfelmeres_data_models/devices_enum_Model");
 
 const auth = require("../../middleware/auth");
 
