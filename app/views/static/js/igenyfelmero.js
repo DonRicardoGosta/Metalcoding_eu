@@ -1,6 +1,5 @@
 import { showErrorMessage, showSystemMessage } from '/static/js/DOM.js';
 import {  updateLineRecordName } from "/static/js/requests/put_api_requests.js";
-import { getLocations } from "/static/js/requests/get_api_requests.js";
 
 initIgenyfelmero();
 
