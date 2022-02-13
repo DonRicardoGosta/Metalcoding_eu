@@ -1,3 +1,5 @@
+import { showErrorMessage } from '/static/js/DOM.js';
+
 initIgenyfelmero();
 
 async function initIgenyfelmero(){
@@ -12,12 +14,31 @@ function setEventListenersOnFields(){
 }
 
 function insertInputField(event){
-    let origin_text= event.target.textContent;
-    let renamebale_text = `
+    try {
+        let origin_text= event.target.textContent;
+        let renamebale_text = `
         <input id="ifl-renameable-field" type="text" value="${origin_text}">
-    `;
-    event.target.textContent="";
-    event.target.insertAdjacentHTML("beforeend", renamebale_text);
+        `;
+        event.target.textContent="";
+        event.target.insertAdjacentHTML("beforeend", renamebale_text);
+    }catch (ex){
+        showErrorMessage(ex.message);
+    }finally {
+        const inp_field = document.querySelector("#ifl-renameable-field");
+
+    }
+}
+function eventListenerOnInputField(){
+    if(document.querySelector("#ifl-renameable-field")){
+        const inp_field = document.querySelector("#ifl-renameable-field");
+        inp_field.addEventListener("keyup", function(event) {
+            // Number 13 is the "Enter" key on the keyboard
+            if (event.keyCode === 13) {
+                inp_field.remove();
+            }
+        });
+    }
+
 }
 
 function initPlussButton(){
