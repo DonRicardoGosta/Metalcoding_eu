@@ -138,6 +138,7 @@ function setEventListenersOnBoardSizeArrows(){
 }
 export function takeEventListenerOnCloseErrorMessages(systemMsg){
     try {
+        console.log(systemMsg)
         if(systemMsg){
             console.log("timeout started");
             setTimeout(
