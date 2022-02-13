@@ -11,13 +11,13 @@ async function initIgenyfelmero(){
 }
 
 function setEventListenersOnlocations(){
-    let locationOptions = document.querySelectorAll(".location-option")
+    let locationOptions = document.querySelectorAll(".location-option");
     for(let option of locationOptions){
         option.addEventListener('click', optionChoosed)
     }
 }
 function optionChoosed(event){
-    console.log(event.target.innerHTML)
+    console.log("optionChoosed");
 }
 function setEventListenersOnDescriptionFields(){
     let description_fields = document.querySelectorAll(".ifl-description");
