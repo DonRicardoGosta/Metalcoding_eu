@@ -20,43 +20,47 @@ body
                         th brand
                         th piece
                         th price
-
-                    each line in lines_for_active_ifmero
-                        tr
-                            td.ifl-id.hide= line._id
-                            td 0
-                            td.ifl-name= line.name
-                            td.ifl-location-name
-                                select#location-options
-                                    each location in locations
-                                        if line.location.id == location.id
-                                            option(value=location.id selected=true).location-option #{location.name}
-                                        else
-                                            option(value=location.id).location-option #{location.name}
+                    if lines_for_active_ifmero
+                        each line in lines_for_active_ifmero
+                            tr
+                                td.ifl-id.hide= line._id
+                                td 0
+                                td.ifl-name= line.name
+                                td.ifl-location-name
+                                    select#location-options
+                                        each location in locations
+                                            if line.location.id == location.id
+                                                option(value=location.id selected=true).location-option #{location.name}
+                                            else
+                                                option(value=location.id).location-option #{location.name}
 
 
                             td.ifl-description= line.description
                             td.ifl-function-name
                                 select#function-options
-                                    each functionr in functions
-                                        if line.function.id == functionr.id
-                                            option(value=functionr.id selected=true) #{functionr.name}
-                                        else
-                                            option(value=functionr.id) #{functionr.name}
+                                    if functions
+                                        each functionr in functions
+                                            if line.function.id == functionr.id
+                                                option(value=functionr.id selected=true) #{functionr.name}
+                                            else
+                                                option(value=functionr.id) #{functionr.name}
                             td.ifl-device-name
                                 select#device-options
-                                    each device in devices
-                                        if line.device.id == device.id
-                                            option(value=device.id selected=true) #{device.name}
-                                        else
-                                            option(value=device.id) #{device.name}
+                                    if devices
+                                        if devices
+                                            each device in devices
+                                                if line.device.id == device.id
+                                                    option(value=device.id selected=true) #{device.name}
+                                                else
+                                                    option(value=device.id) #{device.name}
                             td.ifl-brand-name
                                 select#brand-options
-                                    each brand in brands
-                                        if line.brand.id == brand.id
-                                            option(value=brand.id selected=true) #{brand.name}
-                                        else
-                                            option(value=brand.id) #{brand.name}
+                                    if brands
+                                        each brand in brands
+                                            if line.brand.id == brand.id
+                                                option(value=brand.id selected=true) #{brand.name}
+                                            else
+                                                option(value=brand.id) #{brand.name}
                             td.ifl-piece= line.piece
                             td.ifl-price= line.price
 
