@@ -8,16 +8,16 @@ const {IgenyfelmeresLineRecordModel} = require("../../model/igenyfelmeres_data_m
 const { DevicePriceModel } = require("../../model/igenyfelmeres_data_models/price_for_devices");
 
 async function create_device(user_id, device_name){
-    let device = new DeviceModel({
+    /*let device = new DeviceModel({
         name: device_name,
         created_user: user_id,
     });
     device = await device.save();
-    return device;
+    return device;*/
 }
 
 async function create_random_objects(userID, function_id, device_id, brand_id, price_amount){
-    await createPriceForDevices(userID, function_id, device_id, brand_id, price_amount)
+    //await createPriceForDevices(userID, function_id, device_id, brand_id, price_amount)
     /*await createBrands(userId);
     await createDevices(userId);
     await createFunctions(userId);
@@ -30,9 +30,7 @@ async function create_random_objects(userID, function_id, device_id, brand_id, p
 async function createPriceForDevices(user_id, function_id, device_id, brand_id, price_amount){
     try{
         let pricefd = new DevicePriceModel({
-
             device: device_id,
-            
             price: price_amount,
             created_user: user_id,
         });

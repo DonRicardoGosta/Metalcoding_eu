@@ -24,7 +24,7 @@ router.get('/', auth, async (req,res) => {
 });
 
 router.get('/fill',auth ,async (req,res) => {
-    let user=null;
+    /*let user=null;
     if(await UserInSession(req)) user = await UserInSession(req);
     await createRandomObjects(user._id, "", "6200162083ce9b410f4f10a3", "", 79900);
     let device1 =await create_device(user._id, "DIN Shutter 5");
@@ -45,7 +45,7 @@ router.get('/fill',auth ,async (req,res) => {
     await createRandomObjects(user._id, "", "6200162083ce9b410f4f10bd", "", 32900);
     await createRandomObjects(user._id, "", "6200162083ce9b410f4f10bf", "", 27900);
     await createRandomObjects(user._id, "", "6200162083ce9b410f4f10c1", "", 21900);
-    await createRandomObjects(user._id, "", "6200162083ce9b410f4f10c5", "", 15900);
+    await createRandomObjects(user._id, "", "6200162083ce9b410f4f10c5", "", 15900);*/
 
     res.redirect('/smarthome-igenyfelmeres');
 });
