@@ -27,5 +27,15 @@ async function getIgenyfelmeresRecords(user_id){
     }
 }
 
+async function getLocations(){
+    try {
+        const locations = await LocationModel.find();
+        return locations;
+    }catch (ex){
+        console.log(ex.message)
+    }
+}
 
+
+module.exports.getLocations = getLocations
 module.exports.getIgenyfelmeresRecords = getIgenyfelmeresRecords

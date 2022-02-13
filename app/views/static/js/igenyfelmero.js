@@ -1,11 +1,14 @@
 import { showErrorMessage, showSystemMessage } from '/static/js/DOM.js';
 import {  updateLineRecordName } from "/static/js/requests/put_api_requests.js";
+import { getLocations } from "/static/js/requests/get_api_requests.js";
 
 initIgenyfelmero();
 
 async function initIgenyfelmero(){
     await initPlussButton();
     await setEventListenersOnFields();
+    const locations = await getLocations();
+    console.log(locations.name);
 }
 function setEventListenersOnFields(){
     let name_fields = document.querySelectorAll(".ifl-name");
@@ -43,7 +46,7 @@ function setEventListenerOnInputField(){
                 parent.textContent = text;
                 let line_record_id = parent.parentElement.querySelector(".ifl-id").textContent
                 updateLineRecordName(line_record_id, text);
-                showSystemMessage("Successfully renamed");
+                showSystemMessage("Name successfully saved");
             }
 
 
@@ -59,7 +62,7 @@ function setEventListenerOnInputField(){
                     parent.textContent = text;
                     let line_record_id = parent.parentElement.querySelector(".ifl-id").textContent
                     updateLineRecordName(line_record_id, text);
-                    showSystemMessage("Successfully renamed");
+                    showSystemMessage("Name successfully saved");
                 }
 
 
