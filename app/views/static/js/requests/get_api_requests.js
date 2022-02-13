@@ -75,7 +75,7 @@ export async function getLocationsByString(location_str){
 export async function getDevicePrice(device_id){
     let url="/api/igenyfelmeres/get-price-for-device/"+device_id;
     let response = await fetch(url);
-    let data = await response.json();
+    let data = await response.text();
     console.log(data);
     showErrorMessage(data);
 }
