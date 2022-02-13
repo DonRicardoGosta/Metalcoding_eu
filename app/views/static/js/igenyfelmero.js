@@ -57,7 +57,7 @@ async function deviceChoosed(event){
 }
 async function getPrice(device_id){
     let device = await getDevicePrice(device_id);
-    console.log(device);
+    console.log(device[0].price);
 }
 async function brandChoosed(event){
     let brand_id=event.target.value;
