@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
-const { createRandomObjects } =require("../database/create_random_obejct_for_igenyfelmeres");
+const { createRandomObjects, create_device } =require("../database/create_random_obejct_for_igenyfelmeres");
 
 const { UserInSession } = require("./home")
 
@@ -26,8 +26,27 @@ router.get('/', auth, async (req,res) => {
 router.get('/fill',auth ,async (req,res) => {
     let user=null;
     if(await UserInSession(req)) user = await UserInSession(req);
-    await createRandomObjects(user._id, "", "6200162083ce9b410f4f109f", "6200162083ce9b410f4f1091", 129900);
-    
+    await createRandomObjects(user._id, "", "6200162083ce9b410f4f10a3", "", 79900);
+    let device1 =await create_device(user._id, "DIN Shutter 5");
+    await createRandomObjects(user._id, "", device1._id, "", 79900);
+    let device2 =await create_device(user._id, "DIN Dimmer 6");
+    await createRandomObjects(user._id, "", device2._id, "", 99000);
+    let device3 =await create_device(user._id, "DIN Digital Input 24");
+    await createRandomObjects(user._id, "", device3._id, "", 59000);
+    let device4 =await create_device(user._id, "DIN Analog Input 4");
+    await createRandomObjects(user._id, "", device4._id, "", 62900);
+    let device5 =await create_device(user._id, "DIN Analog Output 4");
+    await createRandomObjects(user._id, "", device5._id, "6200162083ce9b410f4f1091", 62900);
+    await createRandomObjects(user._id, "", "6200162083ce9b410f4f10a1", "", 45900);
+    let device6 =await create_device(user._id, "LS Switch");
+    await createRandomObjects(user._id, "", device6._id, "", 21900);
+    await createRandomObjects(user._id, "", "6200162083ce9b410f4f10b9", "", 16900);
+    await createRandomObjects(user._id, "", "6200162083ce9b410f4f10bb", "", 26900);
+    await createRandomObjects(user._id, "", "6200162083ce9b410f4f10bd", "", 32900);
+    await createRandomObjects(user._id, "", "6200162083ce9b410f4f10bf", "", 27900);
+    await createRandomObjects(user._id, "", "6200162083ce9b410f4f10c1", "", 21900);
+    await createRandomObjects(user._id, "", "6200162083ce9b410f4f10c5", "", 15900);
+
     res.redirect('/smarthome-igenyfelmeres');
 });
 

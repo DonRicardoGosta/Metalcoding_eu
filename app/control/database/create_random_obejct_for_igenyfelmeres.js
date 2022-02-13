@@ -7,6 +7,14 @@ const {IgenyfelmeresRecordModel} = require("../../model/igenyfelmeres_data_model
 const {IgenyfelmeresLineRecordModel} = require("../../model/igenyfelmeres_data_models/igenyfelmeres_line_records_Model");
 const { DevicePriceModel } = require("../../model/igenyfelmeres_data_models/price_for_devices");
 
+async function create_device(user_id, device_name){
+    let device = new DeviceModel({
+        name: device_name,
+        created_user: user_id,
+    });
+    device = await device.save();
+    return device;
+}
 
 async function create_random_objects(userID, function_id, device_id, brand_id, price_amount){
     await createPriceForDevices(userID, function_id, device_id, brand_id, price_amount)
@@ -111,4 +119,5 @@ async function createBrands(userId){
     }
     return;
 }
+module.exports.create_device = create_device
 module.exports.createRandomObjects = create_random_objects
