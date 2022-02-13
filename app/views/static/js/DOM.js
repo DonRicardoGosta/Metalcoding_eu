@@ -29,7 +29,7 @@ export function deleteSystemMessage(index){
     const sys_message_box = document.querySelectorAll(".message-box-index")
     for (let box of sys_message_box){
         if(box.textContent == index){
-            box.parentElement.parentElement.remove();
+            box.parentElement.remove();
         }
     }
 }
