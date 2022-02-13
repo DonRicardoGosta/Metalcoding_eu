@@ -9,7 +9,6 @@ const {IgenyfelmeresRecordModel} = require("../../model/igenyfelmeres_data_model
 async function getIgenyfelmeresRecords(user_id){
     try {
         if(user_id){
-
             const igenyfelmeres_records = await IgenyfelmeresRecordModel
                 .find({sharedwith : user_id.toString()})
                 .populate({
