@@ -20,9 +20,9 @@ function setEventListenersOnlocations(){
 async function optionChoosed(event){
     let option_id=event.target.value;
     showErrorMessage(event.target.value)
-    /*let line_record_id=event.target.parentElement.parentElement.querySelector(".ifl-id").textContent
+    let line_record_id=event.target.parentElement.parentElement.querySelector(".ifl-id").textContent
     let resp =await updateLineRecordOption(line_record_id, option_id);
-    showErrorMessage(resp);*/
+    showErrorMessage(resp.json());
 }
 function setEventListenersOnDescriptionFields(){
     let description_fields = document.querySelectorAll(".ifl-description");
