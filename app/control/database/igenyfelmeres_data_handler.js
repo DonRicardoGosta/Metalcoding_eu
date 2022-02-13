@@ -29,7 +29,7 @@ async function getIgenyfelmeresRecords(user_id){
 
 async function getLocations(){
     try {
-        const locations = await LocationModel.find();
+        const locations = await LocationModel.find().sort(name);
         return locations;
     }catch (ex){
         console.log(ex.message)
@@ -37,7 +37,7 @@ async function getLocations(){
 }
 async function getFunctions(){
     try {
-        const functions = await FunctionInHouseModel.find();
+        const functions = await FunctionInHouseModel.find().sort(name);
         return functions;
     }catch (ex){
         console.log(ex.message)
@@ -45,7 +45,7 @@ async function getFunctions(){
 }
 async function getDevices(){
     try {
-        const devices = await DeviceModel.find();
+        const devices = await DeviceModel.find().sort(name);
         return devices;
     }catch (ex){
         console.log(ex.message)
@@ -53,7 +53,7 @@ async function getDevices(){
 }
 async function getBrands(){
     try {
-        const brands = await BrandModel.find();
+        const brands = await BrandModel.find().sort(name);
         return brands;
     }catch (ex){
         console.log(ex.message)
