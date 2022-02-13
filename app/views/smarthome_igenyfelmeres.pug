@@ -29,7 +29,10 @@ body
                             td.ifl-location-name
                                 select
                                     each location in locations
-                                        option(value=location.id) #{location.name}
+                                        if line.location.id == location.id
+                                            option(value=location.id selected=true) #{location.name}
+                                        else
+                                            option(value=location.id) #{location.name}
 
 
                             td.ifl-description= line.description
