@@ -5,17 +5,16 @@ const DevicePriceModel = mongoose.model('DevicePrice',new mongoose.Schema({
     device_type:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Device',
-        required: false
+        required: true
     },
     brand_type:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Brand',
-        required: false
+        required: true
     },
     function_type:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'FunctionInHouse',
-        required: false
+        ref: 'FunctionInHouse'
     },
     price:{
         type: Number,
