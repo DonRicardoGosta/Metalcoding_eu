@@ -7,8 +7,18 @@ async function initIgenyfelmero(){
     await initPlussButton();
     await setEventListenersOnNameFields();
     await setEventListenersOnDescriptionFields();
+    await setEventListenersOnlocations();
 }
 
+function setEventListenersOnlocations(){
+    let locationOptions = document.querySelectorAll(".location-option")
+    for(let option of locationOptions){
+        option.addEventListener("click", optionChoosed)
+    }
+}
+function optionChoosed(event){
+    console.log(event.target.textContent)
+}
 function setEventListenersOnDescriptionFields(){
     let description_fields = document.querySelectorAll(".ifl-description");
     for (let description_field of description_fields){

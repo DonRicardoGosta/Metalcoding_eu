@@ -30,7 +30,7 @@ body
                                 select
                                     each location in locations
                                         if line.location.id == location.id
-                                            option(value=location.id selected=true) #{location.name}
+                                            option(value=location.id selected=true).location-option #{location.name}
                                         else
                                             option(value=location.id) #{location.name}
 
