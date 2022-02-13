@@ -56,7 +56,8 @@ async function deviceChoosed(event){
     await getPrice(device_id);
 }
 async function getPrice(device_id){
-    await getDevicePrice(device_id);
+    let device = await getDevicePrice(device_id);
+    showErrorMessage(device.price);
 }
 async function brandChoosed(event){
     let brand_id=event.target.value;
