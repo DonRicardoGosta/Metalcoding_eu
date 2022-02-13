@@ -1,5 +1,5 @@
 import { refreshCard } from '/static/js/DOM.js';
-import {showErrorMessage} from "../DOM";
+import { showErrorMessage } from '../static/js/DOM.js';
 export async function initCardPlaceSync(card){
     let card_id = card.querySelector(".card-id").textContent;
     let status_id = card.parentElement.parentElement.querySelector(".status-id").textContent;
