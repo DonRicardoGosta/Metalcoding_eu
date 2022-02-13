@@ -19,9 +19,9 @@ function setEventListenersOnlocations(){
 }
 async function optionChoosed(event){
     let option_id=event.target.value;
-    showErrorMessage(event.target.value)
     let line_record_id=event.target.parentElement.parentElement.querySelector(".ifl-id").textContent
-    await updateLineRecordOption(line_record_id, option_id);
+    let resp = await updateLineRecordOption(line_record_id, option_id);
+    showSystemMessage("Location saved successfully");
 }
 function setEventListenersOnDescriptionFields(){
     let description_fields = document.querySelectorAll(".ifl-description");
