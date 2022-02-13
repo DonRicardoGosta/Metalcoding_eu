@@ -28,38 +28,40 @@ function insertInputField(event){
         setEventListenerOnInputField();
     }
 }
-function recreateNode(el, withChildren) {
-    if (withChildren) {
-        el.parentElement.replaceChild(el.cloneNode(true), el);
-    }
-    else {
-        let newEl = el.cloneNode(false);
-        while (el.hasChildNodes()) newEl.appendChild(el.firstChild);
-        el.parentNode.replaceChild(newEl, el);
-    }
-}
 
 function setEventListenerOnInputField(){
     if(document.querySelector("#ifl-renameable-field")){
         const inp_field = document.querySelector("#ifl-renameable-field");
         inp_field.addEventListener("keyup", function(event) {
-            // Number 13 is the "Enter" key on the keyboard
-            if (event.keyCode === 13) {
-                let text = inp_field.value;
-                let parent= inp_field.parentElement;
-                inp_field.remove();
-                parent.textContent = text;
-                showSystemMessage("Successfully renamed");
-                recreateNode(document.getElementById("ifl-renameable-field"), true);
+            try{
+                // Number 13 is the "Enter" key on the keyboard
+                if (event.keyCode === 13) {
+                    let text = inp_field.value;
+                    let parent= inp_field.parentElement;
+                    inp_field.remove();
+                    parent.textContent = text;
+                    showSystemMessage("Successfully renamed");
+                }
+            }catch (ex){
+                showErrorMessage(ex.message);
             }
+
         });
         document.addEventListener('click', function(event) {
-            let isClickInsideElement = inp_field.contains(event.target);
-            if (!isClickInsideElement) {
-                let text = inp_field.value;
-                let parent= inp_field.parentElement;
-                inp_field.remove();
-                parent.textContent = text;
+            if(document.querySelector("#ifl-renameable-field")){
+                try{
+                    let isClickInsideElement = inp_field.contains(event.target);
+                    if (!isClickInsideElement) {
+                        let text = inp_field.value;
+                        let parent= inp_field.parentElement;
+                        inp_field.remove();
+                        parent.textContent = text;
+                        showSystemMessage("Successfully renamed");
+                    }
+                }catch (ex){
+                    showErrorMessage(ex.message);
+                }
+
             }
         });
     }
