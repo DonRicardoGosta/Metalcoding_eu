@@ -22,12 +22,12 @@ async function create_random_objects(userID, price_amount){
 async function createPriceForDevices(user_id,price_amount){
     try{
         let pricefd = new DevicePriceModel({
-            deviza: 'huf',
             function: await FunctionInHouseModel.findOne(),
             device: await DeviceModel.findOne(),
             brand: await BrandModel.findOne(),
             price: price_amount,
             created_user: user_id,
+            deviza: 'huf'
         });
         pricefd=await pricefd.save();
         console.log(pricefd);
