@@ -16,12 +16,19 @@ router.get('/', auth, async (req,res) => {
     let user = null;
     if (await UserInSession(req)) user = await UserInSession(req);
     const igenyfelmeres_records = await getIgenyfelmeresRecords(user._id);
+    console.log("igenyfelmeres_records  "+igenyfelmeres_records);
     const active_igenyfelmero_record = igenyfelmeres_records[0];
+    console.log("active_igenyfelmero_record  "+active_igenyfelmero_record);
     const lines_for_active_ifmero = active_igenyfelmero_record.line_records;
+    console.log("lines_for_active_ifmero  "+lines_for_active_ifmero);
     const locations = await getLocations();
+    console.log("locations  "+locations);
     const functions = await getFunctions();
+    console.log("functions  "+functions);
     const devices = await getDevices();
+    console.log("devices  "+devices);
     const brands = await getBrands();
+    console.log("brands  "+brands);
     res.render('smarthome_igenyfelmeres', {
         title: 'MagoriCO - SmartHome - Igényfelmérés',
         user: user,
