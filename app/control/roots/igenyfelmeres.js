@@ -21,7 +21,6 @@ router.get('/', auth, async (req,res) => {
     const locations = await getLocations();
     const functions = await getFunctions();
     const devices = await getDevices();
-    console.log("devices  "+devices);
     const brands = await getBrands();
     res.render('smarthome_igenyfelmeres', {
         title: 'MagoriCO - SmartHome - Igényfelmérés',
