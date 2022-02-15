@@ -19,7 +19,7 @@ router.get('/', auth, async (req,res) => {
     const active_igenyfelmero_record = await igenyfelmeres_records[0];
     const lines_for_active_ifmero = await active_igenyfelmero_record.line_records;
     const locations = await getLocations();
-    const functions = await getFunctions();
+    //const functions = await getFunctions();
     const devices = await getDevices();
     console.log("devices  "+devices);
     const brands = await getBrands();
@@ -30,7 +30,7 @@ router.get('/', auth, async (req,res) => {
         active_igenyfelmero_record: active_igenyfelmero_record,
         lines_for_active_ifmero: lines_for_active_ifmero,
         locations: locations,
-        functions: functions,
+        //functions: functions,
         devices: devices,
         brands: brands
     });
