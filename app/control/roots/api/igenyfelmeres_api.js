@@ -28,7 +28,7 @@ router.get('/get-price-for-device/:id',auth ,async (req,res) =>{
         res.send(device);
     }else{
         console.log("null");
-        res.send(null);
+        res.send({error: true});
     }
 
 });
