@@ -22,6 +22,7 @@ router.get('/get-test',auth ,async (req,res) => {
 });
 router.get('/get-price-for-device/:id',auth ,async (req,res) =>{
     const device = await DevicePriceModel.find({device: req.params.id});
+    console.log(device);
     res.send(device);
 });
 
