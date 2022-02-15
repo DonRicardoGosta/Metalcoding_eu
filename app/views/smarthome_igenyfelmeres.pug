@@ -24,17 +24,17 @@ body
                     if lines_for_active_ifmero
                         each line in lines_for_active_ifmero
                             tr
-                                td.ifl-id.hide= line._id
+                                td.ifl-id.hide= line.id
                                 td 0
                                 td.ifl-name= line.name
                                 td.ifl-location-name
                                     select#location-options
                                         if locations
                                             each location in locations
-                                                if line.location.id == location._id
+                                                if line.location.id == location.id
                                                     option(value=location.id selected=true).location-option #{location.name}
                                                 else
-                                                    option(value=location._id).location-option #{location.name}
+                                                    option(value=location.id).location-option #{location.name}
 
 
                                 td.ifl-description= line.description
@@ -42,26 +42,26 @@ body
                                     select#function-options
                                         if functions
                                             each functionr in functions
-                                                if line.function.id == functionr._id
-                                                    option(value=functionr._id selected=true) #{functionr.name}
+                                                if line.function.id == functionr.id
+                                                    option(value=functionr.id selected=true) #{functionr.name}
                                                 else
-                                                    option(value=functionr._id) #{functionr.name}
+                                                    option(value=functionr.id) #{functionr.name}
                                 td.ifl-device-name
                                     select#device-options
                                         if devices
                                             each device in devices
-                                                if line.device.id == device._id
-                                                    option(value=device._id selected=true) #{device.name}
+                                                if line.device.id == device.id
+                                                    option(value=device.id selected=true) #{device.name}
                                                 else
-                                                    option(value=device._id) #{device.name}
+                                                    option(value=device.id) #{device.name}
                                 td.ifl-brand-name
                                     select#brand-options
                                         if brands
                                             each brand in brands
-                                                if line.brand.id == brand._id
-                                                    option(value=brand._id selected=true) #{brand.name}
+                                                if line.brand.id == brand.id
+                                                    option(value=brand.id selected=true) #{brand.name}
                                                 else
-                                                    option(value=brand._id) #{brand.name}
+                                                    option(value=brand.id) #{brand.name}
                                 td.ifl-piece= line.piece
                                 td.ifl-price= line.price
 
