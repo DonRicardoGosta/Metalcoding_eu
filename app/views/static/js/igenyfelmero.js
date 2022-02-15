@@ -4,6 +4,7 @@ import {  getDevicePrice } from "/static/js/requests/get_api_requests.js";
 
 initIgenyfelmero();
 let totalPrice;
+let started=false;
 async function initIgenyfelmero(){
     await initPlussButton();
     await setEventListenersOnNameFields();
@@ -69,7 +70,14 @@ async function getPrice(device_id, event){
     }catch (ex){
         showErrorMessage(ex.message);
     }finally{
-        totalPrice+=new_price;
+        if(started){
+            totalPrice+=new_price;
+        }else{
+            totalPrice=0;
+            started=true;
+            totalPrice+=new_price;
+        }
+
     }
     console.log(totalPrice);
 }

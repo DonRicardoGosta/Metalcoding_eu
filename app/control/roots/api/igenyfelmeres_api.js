@@ -22,12 +22,9 @@ router.get('/get-test',auth ,async (req,res) => {
 });
 router.get('/get-price-for-device/:id',auth ,async (req,res) =>{
     const device = await DevicePriceModel.find({device: req.params.id});
-    console.log(device);
     if(device&&device.length>0){
-        console.log("not null: "+device)
         res.send(device);
     }else{
-        console.log("null");
         res.send({error: true});
     }
 
