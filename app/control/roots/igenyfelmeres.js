@@ -29,7 +29,7 @@ router.get('/', auth, async (req,res) => {
         //active_igenyfelmero_record: active_igenyfelmero_record,
         //lines_for_active_ifmero: lines_for_active_ifmero,
         //locations: locations,
-        //functions: functions,
+        functions: functions,
         devices: devices,
         brands: brands
     });
