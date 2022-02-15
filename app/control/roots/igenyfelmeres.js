@@ -28,7 +28,7 @@ router.get('/', auth, async (req,res) => {
         //igenyfelmeres_records: igenyfelmeres_records,
         //active_igenyfelmero_record: active_igenyfelmero_record,
         //lines_for_active_ifmero: lines_for_active_ifmero,
-        //locations: locations,
+        locations: locations,
         functions: functions,
         devices: devices,
         brands: brands
