@@ -25,13 +25,7 @@ router.get('/', auth, async (req,res) => {
     res.render('smarthome_igenyfelmeres', {
         title: 'MagoriCO - SmartHome - Igényfelmérés',
         user: user,
-        igenyfelmeres_records: igenyfelmeres_records,
-        active_igenyfelmero_record: active_igenyfelmero_record,
-        lines_for_active_ifmero: lines_for_active_ifmero,
-        locations: locations,
-        functions: functions,
-        devices: devices,
-        brands: brands
+        
     });
     }catch (ex){
         console.log(ex.message);
