@@ -3,7 +3,7 @@ import {  updateLineRecordName, updateLineRecordDescription, updateLineRecordLoc
 import {  getDevicePrice } from "/static/js/requests/get_api_requests.js";
 
 initIgenyfelmero();
-
+let totalPrice;
 async function initIgenyfelmero(){
     await initPlussButton();
     await setEventListenersOnNameFields();
@@ -56,18 +56,22 @@ async function deviceChoosed(event){
     await getPrice(device_id, event);
 }
 async function getPrice(device_id, event){
+    let new_price = 0;
     try{
         let device = await getDevicePrice(device_id);
 
         if(!device.error) {
             event.target.parentElement.parentElement.querySelector(".ifl-price").textContent = device[0].price;
+            new_price+=device[0].price;
         }else{
             event.target.parentElement.parentElement.querySelector(".ifl-price").textContent= "0";
         }
     }catch (ex){
         showErrorMessage(ex.message);
+    }finally{
+        totalPrice+=new_price;
     }
-
+    console.log(totalPrice);
 }
 async function brandChoosed(event){
     let brand_id=event.target.value;
