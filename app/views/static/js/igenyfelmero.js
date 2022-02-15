@@ -58,6 +58,7 @@ async function deviceChoosed(event){
 async function getPrice(device_id, event){
     try{
         let device = await getDevicePrice(device_id);
+        console.log(device);
         if(device[0].price&&device) {
             event.target.parentElement.parentElement.querySelector(".ifl-price").textContent = device[0].price;
         }else{
