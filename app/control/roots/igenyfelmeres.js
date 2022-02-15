@@ -31,7 +31,7 @@ router.get('/', auth, async (req,res) => {
         //locations: locations,
         //functions: functions,
         devices: devices,
-        //brands: brands
+        brands: brands
     });
     }catch (ex){
         console.log(ex.message);
