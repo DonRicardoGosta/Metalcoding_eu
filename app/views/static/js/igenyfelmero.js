@@ -3,6 +3,8 @@ import {  updateLineRecordName, updateLineRecordDescription, updateLineRecordLoc
 import {  getDevicePrice } from "/static/js/requests/get_api_requests.js";
 
 initIgenyfelmero();
+let totalPrice;
+let started=false;
 
 async function initIgenyfelmero(){
     await initPlussButton();
@@ -12,6 +14,27 @@ async function initIgenyfelmero(){
     await setEventListenersOnFunctions();
     await setEventListenersOnDevices();
     await setEventListenersOnBrands();
+    await getDevicePrices();
+    await setEventListenerOnAddNewLineButton();
+}
+function setEventListenerOnAddNewLineButton(){
+    let addButtonContainer = document.querySelector("#add-new-line-button");
+    addButtonContainer.addEventListener('click',addNewLine);
+}
+async function addNewLine(event) {
+    console.log("add new line");
+}
+async function getDevicePrices() {
+    let devicesOptions = document.querySelectorAll("#device-options");
+
+    for(let deviceoptions of devicesOptions){
+        for(let device of deviceoptions){
+            if(device.selected){
+                await getPrice(device.value, device, true)
+            }
+
+        }
+    }
 }
 function setEventListenersOnBrands(){
     let brandOptions = document.querySelectorAll("#brand-options");
@@ -55,18 +78,40 @@ async function deviceChoosed(event){
     showSystemMessage("Device saved successfully");
     await getPrice(device_id, event);
 }
-async function getPrice(device_id, event){
+async function getPrice(device_id, event, isInit){
+    let new_price = 0;
+    let old_price=0;
     try{
         let device = await getDevicePrice(device_id);
-        if(device[0].price!=null) {
-            event.target.parentElement.parentElement.querySelector(".ifl-price").textContent = device[0].price;
+        let device_location;
+        if(isInit){
+            device_location = event.parentElement;
         }else{
-            event.target.parentElement.parentElement.querySelector(".ifl-price").textContent= "0";
+            device_location = event.target;
+        }
+        if(!device.error) {
+            old_price = device_location.parentElement.parentElement.querySelector(".ifl-price").textContent;
+            device_location.parentElement.parentElement.querySelector(".ifl-price").textContent = device[0].price;
+            new_price+=device[0].price;
+        }else{
+            old_price = device_location.parentElement.parentElement.querySelector(".ifl-price").textContent;
+            device_location.parentElement.parentElement.querySelector(".ifl-price").textContent= "0";
         }
     }catch (ex){
         showErrorMessage(ex.message);
-    }
+    }finally{
 
+        if(started){
+            totalPrice+=new_price;
+            totalPrice-=old_price
+        }else{
+            totalPrice=0;
+            started=true;
+            totalPrice+=new_price;
+            totalPrice-=old_price
+        }
+    }
+    printTotalPriceToTheScreen();
 }
 async function brandChoosed(event){
     let brand_id=event.target.value;
@@ -216,4 +261,9 @@ function printPlussButtonToTheScreen(container){
                 </div>
     `;
     container.insertAdjacentHTML("beforeend", button);
+}
+
+function printTotalPriceToTheScreen(){
+    let searchContainer = document.querySelector("#total-price");
+    searchContainer.textContent=totalPrice+" Ft";
 }

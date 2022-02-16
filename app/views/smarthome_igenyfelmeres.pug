@@ -5,6 +5,7 @@ body
         div#darker-background
             h1#igenyfelmeres_h1 Magori computers - SmartHome Igényfelmérő kalkulátor
             div#igenyfelmero-container
+
                 div#igenyfelmeres-records-container
                     if igenyfelmeres_records
                         each if_record in igenyfelmeres_records
@@ -64,6 +65,11 @@ body
                                                     option(value=brand.id) #{brand.name}
                                 td.ifl-piece= line.piece
                                 td.ifl-price= line.price
+                table
+                    tr
+                        th Total price:
+                        th#total-price 0 Ft
+
 
 
 

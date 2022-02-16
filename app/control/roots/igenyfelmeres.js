@@ -16,7 +16,6 @@ router.get('/', auth, async (req,res) => {
         const igenyfelmeres_records = await getIgenyfelmeresRecords(user._id);
         const active_igenyfelmero_record = await igenyfelmeres_records[0];
         const lines_for_active_ifmero = await active_igenyfelmero_record.line_records;
-        console.log(lines_for_active_ifmero)
         const locations = await getLocations();
         const functions = await getFunctions();
         const devices = await getDevices();
