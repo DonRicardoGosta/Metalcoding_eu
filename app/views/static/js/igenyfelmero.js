@@ -79,7 +79,7 @@ async function getPrice(device_id, event){
         }
 
     }
-    console.log(totalPrice);
+    printTotalPriceToTheScreen();
 }
 async function brandChoosed(event){
     let brand_id=event.target.value;
@@ -229,4 +229,9 @@ function printPlussButtonToTheScreen(container){
                 </div>
     `;
     container.insertAdjacentHTML("beforeend", button);
+}
+
+function printTotalPriceToTheScreen(){
+    let searchContainer = document.querySelector("#total-price");
+    searchContainer.textContent=totalPrice+" Ft";
 }
