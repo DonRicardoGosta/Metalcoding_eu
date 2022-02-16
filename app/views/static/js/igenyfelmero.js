@@ -5,7 +5,7 @@ import {  getDevicePrice } from "/static/js/requests/get_api_requests.js";
 initIgenyfelmero();
 let totalPrice;
 let started=false;
-let active_device_ids=[];
+
 async function initIgenyfelmero(){
     await initPlussButton();
     await setEventListenersOnNameFields();
@@ -15,6 +15,14 @@ async function initIgenyfelmero(){
     await setEventListenersOnDevices();
     await setEventListenersOnBrands();
     await getDevicePrices();
+    await setEventListenerOnAddNewLineButton();
+}
+function setEventListenerOnAddNewLineButton(){
+    let addButtonContainer = document.querySelector("#add-new-line-button");
+    addButtonContainer.addEventListener('click',addNewLine);
+}
+async function addNewLine(event) {
+    console.log("add new line");
 }
 async function getDevicePrices() {
     let devicesOptions = document.querySelectorAll("#device-options");
@@ -102,10 +110,6 @@ async function getPrice(device_id, event, isInit){
             totalPrice+=new_price;
             totalPrice-=old_price
         }
-        console.log("old price: "+old_price);
-        console.log("new price: "+new_price);
-        console.log("total price: "+totalPrice);
-        console.log("\n\n\n");
     }
     printTotalPriceToTheScreen();
 }
