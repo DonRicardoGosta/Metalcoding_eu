@@ -5,6 +5,7 @@ import {  getDevicePrice } from "/static/js/requests/get_api_requests.js";
 initIgenyfelmero();
 let totalPrice;
 let started=false;
+let active_device_ids=[];
 async function initIgenyfelmero(){
     await initPlussButton();
     await setEventListenersOnNameFields();
@@ -13,6 +14,19 @@ async function initIgenyfelmero(){
     await setEventListenersOnFunctions();
     await setEventListenersOnDevices();
     await setEventListenersOnBrands();
+    await getDevicePrices();
+}
+async function getDevicePrices() {
+    let devicesOptions = document.querySelectorAll("#device-options");
+
+    for(let deviceoptions of devicesOptions){
+        for(let device of deviceoptions){
+            if(device.selected){
+                await getPrice(device.value, device, true)
+            }
+
+        }
+    }
 }
 function setEventListenersOnBrands(){
     let brandOptions = document.querySelectorAll("#brand-options");
@@ -56,28 +70,42 @@ async function deviceChoosed(event){
     showSystemMessage("Device saved successfully");
     await getPrice(device_id, event);
 }
-async function getPrice(device_id, event){
+async function getPrice(device_id, event, isInit){
     let new_price = 0;
+    let old_price=0;
     try{
         let device = await getDevicePrice(device_id);
-
+        let device_location;
+        if(isInit){
+            device_location = event.parentElement;
+        }else{
+            device_location = event.target;
+        }
         if(!device.error) {
-            event.target.parentElement.parentElement.querySelector(".ifl-price").textContent = device[0].price;
+            old_price = device_location.parentElement.parentElement.querySelector(".ifl-price").textContent;
+            device_location.parentElement.parentElement.querySelector(".ifl-price").textContent = device[0].price;
             new_price+=device[0].price;
         }else{
-            event.target.parentElement.parentElement.querySelector(".ifl-price").textContent= "0";
+            old_price = device_location.parentElement.parentElement.querySelector(".ifl-price").textContent;
+            device_location.parentElement.parentElement.querySelector(".ifl-price").textContent= "0";
         }
     }catch (ex){
         showErrorMessage(ex.message);
     }finally{
+
         if(started){
             totalPrice+=new_price;
+            totalPrice-=old_price
         }else{
             totalPrice=0;
             started=true;
             totalPrice+=new_price;
+            totalPrice-=old_price
         }
-
+        console.log("old price: "+old_price);
+        console.log("new price: "+new_price);
+        console.log("total price: "+totalPrice);
+        console.log("\n\n\n");
     }
     printTotalPriceToTheScreen();
 }
