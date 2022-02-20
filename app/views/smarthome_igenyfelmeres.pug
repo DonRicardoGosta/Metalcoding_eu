@@ -10,7 +10,8 @@ body
                     if igenyfelmeres_records
                         each if_record in igenyfelmeres_records
                             a.igenyfelmeres-record=if_record.name
-                table
+                table#calculation-table
+                    div#igenyfelmero-record-id.hide= active_igenyfelmero_record._id
                     tr
                         th poz
                         th name
@@ -63,7 +64,11 @@ body
                                                     option(value=brand.id selected=true) #{brand.name}
                                                 else
                                                     option(value=brand.id) #{brand.name}
-                                td.ifl-piece= line.piece
+                                td.ifl-piece
+                                    div.pieces= line.piece
+                                    div.piece-actions
+                                        div.piece-up +
+                                        div.piece-down -
                                 td.ifl-price= line.price
                 table
                     tr

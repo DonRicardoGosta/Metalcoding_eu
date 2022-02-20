@@ -77,6 +77,20 @@ export async function getDevicePrice(device_id){
     let response = await fetch(url);
     let data = await response.json();
     return data;
-
-
 }
+
+export async function getNewLineRecord(igenyfelmeres_record_id){
+    let url="/api/igenyfelmeres/get-new-line-record/"+igenyfelmeres_record_id;
+    let response = await fetch(url);
+    if(response){
+        location.reload();
+    }
+}
+export async function getNumOfPieces(line_rec_id){
+    let url="/api/igenyfelmeres/get-line-rec-pieces-num/"+line_rec_id;
+    let response = await fetch(url);
+    let data = await response.json();
+    return data.piece;
+}
+
+//getNumOfPieces
