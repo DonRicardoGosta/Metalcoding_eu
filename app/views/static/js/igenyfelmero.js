@@ -1,6 +1,6 @@
 import { showErrorMessage, showSystemMessage } from '/static/js/DOM.js';
-import {  updateLineRecordName, updateLineRecordDescription, updateLineRecordLocation, updateLineRecordFunction, updateLineRecordDevice, updateLineRecordBrand } from "/static/js/requests/put_api_requests.js";
-import {  getDevicePrice } from "/static/js/requests/get_api_requests.js";
+import {  updateLineRecordName, updateLineRecordDescription, updateLineRecordLocation, updateLineRecordFunction, updateLineRecordDevice, updateLineRecordBrand, updateLineRecordPiece } from "/static/js/requests/put_api_requests.js";
+import {  getDevicePrice, getNewLineRecord, getNumOfPieces } from "/static/js/requests/get_api_requests.js";
 
 initIgenyfelmero();
 let totalPrice;
@@ -16,13 +16,34 @@ async function initIgenyfelmero(){
     await setEventListenersOnBrands();
     await getDevicePrices();
     await setEventListenerOnAddNewLineButton();
+    await setEventListenerOnPieceButtons();
+}
+function setEventListenerOnPieceButtons(){
+    let piecesDiv = document.querySelectorAll(".piece-actions");
+    for (let pieceDiv of piecesDiv){
+        pieceDiv.querySelector(".piece-up").addEventListener("click",increasePiece);
+        pieceDiv.querySelector(".piece-down").addEventListener("click",decreasePiece);
+    }
+}
+async function increasePiece(event) {
+    const line_record_id = event.target.parentElement.parentElement.parentElement.querySelector(".ifl-id").textContent;
+    let piece= await updateLineRecordPiece(line_record_id,"inc");
+    event.target.parentElement.parentElement.querySelector(".pieces").textContent=piece;
+    await getDevicePrices();
+}
+async function decreasePiece(event) {
+    const line_record_id = event.target.parentElement.parentElement.parentElement.querySelector(".ifl-id").textContent;
+    let piece= await updateLineRecordPiece(line_record_id,"dec",event);
+    event.target.parentElement.parentElement.querySelector(".pieces").textContent=piece;
+    await getDevicePrices();
 }
 function setEventListenerOnAddNewLineButton(){
     let addButtonContainer = document.querySelector("#add-new-line-button");
     addButtonContainer.addEventListener('click',addNewLine);
 }
-async function addNewLine(event) {
-    console.log("add new line");
+async function addNewLine() {
+    const igenyfelmeres_record_id= document.querySelector("#igenyfelmero-record-id").textContent;
+    await getNewLineRecord(igenyfelmeres_record_id);
 }
 async function getDevicePrices() {
     let devicesOptions = document.querySelectorAll("#device-options");
@@ -89,12 +110,13 @@ async function getPrice(device_id, event, isInit){
         }else{
             device_location = event.target;
         }
+        old_price = device_location.parentElement.parentElement.querySelector(".ifl-price").textContent;
         if(!device.error) {
-            old_price = device_location.parentElement.parentElement.querySelector(".ifl-price").textContent;
-            device_location.parentElement.parentElement.querySelector(".ifl-price").textContent = device[0].price;
-            new_price+=device[0].price;
+            let line_id=device_location.parentElement.parentElement.querySelector(".ifl-id").textContent;
+            let piece = await getNumOfPieces(line_id);
+            device_location.parentElement.parentElement.querySelector(".ifl-price").textContent = (device[0].price*piece);
+            new_price+=(device[0].price*piece);
         }else{
-            old_price = device_location.parentElement.parentElement.querySelector(".ifl-price").textContent;
             device_location.parentElement.parentElement.querySelector(".ifl-price").textContent= "0";
         }
     }catch (ex){
@@ -103,12 +125,12 @@ async function getPrice(device_id, event, isInit){
 
         if(started){
             totalPrice+=new_price;
-            totalPrice-=old_price
+            totalPrice-=old_price;
         }else{
             totalPrice=0;
             started=true;
             totalPrice+=new_price;
-            totalPrice-=old_price
+            totalPrice-=old_price;
         }
     }
     printTotalPriceToTheScreen();
