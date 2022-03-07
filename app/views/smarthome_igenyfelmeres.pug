@@ -2,78 +2,79 @@ html
 include static/includes/header
 body
     div#container
-        div#darker-background
-            h1#igenyfelmeres_h1 Magori computers - SmartHome Igényfelmérő kalkulátor
-            div#igenyfelmero-container
+        div#background-img
+            div#darker-background
+        h1#igenyfelmeres_h1 Magori computers - SmartHome Igényfelmérő kalkulátor
+        div#igenyfelmero-container
 
-                div#igenyfelmeres-records-container
-                    if igenyfelmeres_records
-                        each if_record in igenyfelmeres_records
-                            a.igenyfelmeres-record=if_record.name
-                table#calculation-table
-                    div#igenyfelmero-record-id.hide= active_igenyfelmero_record._id
-                    tr
-                        th poz
-                        th name
-                        th location
-                        th description
-                        th function
-                        th device
-                        th brand
-                        th piece
-                        th price
+            div#igenyfelmeres-records-container
+                if igenyfelmeres_records
+                    each if_record in igenyfelmeres_records
+                        a.igenyfelmeres-record=if_record.name
+            table#calculation-table
+                div#igenyfelmero-record-id.hide= active_igenyfelmero_record._id
+                tr
+                    th poz
+                    th name
+                    th location
+                    th description
+                    th function
+                    th device
+                    th brand
+                    th piece
+                    th price
 
-                    if lines_for_active_ifmero
-                        each line in lines_for_active_ifmero
-                            tr
-                                td.ifl-id.hide= line.id
-                                td 0
-                                td.ifl-name= line.name
-                                td.ifl-location-name
-                                    select#location-options
-                                        if locations
-                                            each location in locations
-                                                if line.location.id == location.id
-                                                    option(value=location.id selected=true).location-option #{location.name}
-                                                else
-                                                    option(value=location.id).location-option #{location.name}
+                if lines_for_active_ifmero
+                    each line in lines_for_active_ifmero
+                        tr
+                            td.ifl-id.hide= line.id
+                            td 0
+                            td.ifl-name= line.name
+                            td.ifl-location-name
+                                select#location-options
+                                    if locations
+                                        each location in locations
+                                            if line.location.id == location.id
+                                                option(value=location.id selected=true).location-option #{location.name}
+                                            else
+                                                option(value=location.id).location-option #{location.name}
 
 
-                                td.ifl-description= line.description
-                                td.ifl-function-name
-                                    select#function-options
-                                        if functions
-                                            each functionr in functions
-                                                if line.function.id == functionr.id
-                                                    option(value=functionr.id selected=true) #{functionr.name}
-                                                else
-                                                    option(value=functionr.id) #{functionr.name}
-                                td.ifl-device-name
-                                    select#device-options
-                                        if devices
-                                            each device in devices
-                                                if line.device.id == device.id
-                                                    option(value=device.id selected=true) #{device.name}
-                                                else
-                                                    option(value=device.id) #{device.name}
-                                td.ifl-brand-name
-                                    select#brand-options
-                                        if brands
-                                            each brand in brands
-                                                if line.brand.id == brand.id
-                                                    option(value=brand.id selected=true) #{brand.name}
-                                                else
-                                                    option(value=brand.id) #{brand.name}
-                                td.ifl-piece
-                                    div.pieces= line.piece
-                                    div.piece-actions
-                                        div.piece-up +
-                                        div.piece-down -
-                                td.ifl-price= line.price
-                table
-                    tr
-                        th Total price:
-                        th#total-price 0 Ft
+                            td.ifl-description= line.description
+                            td.ifl-function-name
+                                select#function-options
+                                    if functions
+                                        each functionr in functions
+                                            if line.function.id == functionr.id
+                                                option(value=functionr.id selected=true) #{functionr.name}
+                                            else
+                                                option(value=functionr.id) #{functionr.name}
+                            td.ifl-device-name
+                                select#device-options
+                                    if devices
+                                        each device in devices
+                                            if line.device.id == device.id
+                                                option(value=device.id selected=true) #{device.name}
+                                            else
+                                                option(value=device.id) #{device.name}
+                            td.ifl-brand-name
+                                select#brand-options
+                                    if brands
+                                        each brand in brands
+                                            if line.brand.id == brand.id
+                                                option(value=brand.id selected=true) #{brand.name}
+                                            else
+                                                option(value=brand.id) #{brand.name}
+                            td.ifl-piece
+                                div.pieces= line.piece
+                                div.piece-actions
+                                    div.piece-up +
+                                    div.piece-down -
+                            td.ifl-price= line.price
+            table
+                tr
+                    th Total price:
+                    th#total-price 0 Ft
 
 
 
