@@ -82,16 +82,31 @@
     margin: 50px;
 }
 #logo{
+    font-weight: bold;
+    font-family: cursive;
+}
+.small-logo{
     width:80%;
     line-height: 80px;
     text-align: center;
     font-size: 17px;
-    font-weight: bold;
     margin: 30px 10% 10px 10%;
 }
+.mid-logo{
+    width:100%;
+    line-height: 150px;
+    text-align: center;
+    font-size: 60px;
+}
+.big-logo{
+    width:100%;
+    line-height: 300px;
+    text-align: center;
+    font-size: 60px;
+}
 #menu-container{
-    width:90%;
-    margin: 50% 0 0 10%;
+    width:100%;
+    margin: 50% 0 0 0;
     list-style: none;
     text-align: right;
 }
@@ -101,8 +116,6 @@
     width: 90%;
     display: block;
     list-style: none;
-    border-bottom-left-radius: 25px;
-    border-top-left-radius: 25px;
     transition: 0.1s;
     line-height: 25px;
     text-align: center;
@@ -116,26 +129,24 @@
     color: rgba(3, 138, 255,1);
 }
 #auth-button-container{
-    height: 50px;
-    position: fixed;
-    top:0;
-    right: 0;
-    margin: 50px;
+    margin: 10vh 0 0 0;
+    bottom:0;
+    left: 0;
 }
 .auth-button{
     display: inline-block;
     line-height: 50px;
-    padding: 0 10px 0 10px;
-    font-size: 20px;
+    font-size: 16px;
     text-decoration: none;
     color: white;
+    width:48%;
+    text-align: center;
+    font-family: cursive;
 }
 #form{
     background: radial-gradient(circle, rgba(251,63,63,0.6) 0%, rgba(0,0,0,1) 80%);
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
-
-    position: fixed;
 }
 #form form{
     border-radius: 25px;
@@ -144,9 +155,9 @@
 }
 #login{
     background-color: rgba(255,255,255,0.2);
-    width: 20%;
-    height: 50vh;
-    margin: 0 40% 0 40%;
+    width: 30%;
+    min-height: 50vh;
+    margin: 0 35% 0 35%;
 }
 #form form h1{
     font-size: 24px;
@@ -176,6 +187,8 @@
 #form form input[type=submit] {
     background-color: rgba(3, 138, 255,1);
     color: white;
+    margin: 10px 35% 0 35%;
+    width: 30%;
 }
 #email-input[type=text] {
     background-color: white;
@@ -202,25 +215,25 @@
     padding-left: 40px;
 }
 
-#home-page{
-    width: 100%;
-    line-height: 80vh;
-    text-align: center;
-    font-size: 60px;
-}
 #container{
     min-height: 100vh;
+    width:100%;
+    color: white;
+}
+#background-img{
+    height: 100vh;
     width:100%;
     background: url("/static/img/background_one.jpg") top center no-repeat;
     background-size: cover;
     background-attachment: fixed;
+    position: fixed;
     transition: 0.3s;
-    color: white;
 }
 #darker-background{
     background-color: rgba(0,0,0,0.6);
     width: 100%;
     min-height: 100vh;
+    position: fixed;
 }
 #footer{
     width: 100%;
@@ -608,44 +621,43 @@ a.new-card{
         width:80%;
     }
     .menu{
-        margin: 0% 0 0% 0;
-        padding: 10% 0 0 0;
-        width: 80%;
-        height: 150px;
+        padding-left: 10%;
+        text-align: left;
+        line-height: 150px;
         font-size: 50px;
-        border-radius: 0;
-        border-bottom: 3px solid white;
     }
-    #logo{
-        height: 80px;
+    .small-logo{
+        font-size: 60px;
+        margin: 60px 10% 10px 10%;
+    }
+    .mid-logo{
+        width:100%;
+        line-height: 400px;
         text-align: center;
-        font-size: 35px;
-        font-weight: bold;
-        margin: 30px 10% 10px 10%;
+        font-size: 120px;
+    }
+    .big-logo{
+        width:100%;
+        line-height: 800px;
+        text-align: center;
+        font-size: 150px;
     }
     .auth-button{
-        display: inline-block;
-        line-height: 50px;
-        padding: 0 10px 0 50px;
-        font-size: 50px;
-        text-decoration: none;
-        color: white;
+        font-size: 80px;
     }
     #form{
-
-        height: 100vh;
+        min-height: 100vh;
         width: 100%;
-        position: fixed;
     }
     #form form{
         background-color: rgba(0,0,0,0);
         border-radius: 25px;
         border: none;
-        margin-top: 10vh;
+        margin-top: 5vh;
     }
     #login{
         width: 90%;
-        height: 50vh;
+        min-height: 50vh;
         margin: 0 5% 0 5%;
     }
     #form form h1{

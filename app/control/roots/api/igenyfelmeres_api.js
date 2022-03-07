@@ -83,7 +83,7 @@ router.put('/increase-piece/:line_record_id',auth ,async (req,res) =>{
 });
 router.put('/decrease-piece/:line_record_id',auth ,async (req,res) =>{
     const line_rec = await IgenyfelmeresLineRecordModel.find({_id: req.params.line_record_id});
-    if(line_rec[0].piece <= 1){
+    if(line_rec[0].piece <= 0){
         res.send({piece: -1})
     }else{
         let new_piece = line_rec[0].piece - 1;

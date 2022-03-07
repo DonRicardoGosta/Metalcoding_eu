@@ -6,7 +6,7 @@ head
 body
     div#nav
         div#menus.hide-nav
-            div#logo Metalcoding.eu
+            div#logo.small-logo Metalcoding.eu
             div#menu-container
                 if user == null
                     a(href="/").menu Home
@@ -17,13 +17,13 @@ body
                     a(href="/magori").menu Management software
                     a(href="/").menu Web design
                     a(href="/smarthome-igenyfelmeres").menu SmartHome - Igényfelmérés
+                if user == null
+                    div#auth-button-container
+                        a.auth-button(href="/register") Register
+                        a.auth-button(href="/login") Login
+                else
+                    div#auth-button-container
+                        a.auth-button= user.name
+                        a.auth-button(href="/logout") Logout
         div#nav-menu-icon
-    if user == null
-        div#auth-button-container
-            a.auth-button(href="/register") Register
-            a.auth-button(href="/login") Login
-    else
-        div#auth-button-container
-            a.auth-button= user.name
-            a.auth-button(href="/logout") Logout
 script(type="module" src='/static/js/nav_menu.js')
