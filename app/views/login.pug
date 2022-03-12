@@ -1,15 +1,12 @@
 include static/includes/header.pug
-body
-    div#container
-        div#background-img
-            div#darker-background
-                div#form
-                    div#logo.mid-logo Metalcoding
-                    form(action='/login', method='POST' id='login')
-                        h1 Sign in
-                        input(type='text', name='email', value='', placeholder='email', id='email-input')
-                        input(type='password', name='password', value='', placeholder='password', id='password-input')
-                        input(type='submit', value='Login')
-                        p Don't have an account?
-                            a(href="/register") Create account
+div#container
+    div#form
+        div#logo.mid-logo Metalcoding
+        form(action='/login', method='POST' id='login')
+            h1 Sign in
+            input(type='text', name='email', value='', placeholder='email', id='email-input')
+            input(type='password', name='password', value='', placeholder='password', id='password-input')
+            input(type='submit', value='Login')
+            p Don't have an account?
+                a(href="/register") Create account
 include static/includes/footer.pug

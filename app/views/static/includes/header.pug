@@ -4,15 +4,18 @@ head
         include ../css/style.css
         include ../css/mobile.css
 body
+    div#background-img
+        div#darker-background
     div#nav
         div#menus.hide-nav
-            div#logo.small-logo Metalcoding.eu
+
             div#menu-container
+                div#logo.small-logo Metalcoding.eu
                 if user == null
                     a(href="/").menu Home
                     a(href="/magori").menu Management software
                     a(href="/").menu Web design
-                else 
+                else
                     a(href="/").menu Home
                     a(href="/magori").menu Management software
                     a(href="/").menu Web design
@@ -26,4 +29,5 @@ body
                         a.auth-button= user.name
                         a.auth-button(href="/logout") Logout
         div#nav-menu-icon
+
 script(type="module" src='/static/js/nav_menu.js')

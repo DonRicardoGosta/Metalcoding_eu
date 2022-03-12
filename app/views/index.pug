@@ -1,10 +1,10 @@
 html
 include static/includes/header
-body
-    div#container
-        div#background-img
-            div#darker-background
+div#container
+        if user == null
+                h1#logo.big-logo Metalcoding
+        else
+                h1#logo.big-logo Metalcoding
 
-        h1#logo.big-logo Metalcoding
 
 include static/includes/footer.pug
