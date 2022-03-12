@@ -74,6 +74,32 @@
 .hide-nav #menu-container{
     display: none;
 }
+.hide-nav #menu-icons{
+    display: block;
+    width:100%;
+    margin: 150px 5px 0 5px;
+    list-style: none;
+    min-height: 90vh;
+}
+.menu-icon{
+    margin: 10% 0px 10% 0px;
+    width: 40px;
+    height: 40px;
+    display: block;
+    list-style: none;
+    line-height: 25px;
+    text-decoration: none;
+    background: rgba(255,0,0,0.1);
+}
+.home-icon{
+    background-image: url('/static/img/home.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+}
+.display-nav #menu-icons{
+    display: none;
+}
 #nav-menu-icon{
     width: 30px;
     height: 30px;
