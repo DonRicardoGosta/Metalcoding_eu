@@ -53,7 +53,7 @@
 .nav-invade-page{
     width:100%;
     height: 100vh;
-    background-color: rgba(0,0,0,0.8);
+    background-color: rgba(0,0,0,0.1);
 }
 #menus{
     display: inline-block;
@@ -71,34 +71,119 @@
     width:50px;
     transition: 0.1s;
 }
-.hide-nav #menu-container{
+.hide-nav .menu-description{
     display: none;
+}
+.display-nav .menu-description{
+    display: inline-block;
 }
 .hide-nav #menu-icons{
     display: block;
     width:100%;
-    margin: 150px 5px 0 5px;
+    margin: 200px 10px 0 10px;
     list-style: none;
     min-height: 90vh;
 }
 .menu-icon{
-    margin: 10% 0px 10% 0px;
-    width: 40px;
-    height: 40px;
-    display: block;
+    font-size: 20px;
+    margin: 25px 0 0 0;
+    width: 30px;
+    height: 30px;
     list-style: none;
     line-height: 25px;
     text-decoration: none;
     background: rgba(255,0,0,0.1);
+    display: inline-block;
+}
+.menu-description{
+    text-align: left;
+    padding-left: 25px;
+    width: 175px;
+    height: 30px;
+    list-style: none;
+    text-decoration: none;
+    color: white;
 }
 .home-icon{
-    background-image: url('/static/img/home.png');
-    background-repeat: no-repeat;
+    background: url("/static/img/home.png") top center no-repeat;
     background-size: contain;
     cursor: pointer;
 }
+.display-nav .magori-icon::before{
+    content: "Management software";
+    position: absolute;
+    color: rgba(3, 138, 255,1);
+}
+.magori-icon::before{
+    content: "MS";
+    color: rgba(3, 138, 255,1);
+}
+.magori-icon{
+    background: transparent;
+}
+.display-nav .igenyfelmeres-icon::before{
+    content: "Smarthome Igényfelmérés";
+    position: absolute;
+    color: rgba(3, 138, 255,1);
+}
+.igenyfelmeres-icon::before{
+    content: "SI";
+    color: rgba(3, 138, 255,1);
+}
+.igenyfelmeres-icon{
+    background: transparent;
+}
+.display-nav .login-icon::before{
+    content: "Login";
+    position: absolute;
+    color: rgba(3, 138, 255,1);
+}
+.login-icon::before{
+    content: "L";
+    color: rgba(3, 138, 255,1);
+}
+.login-icon{
+    background: transparent;
+}
+.display-nav .register-icon::before{
+    content: "Register";
+    position: absolute;
+    color: rgba(3, 138, 255,1);
+}
+.register-icon::before{
+    content: "R";
+    color: rgba(3, 138, 255,1);
+}
+.register-icon{
+    background: transparent;
+}
+.display-nav .logout-icon::before{
+    content: "Logout";
+    position: absolute;
+    color: rgba(3, 138, 255,1);
+}
+.logout-icon::before{
+    content: "LO";
+    color: rgba(3, 138, 255,1);
+}
+.logout-icon{
+    background: transparent;
+}
+
+
+
+
+
 .display-nav #menu-icons{
-    display: none;
+    display: block;
+    width:100%;
+    margin: 200px 10px 0 10px;
+    list-style: none;
+    min-height: 90vh;
+}
+.menu{
+    height: 60px;
+    overflow: hidden;
 }
 #nav-menu-icon{
     width: 30px;
@@ -135,44 +220,14 @@
     text-align: center;
     font-size: 60px;
 }
-#menu-container{
-    width:100%;
-    margin: 10% 0 0 0;
-    list-style: none;
-    text-align: right;
-}
-.menu{
-    margin: 10px 0 10px 0;
-    padding: 5%;
-    width: 90%;
-    display: block;
-    list-style: none;
-    transition: 0.1s;
-    line-height: 25px;
-    text-align: center;
-    color: white;
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: bold;
-}
-.menu:hover{
-    background-color: white;
-    color: rgba(3, 138, 255,1);
-}
 #auth-button-container{
-    margin: 10vh 0 0 0;
+    position: fixed;
+    margin: 10vh 10px 0 10px;
     bottom:0;
     left: 0;
 }
 .auth-button{
-    display: inline-block;
-    line-height: 50px;
-    font-size: 16px;
-    text-decoration: none;
-    color: white;
-    width:48%;
-    text-align: center;
-    font-family: cursive;
+    margin: 10px 0 0 0;
 }
 #form{
     background: radial-gradient(circle, rgba(251,63,63,0.6) 0%, rgba(0,0,0,1) 80%);
@@ -649,15 +704,25 @@ a.new-card{
     #nav-menu-icon{
         width: 100px;
         height: 100px;
+        margin: 50px 0 0 50px;
+    }
+    .menu-icon{
+        font-size: 60px;
+        width: 60px;
+        height: 60px;
+    }
+    .hide-nav#menus{
+       display: none;
     }
     .display-nav{
-        width:80%;
+        width:100%;
+        position: fixed;
     }
     .menu{
-        padding-left: 10%;
-        text-align: left;
-        line-height: 150px;
-        font-size: 50px;
+        margin-left: 100px;
+        height: 200px;
+        line-height: 200px;
+        font-size: 60px;
     }
     .small-logo{
         font-size: 60px;
@@ -674,9 +739,6 @@ a.new-card{
         line-height: 800px;
         text-align: center;
         font-size: 150px;
-    }
-    .auth-button{
-        font-size: 80px;
     }
     #form{
         min-height: 100vh;
