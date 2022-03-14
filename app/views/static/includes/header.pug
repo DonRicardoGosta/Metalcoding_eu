@@ -9,28 +9,35 @@ body
     div#nav
         div#menus.hide-nav
             div#menu-icons
-                a.menu-icon.home-icon
-                a.menu-icon
-                a.menu-icon
-            div#menu-container
-                div#logo.small-logo Metalcoding.eu
                 if user == null
-                    a(href="/").menu Home
-                    a(href="/magori").menu Management software
-                    a(href="/").menu Web design
-                else
-                    a(href="/").menu Home
-                    a(href="/magori").menu Management software
-                    a(href="/").menu Web design
-                    a(href="/smarthome-igenyfelmeres").menu SmartHome - Igényfelmérés
-                if user == null
+                    div.menu
+                        a(href="/").menu-icon.home-icon
+                        a(href="/").menu-description Home
+                    div.menu
+                        a(href="/magori").menu-icon.magori-icon
+                        //a(href="/magori").menu-description Management software
                     div#auth-button-container
-                        a.auth-button(href="/register") Register
-                        a.auth-button(href="/login") Login
+                        div.menu
+                            a(href="/register").menu-icon.auth-button.register-icon
+                            //a(href="/register").menu-description Register
+                        div.menu
+                            a(href="/login").menu-icon.auth-button.login-icon
+                            //a(href="/login").menu-description Login
                 else
+                    div.menu
+                        a(href="/").menu-icon.home-icon
+                        a(href="/").menu-description Home
+                    div.menu
+                        a(href="/magori").menu-icon.magori-icon
+                        //a(href="/magori").menu-description Management software
+                    div.menu
+                        a(href="/smarthome-igenyfelmeres").menu-icon.igenyfelmeres-icon
+                        //a(href="/smarthome-igenyfelmeres").menu-description SmartHome - Igényfelmérés
                     div#auth-button-container
-                        a.auth-button= user.name
-                        a.auth-button(href="/logout") Logout
+                        div.menu
+                            a(href="/logout").menu-icon.auth-button.logout-icon
+                            //a(href="/logout").menu-description Logout
+
         div#nav-menu-icon
 
 script(type="module" src='/static/js/nav_menu.js')
